@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hollybush RFC | WRU Division 5 East</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    --gold: #F5C518;
+    --gold-dark: #c9a100;
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --dark-grey: #1a1a1a;
+    --mid-grey: #2a2a2a;
+    --text: #e8e8e8;
+    --text-muted: #888;
+    --accent: var(--gold);
+    --nav-bg: rgba(10,10,10,0.95);
+    --alt-primary: #0099cc;
+    --alt-secondary: #005580;
+    --mode: 'home';
+  }
+
+  body.alt-colours {
+    --accent: var(--alt-primary);
+    --gold: var(--alt-primary);
+    --gold-dark: var(--alt-secondary);
+  }
+
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* ===== CUSTOM CURSOR ===== */
+  #cursor {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease;
+  }
+  #cursor svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 6px rgba(245,197,24,0.6));
+  }
+  #cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+    transition: all 0.04s linear;
+  }
+
+  /* ===== COLOUR SWITCH ===== */
+  #colour-switch {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9000;
+    background: var(--mid-grey);
+    border: 2px solid var(--gold);
+    border-radius: 50px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: none;
+    transition: border-color 0.3s, transform 0.2s;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  #colour-switch:hover { transform: scale(1.05); }
+  #colour-switch .swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0099cc 50%, #111 50%);
+    border: 1px solid #555;
+    flex-shrink: 0;
+  }
+
+  /* ===== NAVIGATION ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 8000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 70px;
+    transition: border-color 0.3s;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    cursor: none;
+  }
+  .nav-logo img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+  .nav-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+  .nav-wordmark span {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    cursor: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease, background 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  
+  /* Mobile nav toggle */
+  #nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  #nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(245,197,24,0.08) 0%, transparent 70%),
+      linear-gradient(180deg, #0a0a0a 0%, #111 60%, #0a0a0a 100%);
+  }
+
+  /* Animated pitch lines */
+  .pitch-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: 
+      repeating-linear-gradient(90deg, transparent, transparent 99px, rgba(255,255,255,0.5) 99px, rgba(255,255,255,0.5) 100px),
+      repeating-linear-gradient(0deg, transparent, transparent 99px, rgba(255,255,255,0.5) 99px, rgba(255,255,255,0.5) 100px);
+    background-size: 100px 100px;
+    animation: pitch-drift 20s linear infinite;
+  }
+  @keyframes pitch-drift {
+    from { transform: translateY(0); }
+    to { transform: translateY(100px); }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    animation: hero-in 1s ease both;
+  }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-logo {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+    margin: 0 auto 24px;
+    filter: drop-shadow(0 0 40px rgba(245,197,24,0.3));
+    animation: logo-pulse 4s ease-in-out infinite;
+  }
+  @keyframes logo-pulse {
+    0%, 100% { filter: drop-shadow(0 0 40px rgba(245,197,24,0.3)); }
+    50% { filter: drop-shadow(0 0 60px rgba(245,197,24,0.5)); }
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 140px);
+    line-height: 0.9;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 80px rgba(245,197,24,0.2);
+    animation: hero-in 1s 0.2s ease both;
+  }
+  .hero-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(14px, 2.5vw, 22px);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 12px;
+    animation: hero-in 1s 0.4s ease both;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    animation: hero-in 1s 0.6s ease both;
+  }
+  .btn-primary, .btn-secondary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 2px;
+    cursor: none;
+    transition: all 0.25s ease;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--gold);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    animation: float 2s ease-in-out infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: line-grow 2s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ===== NEXT MATCH BANNER ===== */
+  #next-match {
+    background: var(--gold);
+    color: var(--black);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: 'Barlow Condensed', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  #next-match::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(0,0,0,0.05) 20px,
+      rgba(0,0,0,0.05) 40px
+    );
+  }
+  .next-match-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    position: relative;
+  }
+  .next-match-vs {
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .next-match-vs .vs { 
+    font-size: 0.6em; 
+    opacity: 0.6; 
+    margin: 0 10px;
+    font-style: italic;
+  }
+  .next-match-meta {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    position: relative;
+  }
+  .next-match-home {
+    background: var(--black);
+    color: var(--gold);
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 100px 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  .section-header {
+    margin-bottom: 60px;
+    position: relative;
+  }
+  .section-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .section-title .highlight { color: var(--gold); }
+  .section-line {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 20px;
+    transition: background 0.3s;
+  }
+
+  /* ===== ABOUT / WELCOME ===== */
+  #about {
+    background: var(--off-black);
+    position: relative;
+    overflow: hidden;
+  }
+  #about::before {
+    content: 'RFC';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 300px;
+    color: rgba(245,197,24,0.03);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .about-text p strong { color: var(--gold); }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .stat-box {
+    background: var(--dark-grey);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(245,197,24,0.1);
+    transition: border-color 0.3s;
+  }
+  .stat-box:hover { border-color: var(--gold); }
+  .stat-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ===== FIXTURES & RESULTS ===== */
+  #fixtures { background: var(--black); }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--mid-grey);
+  }
+  .tab-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: none;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .tab-btn.active { color: var(--gold); }
+  .tab-btn.active::after { width: 100%; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Fixture card */
+  .fixture-group { margin-bottom: 36px; }
+  .fixture-date-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(245,197,24,0.2);
+    margin-bottom: 12px;
+  }
+  .fixture-card {
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 3px solid transparent;
+    margin-bottom: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .fixture-card.hollybush { border-left-color: var(--gold); }
+  .fixture-card:hover {
+    background: var(--mid-grey);
+    border-color: rgba(245,197,24,0.3);
+    border-left-color: var(--gold);
+    transform: translateX(4px);
+  }
+  .fixture-teams {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .team-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+  .team-name.our-team { color: var(--gold); }
+  .fixture-vs {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    padding: 0 12px;
+  }
+  .fixture-ko {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-left: auto;
+  }
+  .fixture-home-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--gold);
+    color: var(--black);
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-left: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Result card */
+  .result-card {
+    display: flex;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 6px;
+    transition: all 0.25s ease;
+    border-left: 3px solid transparent;
+  }
+  .result-card:hover { background: var(--mid-grey); transform: translateX(4px); }
+  .result-card.win { border-left-color: #4caf50; }
+  .result-card.loss { border-left-color: #e53935; }
+  .result-card.draw { border-left-color: var(--gold); }
+  .result-teams { flex: 1; }
+  .result-match {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .result-match .our-team { color: var(--gold); }
+  .result-score-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+  }
+  .result-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+  .result-score.our-score { color: var(--gold); }
+  .result-score.their-score { color: var(--text-muted); }
+  .result-dash {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--text-muted);
+    padding: 0 8px;
+  }
+  .win-badge, .loss-badge, .draw-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-left: 16px;
+  }
+  .win-badge { background: #4caf50; color: white; }
+  .loss-badge { background: #e53935; color: white; }
+  .draw-badge { background: var(--gold); color: var(--black); }
+
+  /* League Table */
+  .league-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .league-table thead tr {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .league-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .league-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+  .league-table tbody tr:hover { background: var(--dark-grey); }
+  .league-table tbody tr.our-team-row { background: rgba(245,197,24,0.08); }
+  .league-table tbody tr.our-team-row td { color: var(--gold); }
+  .league-table td {
+    padding: 14px 16px;
+    font-size: 16px;
+    color: var(--text);
+  }
+  .league-table .pos {
+    font-size: 13px;
+    color: var(--text-muted);
+    width: 40px;
+  }
+  .league-table .pts {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gold);
+  }
+  .league-table tr.promotion-line td {
+    border-top: 2px dashed rgba(76,175,80,0.5);
+  }
+  .league-table tr.relegation-line td {
+    border-top: 2px dashed rgba(229,57,53,0.5);
+  }
+  .zone-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-left: 8px;
+  }
+  .zone-prom { background: rgba(76,175,80,0.2); color: #4caf50; }
+  .zone-rel { background: rgba(229,57,53,0.2); color: #e53935; }
+
+  /* ===== BLOG ===== */
+  #blog { background: var(--off-black); }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .blog-card {
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+  }
+  .blog-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  .blog-card-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-card-image .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+  .blog-card:nth-child(1) .img-placeholder { background: linear-gradient(135deg, #1a1a0a, #2a2200); }
+  .blog-card:nth-child(2) .img-placeholder { background: linear-gradient(135deg, #0a1a0a, #002200); }
+  .blog-card:nth-child(3) .img-placeholder { background: linear-gradient(135deg, #1a0a0a, #220000); }
+  .blog-card-body { padding: 24px; }
+  .blog-card-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .blog-card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .blog-card-excerpt {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .blog-read-more {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    cursor: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .blog-read-more::after {
+    content: ' →';
+    transition: margin-left 0.2s;
+  }
+  .blog-card:hover .blog-read-more::after { margin-left: 6px; }
+
+  /* Blog modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 9500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    padding: 40px;
+    backdrop-filter: blur(6px);
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  .modal {
+    background: var(--dark-grey);
+    border: 1px solid rgba(245,197,24,0.3);
+    border-top: 3px solid var(--gold);
+    max-width: 700px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 48px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: none;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--gold); }
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .modal-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .modal-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+  .modal-body p { margin-bottom: 16px; }
+  .modal-body strong { color: var(--gold); }
+
+  /* ===== SQUAD ===== */
+  #squad { background: var(--black); }
+
+  .squad-filter {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    cursor: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+
+  .squad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .squad-card {
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+  }
+  .squad-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  .squad-card-header {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+  .squad-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 72px;
+    background: var(--mid-grey);
+    position: relative;
+  }
+  .squad-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, var(--dark-grey));
+  }
+  .squad-number {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: rgba(245,197,24,0.2);
+    line-height: 1;
+    z-index: 1;
+  }
+  .squad-card-body { padding: 20px; }
+  .squad-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .squad-position {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+  .squad-info {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .squad-stat { }
+  .squad-stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .squad-stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .squad-card[data-hidden="true"] { display: none; }
+
+  /* ===== CONTACT / FOOTER ===== */
+  #contact { background: var(--off-black); padding: 80px 0; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .contact-info p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .contact-detail .icon {
+    width: 40px;
+    height: 40px;
+    background: var(--dark-grey);
+    border: 1px solid rgba(245,197,24,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .social-link {
+    width: 44px;
+    height: 44px;
+    background: var(--dark-grey);
+    border: 1px solid rgba(245,197,24,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    text-decoration: none;
+    cursor: none;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .social-link:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  /* Newsletter form */
+  .newsletter-form h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .newsletter-form p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .form-group { margin-bottom: 16px; }
+  .form-input {
+    width: 100%;
+    background: var(--dark-grey);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text);
+    padding: 14px 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    border-radius: 2px;
+    transition: border-color 0.2s;
+    outline: none;
+    cursor: none;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .form-submit:hover { background: var(--gold-dark); }
+  .form-success {
+    display: none;
+    padding: 14px;
+    background: rgba(76,175,80,0.1);
+    border: 1px solid rgba(76,175,80,0.3);
+    color: #4caf50;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(245,197,24,0.1);
+    padding: 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    height: 50px;
+    object-fit: contain;
+    opacity: 0.6;
+    margin-bottom: 16px;
+  }
+  .footer-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .footer-text a {
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.7;
+    cursor: none;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: var(--nav-bg);
+      padding: 24px;
+      gap: 20px;
+      border-bottom: 2px solid var(--gold);
+    }
+    #nav-toggle { display: flex; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 20px; }
+    section { padding: 70px 0; }
+    .hero-logo { width: 160px; height: 160px; }
+    .next-match { padding: 16px 20px; }
+    .league-table thead th:nth-child(n+4), .league-table td:nth-child(n+4) { display: none; }
+    .league-table thead th:nth-child(5), .league-table td:nth-child(5) { display: table-cell; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== CURSOR ===== -->
+<div id="cursor">
+  <svg viewBox="0 0 80 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Rugby ball -->
+    <ellipse cx="40" cy="25" rx="32" ry="20" fill="#8B4513" stroke="#F5C518" stroke-width="2"/>
+    <path d="M20,10 Q40,0 60,10" stroke="#F5C518" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <path d="M15,25 Q40,15 65,25" stroke="#F5C518" stroke-width="1.5" fill="none" opacity="0.8"/>
+    <path d="M20,40 Q40,50 60,40" stroke="#F5C518" stroke-width="1.5" fill="none" opacity="0.6"/>
+    <line x1="40" y1="5" x2="40" y2="45" stroke="#F5C518" stroke-width="1" opacity="0.5"/>
+  </svg>
+</div>
+<div id="cursor-dot"></div>
+
+<!-- ===== COLOUR SWITCH ===== -->
+<div id="colour-switch" onclick="toggleColours()">
+  <div class="swatch"></div>
+  <span id="colour-label">Alt Kit</span>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="hollybush-logo.png" alt="Hollybush RFC" onerror="this.style.display='none'">
+    <div class="nav-wordmark">
+      Hollybush RFC
+      <span>WRU Division 5 East</span>
+    </div>
+  </a>
+  <button id="nav-toggle" onclick="toggleNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#about" onclick="closeNav()">Club</a></li>
+    <li><a href="#fixtures" onclick="closeNav()">Fixtures</a></li>
+    <li><a href="#blog" onclick="closeNav()">News</a></li>
+    <li><a href="#squad" onclick="closeNav()">Squad</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="pitch-lines"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Hollybush<br>RFC</h1>
+    <p class="hero-subtitle">WRU Admiral National League · Division 5 East · Est. 1902</p>
+    <div class="hero-cta">
+      <a href="#fixtures" class="btn-primary">Fixtures & Results</a>
+      <a href="#squad" class="btn-secondary">Meet the Squad</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ===== NEXT MATCH BANNER ===== -->
+<div id="next-match">
+  <div class="next-match-label">Next Match</div>
+  <div class="next-match-vs">
+    <span class="our-team-name">Hollybush</span>
+    <span class="vs">vs</span>
+    <span id="next-opponent">Hafodyrynys</span>
+  </div>
+  <div class="next-match-meta">📅 21 Feb 2026 · 13:00 KO</div>
+  <div class="next-match-home">🏠 Home</div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">Welcome to the Club</span>
+          <h2 class="section-title">More Than<br>Just <span class="highlight">Rugby</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <p>Hollybush RFC is a proud community rugby club competing in the <strong>WRU Admiral National League Division 5 East</strong>. We're a tight-knit club with a big heart, built on passion, grit, and a love of the beautiful game.</p>
+        <p>Whether you're a seasoned player looking for a new home, a youngster picking up a ball for the first time, or a supporter who just wants to get behind a real local club — you're welcome at Hollybush.</p>
+        <p>We play our home games with pride, train hard all week, and take care of each other on and off the pitch. <strong>Come join the family.</strong></p>
+        <a href="#contact" class="btn-primary" style="margin-top: 16px; display: inline-block;">Get Involved</a>
+      </div>
+      <div class="about-stats reveal" style="transition-delay:0.2s">
+        <div class="stat-box">
+          <div class="stat-number" id="league-pos">5th</div>
+          <div class="stat-label">League Position</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Games Played</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Wins This Season</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">25</div>
+          <div class="stat-label">League Points</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FIXTURES ===== -->
+<section id="fixtures">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Admiral National League 5 East</span>
+      <h2 class="section-title">Fixtures, <span class="highlight">Results</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('upcoming')">Upcoming</button>
+      <button class="tab-btn" onclick="showTab('results')">Results</button>
+      <button class="tab-btn" onclick="showTab('table')">League Table</button>
+    </div>
+
+    <!-- UPCOMING FIXTURES -->
+    <div class="tab-panel active" id="tab-upcoming">
+      
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 21 February 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name our-team">Hollybush</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Hafodyrynys</span>
+          </div>
+          <div class="next-match-home">Home</div>
+          <div class="fixture-ko">13:00 KO</div>
+        </div>
+        <div class="fixture-date-header">📅 Saturday 28 February 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name our-team">Hollybush</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Blackwood Stars</span>
+          </div>
+          <div class="next-match-home">Home</div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Bargoed Athletic</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Forgeside</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Hafodyrynys</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Abersychan</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Trinant</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Bettws</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 7 March 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name">Hartridge</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name our-team">Hollybush</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Bettws</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Hafodyrynys</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 21 March 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name our-team">Hollybush</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Forgeside</span>
+          </div>
+          <div class="next-match-home">Home</div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Hafodyrynys</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Blackwood Stars</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 28 March 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name">Blackwood Stars</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name our-team">Hollybush</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Hartridge</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Hafodyrynys</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 18 April 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name our-team">Hollybush</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Hartridge</span>
+          </div>
+          <div class="next-match-home">Home</div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Blackwood Stars</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Bargoed Athletic</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RESULTS -->
+    <div class="tab-panel" id="tab-results">
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 14 February 2026</div>
+        <div class="result-card win">
+          <div class="result-teams">
+            <div class="result-match">Forgeside <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">5</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">36</span>
+          </div>
+          <span class="win-badge">W</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 31 January 2026</div>
+        <div class="result-card win">
+          <div class="result-teams">
+            <div class="result-match"><span class="our-team">Hollybush</span> <span class="fixture-vs">vs</span> Hafodyrynys</div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score our-score">16</span>
+            <span class="result-dash">–</span>
+            <span class="result-score their-score">6</span>
+          </div>
+          <span class="win-badge">W</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 24 January 2026</div>
+        <div class="result-card win">
+          <div class="result-teams">
+            <div class="result-match">Abersychan <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">3</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">12</span>
+          </div>
+          <span class="win-badge">W</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 17 January 2026</div>
+        <div class="result-card loss">
+          <div class="result-teams">
+            <div class="result-match">Bargoed Athletic <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">43</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">12</span>
+          </div>
+          <span class="loss-badge">L</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 13 December 2025</div>
+        <div class="result-card loss">
+          <div class="result-teams">
+            <div class="result-match"><span class="our-team">Hollybush</span> <span class="fixture-vs">vs</span> Bettws</div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score our-score">7</span>
+            <span class="result-dash">–</span>
+            <span class="result-score their-score">13</span>
+          </div>
+          <span class="loss-badge">L</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 1 November 2025</div>
+        <div class="result-card loss">
+          <div class="result-teams">
+            <div class="result-match">Hafodyrynys <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">15</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">13</span>
+          </div>
+          <span class="loss-badge">L</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 18 October 2025</div>
+        <div class="result-card win">
+          <div class="result-teams">
+            <div class="result-match"><span class="our-team">Hollybush</span> <span class="fixture-vs">vs</span> Abersychan</div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score our-score">27</span>
+            <span class="result-dash">–</span>
+            <span class="result-score their-score">15</span>
+          </div>
+          <span class="win-badge">W</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 11 October 2025</div>
+        <div class="result-card loss">
+          <div class="result-teams">
+            <div class="result-match"><span class="our-team">Hollybush</span> <span class="fixture-vs">vs</span> Bargoed Athletic</div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score our-score">0</span>
+            <span class="result-dash">–</span>
+            <span class="result-score their-score">59</span>
+          </div>
+          <span class="loss-badge">L</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 4 October 2025</div>
+        <div class="result-card win">
+          <div class="result-teams">
+            <div class="result-match">Trinant <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">17</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">20</span>
+          </div>
+          <span class="win-badge">W</span>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 20 September 2025</div>
+        <div class="result-card loss">
+          <div class="result-teams">
+            <div class="result-match">Bettws <span class="fixture-vs">vs</span> <span class="our-team">Hollybush</span></div>
+          </div>
+          <div class="result-score-wrapper">
+            <span class="result-score their-score">15</span>
+            <span class="result-dash">–</span>
+            <span class="result-score our-score">8</span>
+          </div>
+          <span class="loss-badge">L</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LEAGUE TABLE -->
+    <div class="tab-panel" id="tab-table">
+      <table class="league-table">
+        <thead>
+          <tr>
+            <th class="pos">#</th>
+            <th>Team</th>
+            <th>P</th>
+            <th>W</th>
+            <th>L</th>
+            <th class="pts">Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pos">1</td>
+            <td>Bargoed Athletic</td>
+            <td>7</td>
+            <td>7</td>
+            <td>0</td>
+            <td class="pts">35</td>
+          </tr>
+          <tr class="promotion-line">
+            <td class="pos">2</td>
+            <td>Blackwood Stars <span class="zone-label zone-prom">Prom. Zone</span></td>
+            <td>8</td>
+            <td>7</td>
+            <td>1</td>
+            <td class="pts">32</td>
+          </tr>
+          <tr>
+            <td class="pos">3</td>
+            <td>Bettws</td>
+            <td>8</td>
+            <td>6</td>
+            <td>2</td>
+            <td class="pts">30</td>
+          </tr>
+          <tr>
+            <td class="pos">4</td>
+            <td>Hafodyrynys</td>
+            <td>10</td>
+            <td>6</td>
+            <td>4</td>
+            <td class="pts">28</td>
+          </tr>
+          <tr class="our-team-row">
+            <td class="pos">5</td>
+            <td><strong>⭐ Hollybush</strong></td>
+            <td>10</td>
+            <td>5</td>
+            <td>5</td>
+            <td class="pts">25</td>
+          </tr>
+          <tr>
+            <td class="pos">6</td>
+            <td>Hartridge</td>
+            <td>8</td>
+            <td>4</td>
+            <td>4</td>
+            <td class="pts">22</td>
+          </tr>
+          <tr>
+            <td class="pos">7</td>
+            <td>Trinant</td>
+            <td>10</td>
+            <td>3</td>
+            <td>7</td>
+            <td class="pts">16</td>
+          </tr>
+          <tr class="relegation-line">
+            <td class="pos">8</td>
+            <td>Abersychan <span class="zone-label zone-rel">Rel. Zone</span></td>
+            <td>13</td>
+            <td>3</td>
+            <td>10</td>
+            <td class="pts">16</td>
+          </tr>
+          <tr>
+            <td class="pos">9</td>
+            <td>Forgeside *</td>
+            <td>10</td>
+            <td>1</td>
+            <td>9</td>
+            <td class="pts">2</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text-muted); letter-spacing: 0.05em;">
+        * Points deducted · Updated 15 Feb 2026 · Source: <a href="https://allwalessport.co.uk/rugby-union.aspx?cid=16455" target="_blank" style="color: var(--gold);">allwalessport.co.uk</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== BLOG / NEWS ===== -->
+<section id="blog">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">From the Clubhouse</span>
+      <h2 class="section-title">Latest <span class="highlight">News</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="blog-grid">
+
+      <div class="blog-card reveal" onclick="openBlog(0)">
+        <div class="blog-card-image">
+          <div class="img-placeholder">🏉</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">Match Report · 14 Feb 2026</div>
+          <h3 class="blog-card-title">36–5 at Forgeside: Hollybush Fire on All Cylinders</h3>
+          <p class="blog-card-excerpt">A dominant away performance saw us put six tries past Forgeside in a statement showing ahead of our crucial home run-in.</p>
+          <span class="blog-read-more">Read More</span>
+        </div>
+      </div>
+
+      <div class="blog-card reveal" style="transition-delay:0.1s" onclick="openBlog(1)">
+        <div class="blog-card-image">
+          <div class="img-placeholder">💪</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">Match Report · 31 Jan 2026</div>
+          <h3 class="blog-card-title">16–6 Home Win Keeps Hollybush in Top Five</h3>
+          <p class="blog-card-excerpt">A tight, committed performance against Hafodyrynys kept our top-five spot in tact as the season hits its decisive phase.</p>
+          <span class="blog-read-more">Read More</span>
+        </div>
+      </div>
+
+      <div class="blog-card reveal" style="transition-delay:0.2s" onclick="openBlog(2)">
+        <div class="blog-card-image">
+          <div class="img-placeholder">📣</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">Club News · Feb 2026</div>
+          <h3 class="blog-card-title">New Players Welcome — Training Starts Every Tuesday</h3>
+          <p class="blog-card-excerpt">All abilities welcome at Hollybush RFC. Whether you've played at a high level or just want to give it a go, come along any Tuesday and say hello.</p>
+          <span class="blog-read-more">Read More</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Blog Modal -->
+<div class="modal-overlay" id="blog-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeBlog()">✕</button>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ===== SQUAD ===== -->
+<section id="squad">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">The Boys</span>
+      <h2 class="section-title">Meet the <span class="highlight">Squad</span></h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="squad-filter">
+      <button class="filter-btn active" onclick="filterSquad('all')">All</button>
+      <button class="filter-btn" onclick="filterSquad('forward')">Forwards</button>
+      <button class="filter-btn" onclick="filterSquad('back')">Backs</button>
+      <button class="filter-btn" onclick="filterSquad('management')">Management</button>
+    </div>
+
+    <div class="squad-grid" id="squad-grid">
+      <!-- Cards populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="section-header">
+          <span class="section-eyebrow">Get In Touch</span>
+          <h2 class="section-title">Find <span class="highlight">Us</span></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contact-info">
+          <p>We're always looking for new players, volunteers, and supporters. Come down to training, join us on match days, or just say hello.</p>
+          <div class="contact-detail">
+            <div class="icon">📍</div>
+            <span>Hollybush RFC, Rhymney Valley, Wales</span>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">🕐</div>
+            <span>Training: Tuesdays & Thursdays, 7pm</span>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">🏉</div>
+            <span>Home KO: Saturdays 14:30</span>
+          </div>
+          <div class="contact-detail">
+            <div class="icon">✉️</div>
+            <span>contact@hollybushrfc.co.uk</span>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link" title="Facebook">📘</a>
+            <a href="#" class="social-link" title="Twitter/X">𝕏</a>
+            <a href="#" class="social-link" title="Instagram">📸</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="newsletter-form reveal" style="transition-delay:0.2s">
+        <h3>Stay Updated</h3>
+        <p>Get match reports, club news, and fixture updates delivered straight to your inbox.</p>
+        <div class="form-group">
+          <input type="text" class="form-input" placeholder="Your Name" id="form-name">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-input" placeholder="Your Email" id="form-email">
+        </div>
+        <button class="form-submit" onclick="submitForm()">Join the Club 🏉</button>
+        <div class="form-success" id="form-success">
+          ✓ You're in! We'll be in touch soon. Come on Hollybush!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <img src="hollybush-logo.png" alt="Hollybush RFC" class="footer-logo" onerror="this.style.display='none'">
+  <p class="footer-text">
+    © 2026 Hollybush RFC · WRU Division 5 East · All Rights Reserved<br>
+    <a href="https://allwalessport.co.uk/rugby-union.aspx?cid=16455" target="_blank">Fixtures via allwalessport.co.uk</a>
+  </p>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== CUSTOM CURSOR =====
+const cursor = document.getElementById('cursor');
+const dot = document.getElementById('cursor-dot');
+let mx = 0, my = 0, cx = 0, cy = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX;
+  my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
+
+function animateCursor() {
+  cx += (mx - cx) * 0.15;
+  cy += (my - cy) * 0.15;
+  cursor.style.left = cx + 'px';
+  cursor.style.top = cy + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// ===== COLOUR TOGGLE =====
+let altMode = false;
+function toggleColours() {
+  altMode = !altMode;
+  document.body.classList.toggle('alt-colours', altMode);
+  document.getElementById('colour-label').textContent = altMode ? 'Home Kit' : 'Alt Kit';
+  // Update CSS vars for alt mode
+  if (altMode) {
+    document.documentElement.style.setProperty('--gold', '#0099cc');
+    document.documentElement.style.setProperty('--gold-dark', '#005580');
+  } else {
+    document.documentElement.style.setProperty('--gold', '#F5C518');
+    document.documentElement.style.setProperty('--gold-dark', '#c9a100');
+  }
+}
+
+// ===== NAV =====
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+function closeNav() {
+  document.getElementById('nav-links').classList.remove('open');
+}
+
+// ===== TABS =====
+function showTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== BLOG POSTS DATA =====
+const blogs = [
+  {
+    title: "36–5 at Forgeside: Hollybush Fire on All Cylinders",
+    meta: "Match Report · 14 February 2026",
+    body: `<p><strong>Forgeside 5 – 36 Hollybush RFC</strong></p>
+<p>What a performance. In one of our most complete displays of the season, Hollybush travelled to Forgeside and returned with a comprehensive 36–5 win that will have sent a message to the rest of the division.</p>
+<p>The lads were electric from the first whistle. Our forwards dominated the set piece throughout and the backs had a field day with the space that created. Six tries in total — it's the kind of afternoon that reminds you why you play this sport.</p>
+<p>We'll be looking to build on this as we head into our crucial run of home games. <strong>Come and roar us on at the Hollybush!</strong></p>`
+  },
+  {
+    title: "16–6 Home Win Keeps Hollybush in Top Five",
+    meta: "Match Report · 31 January 2026",
+    body: `<p><strong>Hollybush RFC 16 – 6 Hafodyrynys</strong></p>
+<p>It wasn't pretty, but we'll take it. A gritty home performance against Hafodyrynys saw us come away with a hard-fought 16–6 win to maintain our fifth-place position in the table.</p>
+<p>Hafodyrynys came with a game plan and made life difficult, but our defence held firm and when the opportunities came, we took them. Massive credit to the whole squad for digging in when it mattered.</p>
+<p>Five wins from ten puts us right in the thick of it. Three more big months of rugby ahead — stay close!</p>`
+  },
+  {
+    title: "New Players Welcome — Training Every Tuesday & Thursday",
+    meta: "Club News · February 2026",
+    body: `<p>Hollybush RFC is always on the lookout for new players — regardless of experience or ability.</p>
+<p>Whether you played at school and fancied getting back into it, played for another club and want a fresh start, or have never picked up a rugby ball in your life — <strong>you are welcome at Hollybush.</strong></p>
+<p>We train every <strong>Tuesday and Thursday evening from 7pm</strong>. Just turn up, introduce yourself, and we'll take care of the rest. Training kit will be provided for your first few sessions.</p>
+<p>Questions? Drop us a message on social media or email contact@hollybushrfc.co.uk. Come on Hollybush! 🏉</p>`
+  }
+];
+
+function openBlog(i) {
+  const b = blogs[i];
+  document.getElementById('modal-title').textContent = b.title;
+  document.getElementById('modal-meta').textContent = b.meta;
+  document.getElementById('modal-body').innerHTML = b.body;
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBlog() {
+  document.getElementById('blog-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('blog-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeBlog();
+});
+
+// ===== SQUAD DATA =====
+const squad = [
+  { name: "Player TBC", pos: "Loosehead Prop", num: 1, type: "forward", emoji: "🏴󠁧󠁢󠁷󠁬󠁳󠁿", apps: 8, tries: 1 },
+  { name: "Player TBC", pos: "Hooker", num: 2, type: "forward", emoji: "💪", apps: 10, tries: 2 },
+  { name: "Player TBC", pos: "Tighthead Prop", num: 3, type: "forward", emoji: "🐂", apps: 9, tries: 0 },
+  { name: "Player TBC", pos: "Lock", num: 4, type: "forward", emoji: "🗼", apps: 10, tries: 1 },
+  { name: "Player TBC", pos: "Lock", num: 5, type: "forward", emoji: "🔒", apps: 7, tries: 2 },
+  { name: "Player TBC", pos: "Blindside Flanker", num: 6, type: "forward", emoji: "⚡", apps: 10, tries: 3 },
+  { name: "Player TBC", pos: "Openside Flanker", num: 7, type: "forward", emoji: "🦅", apps: 8, tries: 4 },
+  { name: "Player TBC", pos: "Number 8", num: 8, type: "forward", emoji: "8️⃣", apps: 9, tries: 2 },
+  { name: "Player TBC", pos: "Scrum Half", num: 9, type: "back", emoji: "🎯", apps: 10, tries: 3 },
+  { name: "Player TBC", pos: "Fly Half", num: 10, type: "back", emoji: "🎰", apps: 10, tries: 1 },
+  { name: "Player TBC", pos: "Left Wing", num: 11, type: "back", emoji: "🚀", apps: 8, tries: 5 },
+  { name: "Player TBC", pos: "Inside Centre", num: 12, type: "back", emoji: "🛡️", apps: 9, tries: 2 },
+  { name: "Player TBC", pos: "Outside Centre", num: 13, type: "back", emoji: "🏃", apps: 10, tries: 3 },
+  { name: "Player TBC", pos: "Right Wing", num: 14, type: "back", emoji: "⚡", apps: 7, tries: 6 },
+  { name: "Player TBC", pos: "Full Back", num: 15, type: "back", emoji: "🧤", apps: 10, tries: 2 },
+  { name: "Head Coach", pos: "Head Coach", num: "", type: "management", emoji: "📋", apps: "–", tries: "–" },
+  { name: "Assistant Coach", pos: "Assistant Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
+  { name: "Team Manager", pos: "Team Manager", num: "", type: "management", emoji: "🗂️", apps: "–", tries: "–" },
+];
+
+function renderSquad(filter) {
+  const grid = document.getElementById('squad-grid');
+  grid.innerHTML = '';
+  squad.filter(p => filter === 'all' || p.type === filter).forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'squad-card reveal';
+    card.style.transitionDelay = (i * 0.04) + 's';
+    card.innerHTML = `
+      <div class="squad-card-header">
+        <div class="squad-avatar">${p.emoji}</div>
+        ${p.num ? `<div class="squad-number">${p.num}</div>` : ''}
+      </div>
+      <div class="squad-card-body">
+        <div class="squad-name">${p.name}</div>
+        <div class="squad-position">${p.pos}</div>
+        ${p.type !== 'management' ? `
+        <div class="squad-info">
+          <div class="squad-stat">
+            <div class="squad-stat-val">${p.apps}</div>
+            <div class="squad-stat-label">Apps</div>
+          </div>
+          <div class="squad-stat">
+            <div class="squad-stat-val">${p.tries}</div>
+            <div class="squad-stat-label">Tries</div>
+          </div>
+        </div>` : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+    setTimeout(() => observer.observe(card), 10);
+  });
+}
+
+function filterSquad(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderSquad(type);
+}
+
+renderSquad('all');
+
+// ===== FORM =====
+function submitForm() {
+  const name = document.getElementById('form-name').value;
+  const email = document.getElementById('form-email').value;
+  if (!name || !email) { 
+    alert('Please fill in your name and email!'); 
+    return; 
+  }
+  document.getElementById('form-success').style.display = 'block';
+  document.getElementById('form-name').value = '';
+  document.getElementById('form-email').value = '';
+}
+
+// ===== SMOOTH SCROLL FOR NAV =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
