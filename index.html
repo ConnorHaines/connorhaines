@@ -2211,24 +2211,24 @@ document.getElementById('blog-modal').addEventListener('click', function(e) {
 
 // ===== SQUAD DATA =====
 const squad = [
-  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", emoji: "🏴󠁧󠁢󠁷󠁬󠁳󠁿", apps: 8, tries: 1 },
-  { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", emoji: "💪", apps: 10, tries: 2 },
-  { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", emoji: "🐂", apps: 9, tries: 0 },
-  { name: "Geraint Conlon", pos: "Lock", num: 4, type: "forward", emoji: "🗼", apps: 10, tries: 1 },
-  { name: "Tom Rees", pos: "Lock", num: 5, type: "forward", emoji: "🔒", apps: 7, tries: 2 },
-  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", emoji: "⚡", apps: 10, tries: 3 },
-  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", emoji: "🦅", apps: 8, tries: 4 },
-  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", emoji: "8️⃣", apps: 9, tries: 2 },
-  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", emoji: "🎯", apps: 10, tries: 3 },
-  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", emoji: "🎰", apps: 10, tries: 1 },
-  { name: "Ethan Hackland", pos: "Left Wing", num: 11, type: "back", emoji: "🚀", apps: 8, tries: 5 },
-  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", emoji: "🛡️", apps: 9, tries: 2 },
-  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", emoji: "🏃", apps: 10, tries: 3 },
-  { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", emoji: "⚡", apps: 7, tries: 6 },
-  { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", emoji: "🧤", apps: 10, tries: 2 },
-  { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", emoji: "📋", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Assistant Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
-  { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", emoji: "🗂️", apps: "–", tries: "–" },
+  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/david_reynolds.jpg", apps: 8, tries: 1 },
+  { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", img: "img/zach_kettle.jpg", apps: 10, tries: 2 },
+  { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/luke_harper.jpg", apps: 9, tries: 0 },
+  { name: "Geraint Conlon", pos: "Lock", num: 4, type: "forward", img: "img/geraint_conlon.jpg", apps: 10, tries: 1 },
+  { name: "Tom Rees", pos: "Lock", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: 7, tries: 2 },
+  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/connor_haines.jpg", apps: 10, tries: 3 },
+  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/lewis_davies.jpg", apps: 8, tries: 4 },
+  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/tom_hancock.jpg", apps: 9, tries: 2 },
+  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/ben_jones.jpg", apps: 10, tries: 3 },
+  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/harrison_kerby.jpg", apps: 10, tries: 1 },
+  { name: "Ethan Hackland", pos: "Left Wing", num: 11, type: "back", img: "img/ethan_hackland.jpg", apps: 8, tries: 5 },
+  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/bailey_quinton.jpg", apps: 9, tries: 2 },
+  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/marcus_stevens.jpg", apps: 10, tries: 3 },
+  { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", img: "img/cameron_price.jpg", apps: 7, tries: 6 },
+  { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", img: "img/robert_mays.jpg", apps: 10, tries: 2 },
+  { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", img: "img/stephen_quinton.jpg", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Assistant Coach", num: "", type: "management", img: "img/darren_gould.jpg", apps: "–", tries: "–" },
+  { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", img: "img/tim_morris.jpg", apps: "–", tries: "–" },
 ];
 
 function renderSquad(filter) {
@@ -2242,7 +2242,7 @@ function renderSquad(filter) {
       <div class="squad-card-header">
         <div class="squad-avatar">
           <img
-            src="img/${p.name.replace(/ /g, '_')}.jpg"
+            src="${p.img}"
             alt="${p.name}"
             onerror="this.parentElement.innerHTML='<div class=\\'squad-avatar-placeholder\\'><svg viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.2\\'><circle cx=\\'12\\' cy=\\'8\\' r=\\'4\\'></circle><path d=\\'M4 20c0-4 3.6-7 8-7s8 3 8 7\\'></path></svg></div>'"
           >
