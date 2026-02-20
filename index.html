@@ -1120,6 +1120,104 @@
     text-align: center;
   }
 
+  /* ===== SHOP ===== */
+  #shop { background: var(--black); padding: 80px 0; }
+  .shop-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    margin: 0 -10px;
+  }
+  .shop-carousel {
+    display: flex;
+    gap: 20px;
+    padding: 10px 10px 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
+  .shop-carousel::-webkit-scrollbar { display: none; }
+  .shop-card {
+    flex: 0 0 240px;
+    scroll-snap-align: start;
+    background: var(--dark-grey);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .shop-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .shop-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #1a1a1a;
+    transition: opacity 0.3s;
+  }
+  .shop-card-body {
+    padding: 14px 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .shop-card-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .shop-card-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+  .shop-nav-btns {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .shop-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .shop-nav-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .shop-cta {
+    text-align: center;
+    margin-top: 36px;
+  }
+  .shop-cta p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
   /* ===== FOOTER ===== */
   footer {
     background: #050505;
@@ -1219,6 +1317,7 @@
     <li><a href="#fixtures" onclick="closeNav()">Fixtures</a></li>
     <li><a href="#blog" onclick="closeNav()">News</a></li>
     <li><a href="#squad" onclick="closeNav()">Squad</a></li>
+    <li><a href="#shop" onclick="closeNav()">Shop</a></li>
     <li><a href="#contact" onclick="closeNav()">Contact</a></li>
   </ul>
 </nav>
@@ -1769,6 +1868,145 @@
   </div>
 </section>
 
+<!-- ===== SHOP ===== -->
+<section id="shop">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Club Kit</span>
+      <h2 class="section-title">The <span class="highlight">Shop</span></h2>
+      <div class="section-line"></div>
+      <p style="color:var(--text-muted);max-width:520px;margin:12px auto 0;font-size:15px;">Official Hollybush RFC kit and clothing, supplied by Ruggerbug. All items are badged to order.</p>
+    </div>
+
+    <div class="shop-carousel-wrapper reveal" style="transition-delay:0.1s">
+      <div class="shop-carousel" id="shop-carousel">
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-chevron-puffer-coat/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2026/01/Chevron-Puffa-Coat_Generic-NAVY-400x400.jpg" alt="Chevron Puffer Coat" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Chevron Puffer Coat</div>
+            <div class="shop-card-price">£62.50 – £75.00</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-training-tee/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Pro-Training-Tee-400x400.png" alt="Edge Pro Training Tee" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Training Tee</div>
+            <div class="shop-card-price">£15.00 – £17.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-igen-polo-shirt/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Igen-Polo-400x400.png" alt="Edge iGen Polo Shirt" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge iGen Polo Shirt</div>
+            <div class="shop-card-price">£16.50 – £19.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-short-sleeve-oxford-shirt/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Shirt-400x400.png" alt="Short Sleeve Oxford Shirt" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Short Sleeve Oxford Shirt</div>
+            <div class="shop-card-price">£22.00</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-training-short/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Pro-Shorts-400x400.png" alt="Edge Pro Training Short" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Training Short</div>
+            <div class="shop-card-price">£16.50 – £19.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-elite-training-pants/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Pro-Pants-400x400.png" alt="Edge Pro Elite Training Pants" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Elite Training Pants</div>
+            <div class="shop-card-price">£24.50 – £27.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-contact-top/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Contact-Top-400x400.png" alt="Edge Pro Contact Top" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Contact Top</div>
+            <div class="shop-card-price">£30.00 – £34.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-midlayer/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Midlayer-400x400.png" alt="Edge Pro Midlayer" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Midlayer</div>
+            <div class="shop-card-price">£28.50 – £32.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-hoodie/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Hoodie-400x400.png" alt="Edge Pro Hoodie" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Hoodie</div>
+            <div class="shop-card-price">£30.00 – £34.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-heritage-track-jacket/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Track-Jacket-400x400.png" alt="Heritage Track Jacket" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Heritage Track Jacket</div>
+            <div class="shop-card-price">£26.50 – £29.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-gilet-bodywarmer/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Pro-Gilet-400x400.png" alt="Edge Pro Gilet Bodywarmer" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Gilet Bodywarmer</div>
+            <div class="shop-card-price">£40.00</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-soft-shell-jacket/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Softshell-400x400.png" alt="Soft Shell Jacket" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Soft Shell Jacket</div>
+            <div class="shop-card-price">£22.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-pro-tech-hooded-jacket/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Pro-Hooded-Jacket-400x400.png" alt="Edge Pro Tech Hooded Jacket" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Pro Tech Hooded Jacket</div>
+            <div class="shop-card-price">£35.00 – £37.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-edge-thermal-contour-bench-jacket/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Edge-Bench-Jacket-400x400.png" alt="Edge Thermal Contour Bench Jacket" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Edge Thermal Contour Bench Jacket</div>
+            <div class="shop-card-price">£47.50 – £52.50</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-shoe-bag/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Bootbag-400x400.png" alt="Shoe Bag" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Shoe Bag</div>
+            <div class="shop-card-price">£10.00</div>
+          </div>
+        </a>
+        <a class="shop-card" href="https://www.ruggerbug.co.uk/product/hollybush-rfc-bobble-hat/" target="_blank">
+          <img src="https://www.ruggerbug.co.uk/wp-content/uploads/2023/11/Hollybush-Bobble-400x400.png" alt="Bobble Hat" loading="lazy">
+          <div class="shop-card-body">
+            <div class="shop-card-name">Bobble Hat</div>
+            <div class="shop-card-price">£8.50</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="shop-nav-btns">
+      <button class="shop-nav-btn" onclick="scrollShop(-1)" aria-label="Previous">&#8592;</button>
+      <button class="shop-nav-btn" onclick="scrollShop(1)" aria-label="Next">&#8594;</button>
+    </div>
+
+    <div class="shop-cta reveal" style="transition-delay:0.2s">
+      <a href="https://www.ruggerbug.co.uk/product-category/my-club-kit/hollybush/" target="_blank" class="btn-primary">View Full Shop</a>
+      <p>Items are badged to order — allow 10–14 working days for delivery.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section id="contact">
   <div class="container">
@@ -1973,7 +2211,10 @@ const squad = [
   { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", emoji: "⚡", apps: 7, tries: 6 },
   { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", emoji: "🧤", apps: 10, tries: 2 },
   { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", emoji: "📋", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Assistant Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Defence Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
+  { name: "Matteo Sidoli", pos: "Forwards Coach / Player", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
+  { name: "David Jones", pos: "Linesman", num: "", type: "management", emoji: "🏴󠁧󠁢󠁷󠁬󠁳󠁿", apps: "–", tries: "–" },
+  { name: "Wesley Phillips", pos: "First Aider", num: "", type: "management", emoji: "🚑", apps: "–", tries: "–" },
   { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", emoji: "🗂️", apps: "–", tries: "–" },
 ];
 
@@ -2029,6 +2270,12 @@ function submitForm() {
   document.getElementById('form-success').style.display = 'block';
   document.getElementById('form-name').value = '';
   document.getElementById('form-email').value = '';
+}
+
+// ===== SHOP CAROUSEL =====
+function scrollShop(dir) {
+  const carousel = document.getElementById('shop-carousel');
+  carousel.scrollBy({ left: dir * 520, behavior: 'smooth' });
 }
 
 // ===== SMOOTH SCROLL FOR NAV =====
