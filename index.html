@@ -933,18 +933,34 @@
   .squad-avatar {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 72px;
-    background: var(--mid-grey);
     position: relative;
+    background: var(--mid-grey);
+  }
+  .squad-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .squad-avatar::after {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, transparent 50%, var(--dark-grey));
+    pointer-events: none;
+  }
+  .squad-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .squad-avatar-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.25;
   }
   .squad-number {
     position: absolute;
@@ -1215,7 +1231,7 @@
   .shop-cta p {
     color: var(--text-muted);
     font-size: 14px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   /* ===== FOOTER ===== */
@@ -1875,7 +1891,7 @@
       <span class="section-eyebrow">Club Kit</span>
       <h2 class="section-title">The <span class="highlight">Shop</span></h2>
       <div class="section-line"></div>
-      <p style="color:var(--text-muted);max-width:520px;margin:12px auto 0;font-size:15px;">Official Hollybush RFC kit and clothing, supplied by Ruggerbug.<br>All items are badged to order.</p>
+      <p style="color:var(--text-muted);max-width:520px;margin:12px auto 0;font-size:15px;">Official Hollybush RFC kit and clothing, supplied by Ruggerbug. All items are badged to order.</p>
     </div>
 
     <div class="shop-carousel-wrapper reveal" style="transition-delay:0.1s">
@@ -2211,10 +2227,7 @@ const squad = [
   { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", emoji: "⚡", apps: 7, tries: 6 },
   { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", emoji: "🧤", apps: 10, tries: 2 },
   { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", emoji: "📋", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Defence Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
-  { name: "Matteo Sidoli", pos: "Forwards Coach / Player", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
-  { name: "David Jones", pos: "Linesman", num: "", type: "management", emoji: "🏴󠁧󠁢󠁷󠁬󠁳󠁿", apps: "–", tries: "–" },
-  { name: "Wesley Phillips", pos: "First Aider", num: "", type: "management", emoji: "🚑", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Assistant Coach", num: "", type: "management", emoji: "📊", apps: "–", tries: "–" },
   { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", emoji: "🗂️", apps: "–", tries: "–" },
 ];
 
@@ -2227,7 +2240,13 @@ function renderSquad(filter) {
     card.style.transitionDelay = (i * 0.04) + 's';
     card.innerHTML = `
       <div class="squad-card-header">
-        <div class="squad-avatar">${p.emoji}</div>
+        <div class="squad-avatar">
+          <img
+            src="img/${p.name.replace(/ /g, '_')}.jpg"
+            alt="${p.name}"
+            onerror="this.parentElement.innerHTML='<div class=\\'squad-avatar-placeholder\\'><svg viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.2\\'><circle cx=\\'12\\' cy=\\'8\\' r=\\'4\\'></circle><path d=\\'M4 20c0-4 3.6-7 8-7s8 3 8 7\\'></path></svg></div>'"
+          >
+        </div>
         ${p.num ? `<div class="squad-number">${p.num}</div>` : ''}
       </div>
       <div class="squad-card-body">
