@@ -1,8 +1,445 @@
 {
-  "updatedAt": "2026-02-23T00:00:00.000Z",
+  "updatedAt": "2026-02-23T14:29:18.696Z",
   "fixtures": [],
-  "allFixtures": [],
-  "results": [],
-  "allResults": [],
-  "table": []
+  "allFixtures": [
+    {
+      "date": "6 September 2025",
+      "home": "*",
+      "away": "1",
+      "note": "0",
+      "hollybushPlaying": false
+    }
+  ],
+  "results": [
+    {
+      "date": "14 February 2026",
+      "home": "Forgeside",
+      "homeScore": 5,
+      "awayScore": 36,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "31 January 2026",
+      "home": "Hollybush",
+      "homeScore": 16,
+      "awayScore": 6,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "24 January 2026",
+      "home": "Abersychan",
+      "homeScore": 3,
+      "awayScore": 12,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "17 January 2026",
+      "home": "Bargoed Athletic",
+      "homeScore": 43,
+      "awayScore": 12,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "13 December 2025",
+      "home": "Hollybush",
+      "homeScore": 7,
+      "awayScore": 13,
+      "away": "Bettws",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "1 November 2025",
+      "home": "Hafodyrynys",
+      "homeScore": 15,
+      "awayScore": 13,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "18 October 2025",
+      "home": "Hollybush",
+      "homeScore": 27,
+      "awayScore": 15,
+      "away": "Abersychan",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "11 October 2025",
+      "home": "Hollybush",
+      "homeScore": 0,
+      "awayScore": 59,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "4 October 2025",
+      "home": "Trinant",
+      "homeScore": 17,
+      "awayScore": 20,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "20 September 2025",
+      "home": "Bettws",
+      "homeScore": 15,
+      "awayScore": 8,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    }
+  ],
+  "allResults": [
+    {
+      "date": "14 February 2026",
+      "home": "Abersychan",
+      "homeScore": 36,
+      "awayScore": 19,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "14 February 2026",
+      "home": "Forgeside",
+      "homeScore": 5,
+      "awayScore": 36,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "14 February 2026",
+      "home": "Hafodyrynys",
+      "homeScore": 5,
+      "awayScore": 80,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "31 January 2026",
+      "home": "Bettws",
+      "homeScore": 47,
+      "awayScore": 7,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "31 January 2026",
+      "home": "Hartridge",
+      "homeScore": 50,
+      "awayScore": 5,
+      "away": "Forgeside",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "31 January 2026",
+      "home": "Hollybush",
+      "homeScore": 16,
+      "awayScore": 6,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "24 January 2026",
+      "home": "Abersychan",
+      "homeScore": 3,
+      "awayScore": 12,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "17 January 2026",
+      "home": "Bargoed Athletic",
+      "homeScore": 43,
+      "awayScore": 12,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "17 January 2026",
+      "home": "Hartridge",
+      "homeScore": 5,
+      "awayScore": 33,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "17 January 2026",
+      "home": "Trinant",
+      "homeScore": 21,
+      "awayScore": 52,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "20 December 2025",
+      "home": "Bettws",
+      "homeScore": 19,
+      "awayScore": 15,
+      "away": "Hartridge",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "20 December 2025",
+      "home": "Trinant",
+      "homeScore": 8,
+      "awayScore": 7,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "13 December 2025",
+      "home": "Abersychan",
+      "homeScore": 21,
+      "awayScore": 36,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "13 December 2025",
+      "home": "Hafodyrynys",
+      "homeScore": 60,
+      "awayScore": 0,
+      "away": "Forgeside",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "13 December 2025",
+      "home": "Hartridge",
+      "homeScore": 57,
+      "awayScore": 7,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "13 December 2025",
+      "home": "Hollybush",
+      "homeScore": 7,
+      "awayScore": 13,
+      "away": "Bettws",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "6 December 2025",
+      "home": "Abersychan",
+      "homeScore": 10,
+      "awayScore": 20,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "8 November 2025",
+      "home": "Bargoed Athletic",
+      "homeScore": 56,
+      "awayScore": 12,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "8 November 2025",
+      "home": "Hartridge",
+      "homeScore": 22,
+      "awayScore": 32,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "8 November 2025",
+      "home": "Trinant",
+      "homeScore": 31,
+      "awayScore": 24,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "1 November 2025",
+      "home": "Abersychan",
+      "homeScore": 6,
+      "awayScore": 83,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "1 November 2025",
+      "home": "Blackwood Stars",
+      "homeScore": 18,
+      "awayScore": 12,
+      "away": "Bettws",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "1 November 2025",
+      "home": "Forgeside",
+      "homeScore": 7,
+      "awayScore": 52,
+      "away": "Hartridge",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "1 November 2025",
+      "home": "Hafodyrynys",
+      "homeScore": 15,
+      "awayScore": 13,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "25 October 2025",
+      "home": "Forgeside",
+      "homeScore": 17,
+      "awayScore": 6,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "18 October 2025",
+      "home": "Bettws",
+      "homeScore": 45,
+      "awayScore": 13,
+      "away": "Forgeside",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "18 October 2025",
+      "home": "Hollybush",
+      "homeScore": 27,
+      "awayScore": 15,
+      "away": "Abersychan",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "11 October 2025",
+      "home": "Abersychan",
+      "homeScore": 20,
+      "awayScore": 37,
+      "away": "Hartridge",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 October 2025",
+      "home": "Blackwood Stars",
+      "homeScore": 17,
+      "awayScore": 15,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 October 2025",
+      "home": "Hafodyrynys",
+      "homeScore": 30,
+      "awayScore": 27,
+      "away": "Bettws",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 October 2025",
+      "home": "Hollybush",
+      "homeScore": 0,
+      "awayScore": 59,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "4 October 2025",
+      "home": "Bettws",
+      "homeScore": 33,
+      "awayScore": 30,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "4 October 2025",
+      "home": "Blackwood Stars",
+      "homeScore": 40,
+      "awayScore": 10,
+      "away": "Forgeside",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "4 October 2025",
+      "home": "Hartridge",
+      "homeScore": 13,
+      "awayScore": 33,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "4 October 2025",
+      "home": "Trinant",
+      "homeScore": 17,
+      "awayScore": 20,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "27 September 2025",
+      "home": "Forgeside",
+      "homeScore": 7,
+      "awayScore": 32,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "20 September 2025",
+      "home": "Bettws",
+      "homeScore": 15,
+      "awayScore": 8,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "20 September 2025",
+      "home": "Blackwood Stars",
+      "homeScore": 14,
+      "awayScore": 12,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "20 September 2025",
+      "home": "Forgeside",
+      "homeScore": 7,
+      "awayScore": 10,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "6 September 2025",
+      "home": "Abersychan",
+      "homeScore": 17,
+      "awayScore": 16,
+      "away": "Forgeside",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "6 September 2025",
+      "home": "Bargoed Athletic",
+      "homeScore": 50,
+      "awayScore": 0,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "6 September 2025",
+      "home": "Hafodyrynys",
+      "homeScore": 41,
+      "awayScore": 20,
+      "away": "Trinant",
+      "hollybushPlaying": false
+    }
+  ],
+  "table": [
+    {
+      "team": "Forgeside",
+      "played": 10,
+      "won": 1,
+      "drawn": 0,
+      "lost": 9,
+      "points": 2,
+      "deducted": true,
+      "isHollybush": false
+    }
+  ]
 }
