@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="img/hollybush-logo.PNG">
+<link rel="apple-touch-icon" href="img/hollybush-logo.PNG">
 <title>Hollybush RFC | WRU Division 5 East</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
@@ -1847,23 +1849,24 @@ document.getElementById('blog-modal').addEventListener('click', function(e) {
 
 // ===== SQUAD DATA =====
 const squad = [
-  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/david_reynolds.jpg", apps: 8, tries: 1 },
+  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/David.png", apps: 8, tries: 1 },
   { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", img: "img/zach_kettle.jpg", apps: 10, tries: 2 },
   { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/luke_harper.jpg", apps: 9, tries: 0 },
-  { name: "Geraint Conlon", pos: "Lock", num: 4, type: "forward", img: "img/geraint_conlon.jpg", apps: 10, tries: 1 },
+  { name: "Geraint Conlon", pos: "Lock", num: 4, type: "forward", img: "img/Geraint.png", apps: 10, tries: 1 },
   { name: "Tom Rees", pos: "Lock", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: 7, tries: 2 },
-  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/connor_haines.jpg", apps: 10, tries: 3 },
-  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/lewis_davies.jpg", apps: 8, tries: 4 },
-  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/tom_hancock.jpg", apps: 9, tries: 2 },
-  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/ben_jones.jpg", apps: 10, tries: 3 },
-  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/harrison_kerby.jpg", apps: 10, tries: 1 },
-  { name: "Ethan Hackland", pos: "Left Wing", num: 11, type: "back", img: "img/ethan_hackland.jpg", apps: 8, tries: 5 },
-  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/bailey_quinton.jpg", apps: 9, tries: 2 },
-  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/marcus_stevens.jpg", apps: 10, tries: 3 },
-  { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", img: "img/cameron_price.jpg", apps: 7, tries: 6 },
+  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/Connor.png", apps: 10, tries: 3 },
+  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/Lewis.png", apps: 8, tries: 4 },
+  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/TomH.png", apps: 9, tries: 2 },
+  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/BenJ.png", apps: 10, tries: 3 },
+  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/Harrison.png", apps: 10, tries: 1 },
+  { name: "Ethan Hackland", pos: "Left Wing", num: 11, type: "back", img: "img/Ethan.png", apps: 8, tries: 5 },
+  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/Bailey.png", apps: 9, tries: 2 },
+  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/Marcus.png", apps: 10, tries: 3 },
+  { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", img: "img/Cameron.png", apps: 7, tries: 6 },
   { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", img: "img/robert_mays.jpg", apps: 10, tries: 2 },
-  { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", img: "img/stephen_quinton.jpg", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Assistant Coach", num: "", type: "management", img: "img/darren_gould.jpg", apps: "–", tries: "–" },
+  { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", img: "img/Steve.png", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Defence Coach", num: "", type: "management", img: "img/Darren.png", apps: "–", tries: "–" },
+  { name: "Matteo Sidoli", pos: "Player Coach", num: "", type: "management", img: "img/Matteo.png", apps: "–", tries: "–" },
   { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", img: "img/tim_morris.jpg", apps: "–", tries: "–" },
 ];
 
@@ -1927,18 +1930,23 @@ function submitForm() {
   document.getElementById('form-email').value = '';
 }
 
+// ===== SHOP CAROUSEL =====
+function scrollShop(dir) {
+  const carousel = document.getElementById('shop-carousel');
+  carousel.scrollBy({ left: dir * 520, behavior: 'smooth' });
+}
+
 // ===== LOAD FIXTURES FROM JSON =====
 async function loadFixtures() {
   try {
     const res = await fetch('fixtures.json');
-    if (!res.ok) throw new Error('Failed to fetch fixtures.json');
+    if (!res.ok) throw new Error('Failed to fetch');
     const data = await res.json();
     renderFixtures(data.allFixtures || []);
     renderResults(data.results || []);
     renderTable(data.table || [], data.updatedAt);
   } catch (err) {
-    console.error('Fixtures load error:', err);
-    ['fixtures-loading', 'results-loading', 'table-loading'].forEach(id => {
+    ['fixtures-loading','results-loading','table-loading'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.textContent = 'Could not load data — please try again later.';
     });
@@ -1946,22 +1954,17 @@ async function loadFixtures() {
 }
 
 function renderFixtures(allFixtures) {
+  document.getElementById('fixtures-loading').style.display = 'none';
   const container = document.getElementById('fixtures-container');
-  const loading = document.getElementById('fixtures-loading');
-  loading.style.display = 'none';
-
   if (!allFixtures.length) {
     container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px">No upcoming fixtures found.</p>';
     return;
   }
-
-  // Group by date
   const grouped = {};
   allFixtures.forEach(f => {
     if (!grouped[f.date]) grouped[f.date] = [];
     grouped[f.date].push(f);
   });
-
   let html = '';
   Object.entries(grouped).forEach(([date, fixtures]) => {
     html += `<div class="fixture-group"><div class="fixture-date-header">📅 ${date}</div>`;
@@ -1982,20 +1985,16 @@ function renderFixtures(allFixtures) {
     });
     html += '</div>';
   });
-
   container.innerHTML = html;
 }
 
 function renderResults(results) {
+  document.getElementById('results-loading').style.display = 'none';
   const container = document.getElementById('results-container');
-  const loading = document.getElementById('results-loading');
-  loading.style.display = 'none';
-
   if (!results.length) {
     container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px">No results found.</p>';
     return;
   }
-
   let html = '';
   results.forEach(r => {
     const hollybushHome = r.home.includes('Hollybush');
@@ -2006,7 +2005,6 @@ function renderResults(results) {
     const outcome = drawn ? 'draw' : (won ? 'win' : 'loss');
     const badge = drawn ? 'D' : (won ? 'W' : 'L');
     const badgeClass = drawn ? 'draw-badge' : (won ? 'win-badge' : 'loss-badge');
-
     html += `
       <div class="fixture-group">
         <div class="fixture-date-header">📅 ${r.date}</div>
@@ -2027,22 +2025,17 @@ function renderResults(results) {
         </div>
       </div>`;
   });
-
   container.innerHTML = html;
 }
 
 function renderTable(table, updatedAt) {
+  document.getElementById('table-loading').style.display = 'none';
   const container = document.getElementById('table-container');
-  const loading = document.getElementById('table-loading');
-  loading.style.display = 'none';
-
   if (!table.length) {
     container.innerHTML = '<p style="text-align:center;color:var(--text-muted);padding:40px">No table data found.</p>';
     return;
   }
-
-  const updated = updatedAt ? new Date(updatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
-
+  const updated = updatedAt ? new Date(updatedAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '';
   let rows = '';
   table.forEach((team, i) => {
     const isUs = team.isHollybush;
@@ -2056,7 +2049,6 @@ function renderTable(table, updatedAt) {
         <td class="pts">${team.points}</td>
       </tr>`;
   });
-
   container.innerHTML = `
     <table class="league-table">
       <thead>
@@ -2079,12 +2071,6 @@ function renderTable(table, updatedAt) {
 }
 
 loadFixtures();
-
-// ===== SHOP CAROUSEL =====
-function scrollShop(dir) {
-  const carousel = document.getElementById('shop-carousel');
-  carousel.scrollBy({ left: dir * 520, behavior: 'smooth' });
-}
 
 // ===== SMOOTH SCROLL FOR NAV =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
