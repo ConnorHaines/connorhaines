@@ -1,0 +1,34 @@
+name: Scrape Fixtures & Results
+
+on:
+  schedule:
+    # Runs at midnight and noon every day
+    - cron: '0 0,12 * * *'
+  workflow_dispatch: # Also allows manual trigger from GitHub Actions tab
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install node-fetch cheerio --prefix scraper
+
+      - name: Run scraper
+        run: node scraper/scrape.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add fixtures.json
+          git diff --staged --quiet || git commit -m "chore: update fixtures and results"
+          git push
