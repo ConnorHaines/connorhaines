@@ -1,22 +1,7 @@
 {
-  "updatedAt": "2026-02-24T02:43:38.366Z",
+  "updatedAt": "2026-02-24T09:18:17.627Z",
   "fixtures": [],
-  "allFixtures": [
-    {
-      "date": "14 March 2026",
-      "home": "13:00",
-      "away": "Trinant",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "6 September 2025",
-      "home": "*",
-      "away": "1",
-      "note": "0",
-      "hollybushPlaying": false
-    }
-  ],
+  "allFixtures": [],
   "results": [
     {
       "date": "14 February 2026",
