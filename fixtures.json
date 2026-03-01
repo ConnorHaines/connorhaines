@@ -1,8 +1,31 @@
 {
-  "updatedAt": "2026-02-28T12:58:50.249Z",
+  "updatedAt": "2026-03-01T02:53:20.165Z",
   "fixtures": [],
-  "allFixtures": [],
+  "allFixtures": [
+    {
+      "date": "28 February 2026",
+      "home": "Bargoed Athletic",
+      "away": "Forgeside",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "28 February 2026",
+      "home": "Trinant",
+      "away": "Bettws",
+      "note": null,
+      "hollybushPlaying": false
+    }
+  ],
   "results": [
+    {
+      "date": "28 February 2026",
+      "home": "Hollybush",
+      "homeScore": 8,
+      "awayScore": 17,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": true
+    },
     {
       "date": "14 February 2026",
       "home": "Forgeside",
@@ -85,6 +108,22 @@
     }
   ],
   "allResults": [
+    {
+      "date": "28 February 2026",
+      "home": "Hafodyrynys",
+      "homeScore": 29,
+      "awayScore": 15,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "28 February 2026",
+      "home": "Hollybush",
+      "homeScore": 8,
+      "awayScore": 17,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": true
+    },
     {
       "date": "14 February 2026",
       "home": "Abersychan",
