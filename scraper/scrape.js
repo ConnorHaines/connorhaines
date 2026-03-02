@@ -1,7 +1,4 @@
 // scraper/scrape.js
-// Fetches fixtures, results and league table from allwalessport.co.uk
-// and writes them to fixtures.json in the repo root.
-
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { writeFileSync } from 'fs';
@@ -9,16 +6,13 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const URL = 'https://www.allwalessport.co.uk/rugby-union.aspx?cid=16455';
 const CLUB = 'Hollybush';
 const OUTPUT = resolve(__dirname, '../fixtures.json');
-
 const DATE_RE = /^\d{1,2}\s+\w+\s+\d{4}$/;
 
-function isTeamName(str) {
-  if (!str || str.length < 3) return false;
-  return /^[A-Z][a-zA-Z\s\-]+$/.test(str);
+function isTeam(str) {
+  return str && str.length >= 3 && /^[A-Z][a-zA-Z\s\-]+$/.test(str.trim());
 }
 
 async function scrape() {
@@ -26,102 +20,87 @@ async function scrape() {
   const res = await fetch(URL, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; HollybushRFC-bot/1.0)' }
   });
-
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const html = await res.text();
   const $ = cheerio.load(html);
 
   const fixtures = [];
-  const results = [];
-  const table = [];
-
+  const results  = [];
+  const table    = [];
   let currentDate = null;
 
   $('table').each((_, tbl) => {
     const rows = $(tbl).find('tr');
+    const allText = rows.map((_, r) =>
+      $(r).find('td').map((_, c) => $(c).text().trim()).get()
+    ).get();
 
-    // Check if this is the league table
-    let isLeagueTable = false;
-    rows.each((_, row) => {
-      const text = $(row).find('td').map((_, c) => $(c).text().trim()).get();
-      if (text.includes('Teams') && text.includes('Pts')) isLeagueTable = true;
-    });
+    // ── League table: 7-cell rows, first cell blank or "*", second cell is "Teams" header
+    const isLeagueTable = allText.some(t => t.includes('Teams') && t.includes('Pts'));
 
     if (isLeagueTable) {
       let pastHeader = false;
       rows.each((_, row) => {
-        const cells = $(row).find('td');
-        const text = cells.map((_, c) => $(c).text().trim()).get();
-
-        if (text.includes('Teams') && text.includes('Pts')) { pastHeader = true; return; }
+        const t = $(row).find('td').map((_, c) => $(c).text().trim()).get();
+        if (t.includes('Teams') && t.includes('Pts')) { pastHeader = true; return; }
         if (!pastHeader) return;
-
-        const joined = text.join(' ');
-        if (joined.includes('Promotion') || joined.includes('Relegation')) return;
-        if (joined.includes('Denotes') || joined.includes('deducted')) return;
-
-        // Check for points-deducted marker — may appear as first cell
-        const hasMarker = text[0] === '*';
-        const offset = hasMarker ? 1 : 0;
-
-        const team = text[offset];
-        const P    = parseInt(text[offset + 1]);
-        const W    = parseInt(text[offset + 2]);
-        const D    = parseInt(text[offset + 3]);
-        const L    = parseInt(text[offset + 4]);
-        const Pts  = parseInt(text[offset + 5]);
-
-        if (team && isTeamName(team) && !isNaN(P) && !isNaN(Pts)) {
-          table.push({
-            team, played: P, won: W, drawn: D, lost: L, points: Pts,
-            deducted: hasMarker,
-            isHollybush: team.includes(CLUB)
-          });
+        // Skip divider/footnote rows
+        if (t.join('').match(/Promotion|Relegation|Denotes|deducted/i)) return;
+        // 7 cells: [marker, team, P, W, D, L, Pts]
+        // marker is '' for normal rows, '*' for deducted
+        if (t.length < 7) return;
+        const deducted = t[0] === '*';
+        const team = t[1];
+        const P   = parseInt(t[2]);
+        const W   = parseInt(t[3]);
+        const D   = parseInt(t[4]);
+        const L   = parseInt(t[5]);
+        const Pts = parseInt(t[6]);
+        if (isTeam(team) && !isNaN(P) && !isNaN(Pts)) {
+          table.push({ team, played: P, won: W, drawn: D, lost: L, points: Pts, deducted, isHollybush: team.includes(CLUB) });
         }
       });
       return;
     }
 
-    // Fixtures / results table
+    // ── Fixtures / Results tables ─────────────────────────────────────────
     rows.each((_, row) => {
-      const cells = $(row).find('td');
-      if (!cells.length) return;
-      const text = cells.map((_, c) => $(c).text().trim()).get();
-      const nonEmpty = text.filter(t => t.length > 0);
+      const t = $(row).find('td').map((_, c) => $(c).text().trim()).get();
+      if (!t.length) return;
 
-      // Date row
-      if (nonEmpty.length >= 1 && DATE_RE.test(nonEmpty[0])) {
-        currentDate = nonEmpty[0];
-        return;
-      }
+      // Date row: single cell matching date pattern
+      if (t.length === 1 && DATE_RE.test(t[0])) { currentDate = t[0]; return; }
+      // Date row with trailing empty cells
+      if (DATE_RE.test(t[0])) { currentDate = t[0]; return; }
 
       if (!currentDate) return;
-      if (cells.length < 4) return;
 
-      const home = text[0];
-      const sc1  = text[1];
-      const sc2  = text[2];
-      const away = text[3];
-      const note = text[4] || null;
-
-      const isResult = /^\d+$/.test(sc1) && /^\d+$/.test(sc2);
-
-      if (isResult && isTeamName(home) && isTeamName(away)) {
+      // Result row: 4 cells [home, homeScore, awayScore, away]
+      if (t.length === 4 && /^\d+$/.test(t[1]) && /^\d+$/.test(t[2]) && isTeam(t[0]) && isTeam(t[3])) {
         results.push({
-          date: currentDate, home,
-          homeScore: parseInt(sc1), awayScore: parseInt(sc2),
-          away, hollybushPlaying: home.includes(CLUB) || away.includes(CLUB)
+          date: currentDate,
+          home: t[0], homeScore: parseInt(t[1]), awayScore: parseInt(t[2]), away: t[3],
+          hollybushPlaying: t[0].includes(CLUB) || t[3].includes(CLUB)
         });
         return;
       }
 
-      // Fixture row — home and away must be real team names, scores must be absent
-      if (isTeamName(home) && isTeamName(away) && !isResult) {
+      // Fixture row: 5 cells [home, '', 'v', away, ''] 
+      if (t.length === 5 && isTeam(t[0]) && isTeam(t[3]) && !(/^\d+$/.test(t[1]))) {
         fixtures.push({
-          date: currentDate, home, away,
-          note: note && note.toLowerCase().includes('ko') ? note : null,
-          hollybushPlaying: home.includes(CLUB) || away.includes(CLUB)
+          date: currentDate,
+          home: t[0], away: t[3],
+          note: null,
+          hollybushPlaying: t[0].includes(CLUB) || t[3].includes(CLUB)
         });
+        return;
+      }
+
+      // KO note row: 5 cells where second cell has a time e.g. "1pm KO"
+      // Attach to last fixture of same date
+      if (t.length >= 2 && t[1] && t[1].toLowerCase().includes('ko')) {
+        const last = fixtures[fixtures.length - 1];
+        if (last && last.date === currentDate) last.note = t[1];
       }
     });
   });
@@ -145,7 +124,4 @@ async function scrape() {
   console.log(`  ${table.length} teams in table`);
 }
 
-scrape().catch(err => {
-  console.error('Scrape failed:', err);
-  process.exit(1);
-});
+scrape().catch(err => { console.error('Scrape failed:', err); process.exit(1); });
