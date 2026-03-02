@@ -1,22 +1,7 @@
 {
-  "updatedAt": "2026-03-02T02:41:01.792Z",
+  "updatedAt": "2026-03-02T13:14:01.394Z",
   "fixtures": [],
-  "allFixtures": [
-    {
-      "date": "28 February 2026",
-      "home": "Bargoed Athletic",
-      "away": "Forgeside",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "28 February 2026",
-      "home": "Trinant",
-      "away": "Bettws",
-      "note": null,
-      "hollybushPlaying": false
-    }
-  ],
+  "allFixtures": [],
   "results": [
     {
       "date": "28 February 2026",
