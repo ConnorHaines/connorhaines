@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-02T13:14:01.394Z",
+  "updatedAt": "2026-03-02T16:25:10.244Z",
   "fixtures": [],
   "allFixtures": [],
   "results": [
@@ -446,16 +446,5 @@
       "hollybushPlaying": false
     }
   ],
-  "table": [
-    {
-      "team": "Forgeside",
-      "played": 10,
-      "won": 1,
-      "drawn": 0,
-      "lost": 9,
-      "points": 2,
-      "deducted": true,
-      "isHollybush": false
-    }
-  ]
+  "table": []
 }
