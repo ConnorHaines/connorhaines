@@ -1,21 +1,210 @@
 {
-  "updatedAt": "2026-03-03T14:35:29.715Z",
+  "updatedAt": "2026-03-03T14:41:24.144Z",
   "fixtures": [
+    {
+      "date": "7 March 2026",
+      "home": "Hartridge",
+      "away": "Hollybush",
+      "note": null,
+      "hollybushPlaying": true
+    },
     {
       "date": "14 March 2026",
       "home": "Hollybush",
       "away": "Trinant",
       "note": "13:00 KO",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hollybush",
+      "away": "Forgeside",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "28 March 2026",
+      "home": "Blackwood Stars",
+      "away": "Hollybush",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "18 April 2026",
+      "home": "Hollybush",
+      "away": "Hartridge",
+      "note": null,
       "hollybushPlaying": true
     }
   ],
   "allFixtures": [
     {
+      "date": "7 March 2026",
+      "home": "Bettws",
+      "away": "Hafodyrynys",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Forgeside",
+      "away": "Blackwood Stars",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Hartridge",
+      "away": "Hollybush",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Trinant",
+      "away": "Bargoed Athletic",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
       "date": "14 March 2026",
       "home": "Hollybush",
       "away": "Trinant",
       "note": "13:00 KO",
       "hollybushPlaying": true
+    },
+    {
+      "date": "14 March 2026",
+      "home": "Abersychan",
+      "away": "Bettws",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "14 March 2026",
+      "home": "Hafodyrynys",
+      "away": "Hartridge",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Bargoed Athletic",
+      "away": "Abersychan",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hafodyrynys",
+      "away": "Blackwood Stars",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hartridge",
+      "away": "Bettws",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hollybush",
+      "away": "Forgeside",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "28 March 2026",
+      "home": "Bargoed Athletic",
+      "away": "Bettws",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "28 March 2026",
+      "home": "Blackwood Stars",
+      "away": "Hollybush",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "28 March 2026",
+      "home": "Hartridge",
+      "away": "Hafodyrynys",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "28 March 2026",
+      "home": "Trinant",
+      "away": "Forgeside",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "4 April 2026",
+      "home": "Bargoed Athletic",
+      "away": "Trinant",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "4 April 2026",
+      "home": "Bettws",
+      "away": "Blackwood Stars",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 April 2026",
+      "home": "Blackwood Stars",
+      "away": "Hafodyrynys",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 April 2026",
+      "home": "Forgeside",
+      "away": "Bargoed Athletic",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 April 2026",
+      "home": "Trinant",
+      "away": "Hartridge",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "18 April 2026",
+      "home": "Blackwood Stars",
+      "away": "Bargoed Athletic",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "18 April 2026",
+      "home": "Hollybush",
+      "away": "Hartridge",
+      "note": null,
+      "hollybushPlaying": true
+    },
+    {
+      "date": "25 April 2026",
+      "home": "Blackwood Stars",
+      "away": "Hartridge",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "2 May 2026",
+      "home": "Bargoed Athletic",
+      "away": "Hartridge",
+      "note": null,
+      "hollybushPlaying": false
     }
   ],
   "results": [
