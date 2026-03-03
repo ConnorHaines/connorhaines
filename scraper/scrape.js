@@ -123,5 +123,4 @@ async function scrape() {
   console.log(`  ${results.length} total results, ${hollybushResults.length} Hollybush`);
   console.log(`  ${table.length} teams in table`);
 }
-
 scrape().catch(err => { console.error('Scrape failed:', err); process.exit(1); });
