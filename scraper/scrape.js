@@ -70,13 +70,19 @@ async function scrape() {
       return;
     }
 
-    // Normal fixture: [home, empty, v, away]
-    if (t.length >= 4 && t[1] === '' && t[2] === 'v' && t[0].length > 1 && t[3].length > 1) {
-      fixtures.push({
-        date: currentDate, home: t[0], away: t[3],
-        note: null,
-        hollybushPlaying: t[0].includes(CLUB) || t[3].includes(CLUB)
-      });
+    // Normal fixture: find 'v' in the row and use surrounding cells as home/away
+    // Handles both 4-col [home,'',v,away] and 5-col [home,'',v,away,''] tables
+    const vIdx = t.indexOf('v');
+    if (vIdx >= 1 && vIdx <= 3 && t.length >= vIdx + 2) {
+      const home = t.slice(0, vIdx).find(c => c.length > 1) || '';
+      const away = (t[vIdx + 1] || '').trim();
+      if (home.length > 1 && away.length > 1 && !/^\d+$/.test(home) && !/^\d+$/.test(away)) {
+        fixtures.push({
+          date: currentDate, home, away,
+          note: null,
+          hollybushPlaying: home.includes(CLUB) || away.includes(CLUB)
+        });
+      }
     }
   });
 
