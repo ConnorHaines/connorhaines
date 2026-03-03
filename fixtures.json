@@ -1,7 +1,23 @@
 {
-  "updatedAt": "2026-03-03T13:12:38.845Z",
-  "fixtures": [],
-  "allFixtures": [],
+  "updatedAt": "2026-03-03T14:35:29.715Z",
+  "fixtures": [
+    {
+      "date": "14 March 2026",
+      "home": "Hollybush",
+      "away": "Trinant",
+      "note": "13:00 KO",
+      "hollybushPlaying": true
+    }
+  ],
+  "allFixtures": [
+    {
+      "date": "14 March 2026",
+      "home": "Hollybush",
+      "away": "Trinant",
+      "note": "13:00 KO",
+      "hollybushPlaying": true
+    }
+  ],
   "results": [
     {
       "date": "28 February 2026",
@@ -446,5 +462,96 @@
       "hollybushPlaying": false
     }
   ],
-  "table": []
+  "table": [
+    {
+      "team": "Blackwood Stars",
+      "played": 9,
+      "won": 8,
+      "drawn": 0,
+      "lost": 1,
+      "points": 36,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bargoed Athletic",
+      "played": 7,
+      "won": 7,
+      "drawn": 0,
+      "lost": 0,
+      "points": 35,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Hafodyrynys",
+      "played": 11,
+      "won": 7,
+      "drawn": 0,
+      "lost": 4,
+      "points": 33,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bettws",
+      "played": 8,
+      "won": 6,
+      "drawn": 0,
+      "lost": 2,
+      "points": 30,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Hollybush",
+      "played": 11,
+      "won": 5,
+      "drawn": 0,
+      "lost": 6,
+      "points": 25,
+      "deducted": false,
+      "isHollybush": true
+    },
+    {
+      "team": "Hartridge",
+      "played": 8,
+      "won": 4,
+      "drawn": 0,
+      "lost": 4,
+      "points": 22,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Trinant",
+      "played": 10,
+      "won": 3,
+      "drawn": 0,
+      "lost": 7,
+      "points": 16,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Abersychan",
+      "played": 14,
+      "won": 3,
+      "drawn": 0,
+      "lost": 11,
+      "points": 16,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Forgeside",
+      "played": 10,
+      "won": 1,
+      "drawn": 0,
+      "lost": 9,
+      "points": 2,
+      "deducted": true,
+      "isHollybush": false
+    }
+  ]
 }
