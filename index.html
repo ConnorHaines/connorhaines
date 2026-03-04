@@ -1363,8 +1363,8 @@
     <span class="vs">vs</span>
     <span id="next-opponent">Hafodyrynys</span>
   </div>
-  <div class="next-match-meta">📅 21 Feb 2026 · 13:00 KO</div>
-  <div class="next-match-home">🏠 Home</div>
+  <div class="next-match-meta" id="next-match-meta">📅 7 Mar 2026 · 14:30 KO</div>
+  <div class="next-match-home" id="next-match-venue">⚡ Away</div>
 </div>
 
 <!-- ===== ABOUT ===== -->
@@ -1384,19 +1384,19 @@
       </div>
       <div class="about-stats reveal" style="transition-delay:0.2s">
         <div class="stat-box">
-          <div class="stat-number" id="league-pos">5th</div>
+          <div class="stat-number" id="stat-position">5th</div>
           <div class="stat-label">League Position</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">10</div>
+          <div class="stat-number" id="stat-played">11</div>
           <div class="stat-label">Games Played</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">5</div>
+          <div class="stat-number" id="stat-wins">5</div>
           <div class="stat-label">Wins This Season</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number">25</div>
+          <div class="stat-number" id="stat-points">25</div>
           <div class="stat-label">League Points</div>
         </div>
       </div>
@@ -1421,59 +1421,33 @@
 
     <!-- UPCOMING FIXTURES -->
     <div class="tab-panel active" id="tab-upcoming">
-
+      
       <div class="fixture-group">
-        <div class="fixture-date-header">📅 7 March 2026</div>
+        <div class="fixture-date-header">📅 Saturday 21 February 2026</div>
         <div class="fixture-card hollybush">
           <div class="fixture-teams">
-            <span class="team-name">Hartridge</span>
-            <span class="fixture-vs">vs</span>
             <span class="team-name our-team">Hollybush</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
-            <span class="team-name">Bettws</span>
             <span class="fixture-vs">vs</span>
             <span class="team-name">Hafodyrynys</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
-            <span class="team-name">Forgeside</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Blackwood Stars</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
-            <span class="team-name">Trinant</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Bargoed Athletic</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-      </div>
-
-      <div class="fixture-group">
-        <div class="fixture-date-header">📅 14 March 2026</div>
-        <div class="fixture-card hollybush">
-          <div class="fixture-teams">
-            <span class="team-name our-team">Hollybush</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Trinant</span>
           </div>
           <div class="next-match-home">Home</div>
           <div class="fixture-ko">13:00 KO</div>
         </div>
+        <div class="fixture-date-header">📅 Saturday 28 February 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name our-team">Hollybush</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Blackwood Stars</span>
+          </div>
+          <div class="next-match-home">Home</div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
         <div class="fixture-card">
           <div class="fixture-teams">
-            <span class="team-name">Abersychan</span>
+            <span class="team-name">Bargoed Athletic</span>
             <span class="fixture-vs">vs</span>
-            <span class="team-name">Bettws</span>
+            <span class="team-name">Forgeside</span>
           </div>
           <div class="fixture-ko">14:30 KO</div>
         </div>
@@ -1481,14 +1455,42 @@
           <div class="fixture-teams">
             <span class="team-name">Hafodyrynys</span>
             <span class="fixture-vs">vs</span>
-            <span class="team-name">Hartridge</span>
+            <span class="team-name">Abersychan</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Trinant</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Bettws</span>
           </div>
           <div class="fixture-ko">14:30 KO</div>
         </div>
       </div>
 
       <div class="fixture-group">
-        <div class="fixture-date-header">📅 21 March 2026</div>
+        <div class="fixture-date-header">📅 Saturday 7 March 2026</div>
+        <div class="fixture-card hollybush">
+          <div class="fixture-teams">
+            <span class="team-name">Hartridge</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name our-team">Hollybush</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+        <div class="fixture-card">
+          <div class="fixture-teams">
+            <span class="team-name">Bettws</span>
+            <span class="fixture-vs">vs</span>
+            <span class="team-name">Hafodyrynys</span>
+          </div>
+          <div class="fixture-ko">14:30 KO</div>
+        </div>
+      </div>
+
+      <div class="fixture-group">
+        <div class="fixture-date-header">📅 Saturday 21 March 2026</div>
         <div class="fixture-card hollybush">
           <div class="fixture-teams">
             <span class="team-name our-team">Hollybush</span>
@@ -1500,32 +1502,16 @@
         </div>
         <div class="fixture-card">
           <div class="fixture-teams">
-            <span class="team-name">Bargoed Athletic</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Abersychan</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
             <span class="team-name">Hafodyrynys</span>
             <span class="fixture-vs">vs</span>
             <span class="team-name">Blackwood Stars</span>
           </div>
           <div class="fixture-ko">14:30 KO</div>
         </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
-            <span class="team-name">Hartridge</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Bettws</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
       </div>
 
       <div class="fixture-group">
-        <div class="fixture-date-header">📅 28 March 2026</div>
+        <div class="fixture-date-header">📅 Saturday 28 March 2026</div>
         <div class="fixture-card hollybush">
           <div class="fixture-teams">
             <span class="team-name">Blackwood Stars</span>
@@ -1536,32 +1522,16 @@
         </div>
         <div class="fixture-card">
           <div class="fixture-teams">
-            <span class="team-name">Bargoed Athletic</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Bettws</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
             <span class="team-name">Hartridge</span>
             <span class="fixture-vs">vs</span>
             <span class="team-name">Hafodyrynys</span>
           </div>
           <div class="fixture-ko">14:30 KO</div>
         </div>
-        <div class="fixture-card">
-          <div class="fixture-teams">
-            <span class="team-name">Trinant</span>
-            <span class="fixture-vs">vs</span>
-            <span class="team-name">Forgeside</span>
-          </div>
-          <div class="fixture-ko">14:30 KO</div>
-        </div>
       </div>
 
       <div class="fixture-group">
-        <div class="fixture-date-header">📅 18 April 2026</div>
+        <div class="fixture-date-header">📅 Saturday 18 April 2026</div>
         <div class="fixture-card hollybush">
           <div class="fixture-teams">
             <span class="team-name our-team">Hollybush</span>
@@ -1585,21 +1555,6 @@
 
     <!-- RESULTS -->
     <div class="tab-panel" id="tab-results">
-
-      <div class="fixture-group">
-        <div class="fixture-date-header">📅 28 February 2026</div>
-        <div class="result-card loss">
-          <div class="result-teams">
-            <div class="result-match"><span class="our-team">Hollybush</span> <span class="fixture-vs">vs</span> Blackwood Stars</div>
-          </div>
-          <div class="result-score-wrapper">
-            <span class="result-score our-score">8</span>
-            <span class="result-dash">–</span>
-            <span class="result-score their-score">17</span>
-          </div>
-          <span class="loss-badge">L</span>
-        </div>
-      </div>
 
       <div class="fixture-group">
         <div class="fixture-date-header">📅 14 February 2026</div>
@@ -1769,42 +1724,42 @@
         <tbody>
           <tr>
             <td class="pos">1</td>
-            <td>Blackwood Stars</td>
-            <td>9</td>
-            <td>8</td>
-            <td>1</td>
-            <td class="pts">36</td>
-          </tr>
-          <tr>
-            <td class="pos">2</td>
-            <td>Bargoed Athletic <span class="zone-label zone-prom">Prom. Zone</span></td> 
+            <td>Bargoed Athletic</td>
             <td>7</td>
             <td>7</td>
             <td>0</td>
             <td class="pts">35</td>
           </tr>
           <tr class="promotion-line">
-            <td class="pos">3</td>
-            <td>Hafodyrynys</td>
-            <td>11</td>
+            <td class="pos">2</td>
+            <td>Blackwood Stars <span class="zone-label zone-prom">Prom. Zone</span></td>
+            <td>8</td>
             <td>7</td>
-            <td>4</td>
-            <td class="pts">33</td>
+            <td>1</td>
+            <td class="pts">32</td>
           </tr>
           <tr>
-            <td class="pos">4</td>
+            <td class="pos">3</td>
             <td>Bettws</td>
             <td>8</td>
             <td>6</td>
             <td>2</td>
             <td class="pts">30</td>
           </tr>
+          <tr>
+            <td class="pos">4</td>
+            <td>Hafodyrynys</td>
+            <td>10</td>
+            <td>6</td>
+            <td>4</td>
+            <td class="pts">28</td>
+          </tr>
           <tr class="our-team-row">
             <td class="pos">5</td>
             <td><strong>⭐ Hollybush</strong></td>
-            <td>11</td>
+            <td>10</td>
             <td>5</td>
-            <td>6</td>
+            <td>5</td>
             <td class="pts">25</td>
           </tr>
           <tr>
@@ -1826,9 +1781,9 @@
           <tr class="relegation-line">
             <td class="pos">8</td>
             <td>Abersychan <span class="zone-label zone-rel">Rel. Zone</span></td>
-            <td>14</td>
+            <td>13</td>
             <td>3</td>
-            <td>11</td>
+            <td>10</td>
             <td class="pts">16</td>
           </tr>
           <tr>
@@ -1842,7 +1797,7 @@
         </tbody>
       </table>
       <p style="margin-top: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text-muted); letter-spacing: 0.05em;">
-        * Points deducted · Updated 28 Feb 2026 · Source: <a href="https://allwalessport.co.uk/rugby-union.aspx?cid=16455" target="_blank" style="color: var(--gold);">allwalessport.co.uk</a>
+        * Points deducted · Updated 15 Feb 2026 · Source: <a href="https://allwalessport.co.uk/rugby-union.aspx?cid=16455" target="_blank" style="color: var(--gold);">allwalessport.co.uk</a>
       </p>
     </div>
 
@@ -2215,14 +2170,6 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ===== BLOG POSTS DATA =====
 const blogs = [
   {
-    title: "Narrow Defeat to Blackwood Stars — Hollybush 8–17",
-    meta: "Match Report · 28 February 2026",
-    body: `<p><strong>Hollybush RFC 8 – 17 Blackwood Stars</strong></p>
-<p>A tight contest at home saw Hollybush fall to a narrow defeat against high-flying Blackwood Stars. Despite a spirited performance, the visitors proved just too strong on the day, taking the points back to the valleys.</p>
-<p>Hollybush showed plenty of fight and will take confidence from how they matched one of the division's top sides for long periods. The focus now turns quickly to this Saturday's trip to Hartridge.</p>
-<p><strong>Come and get behind the lads — away support makes a difference!</strong></p>`
-  },
-  {
     title: "36–5 at Forgeside: Hollybush Fire on All Cylinders",
     meta: "Match Report · 14 February 2026",
     body: `<p><strong>Forgeside 5 – 36 Hollybush RFC</strong></p>
@@ -2353,15 +2300,40 @@ function scrollShop(dir) {
   carousel.scrollBy({ left: dir * 520, behavior: 'smooth' });
 }
 
-// ===== LIVE FIXTURES FROM fixtures.json (overlays hardcoded if available) =====
+// ===== LIVE FIXTURES FROM fixtures.json =====
 async function loadFixtures() {
   try {
     const res = await fetch('fixtures.json?v=' + Date.now());
     if (!res.ok) return;
     const data = await res.json();
+
     if (data.allFixtures && data.allFixtures.length) renderFixtures(data.allFixtures);
     if (data.results && data.results.length) renderResults(data.results);
     if (data.table && data.table.length) renderTable(data.table, data.updatedAt);
+
+    // Update stat boxes
+    const us = (data.table || []).find(t => t.isHollybush);
+    if (us) {
+      const pos = data.table.indexOf(us) + 1;
+      const suffix = pos === 1 ? 'st' : pos === 2 ? 'nd' : pos === 3 ? 'rd' : 'th';
+      document.getElementById('stat-position').textContent = pos + suffix;
+      document.getElementById('stat-played').textContent = us.played;
+      document.getElementById('stat-wins').textContent = us.won;
+      document.getElementById('stat-points').textContent = us.points;
+    }
+
+    // Update next match banner
+    const next = (data.allFixtures || []).find(f => f.hollybushPlaying);
+    if (next) {
+      const isHome = next.home.includes('Hollybush');
+      const opponent = isHome ? next.away : next.home;
+      const ko = next.note || '14:30 KO';
+      const dateShort = next.date.replace(/(\d+)\s(\w{3})\w+\s(\d{4})/, '$1 $2 $3');
+      document.getElementById('next-opponent').textContent = opponent;
+      document.getElementById('next-match-meta').textContent = '📅 ' + dateShort + ' · ' + ko;
+      document.getElementById('next-match-venue').textContent = isHome ? '🏠 Home' : '⚡ Away';
+    }
+
   } catch (e) {
     console.log('fixtures.json not available, using hardcoded data');
   }
