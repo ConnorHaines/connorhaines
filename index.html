@@ -2312,7 +2312,7 @@ function filterSquad(type) {
 renderSquad('all');
 
 // ===== FORM =====
-function submitForm() {
+async function submitForm() {
   const name = document.getElementById('form-name').value;
   const email = document.getElementById('form-email').value;
   const message = document.getElementById('form-message').value;
@@ -2320,12 +2320,21 @@ function submitForm() {
     alert('Please fill in your name and email!'); 
     return; 
   }
-  action="https://formspree.io/f/xaqpyeol"
-  method="POST"
-  document.getElementById('form-success').style.display = 'block';
-  document.getElementById('form-name').value = '';
-  document.getElementById('form-email').value = '';
-  docutment.getElementById('form-message').value = '';
+
+  const res = await fetch('https://formspree.io/f/xaqpyeol', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, message })
+  });
+
+  if (res.ok) {
+    document.getElementById('form-success').style.display = 'block';
+    document.getElementById('form-name').value = '';
+    document.getElementById('form-email').value = '';
+    document.getElementById('form-message').value = '';
+  } else {
+    alert('Something went wrong. Please try again.');
+  }
 }
 
 // ===== SHOP CAROUSEL =====
