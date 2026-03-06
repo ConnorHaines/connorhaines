@@ -2089,15 +2089,18 @@
       </div>
 
       <div class="newsletter-form reveal" style="transition-delay:0.2s">
-        <h3>Stay Updated</h3>
-        <p>Get match reports, club news, and fixture updates delivered straight to your inbox.</p>
+        <h3>Have a question?</h3>
+        <p>Feel free to leave your name, email and message and we'll get back to you as soon as we can.</p>
         <div class="form-group">
           <input type="text" class="form-input" placeholder="Your Name" id="form-name">
         </div>
         <div class="form-group">
           <input type="email" class="form-input" placeholder="Your Email" id="form-email">
         </div>
-        <button class="form-submit" onclick="submitForm()">Join the Club 🏉</button>
+        <div class="form-group">
+          <input type="message" class="form-input" placeholder="Your Message" id="form-message">
+        </div>
+        <button class="form-submit" onclick="submitForm()">Submit</button>
         <div class="form-success" id="form-success">
           ✓ You're in! We'll be in touch soon. Come on Hollybush!
         </div>
@@ -2312,13 +2315,17 @@ renderSquad('all');
 function submitForm() {
   const name = document.getElementById('form-name').value;
   const email = document.getElementById('form-email').value;
+  const message = document.getElementById('form-message').value;
   if (!name || !email) { 
     alert('Please fill in your name and email!'); 
     return; 
   }
+  action="https://formspree.io/f/xaqpyeol"
+  method="POST"
   document.getElementById('form-success').style.display = 'block';
   document.getElementById('form-name').value = '';
   document.getElementById('form-email').value = '';
+  docutment.getElementById('form-message').value = '';
 }
 
 // ===== SHOP CAROUSEL =====
