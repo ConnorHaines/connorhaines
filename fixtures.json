@@ -1,13 +1,6 @@
 {
-  "updatedAt": "2026-03-07T13:00:56.451Z",
+  "updatedAt": "2026-03-08T02:43:20.626Z",
   "fixtures": [
-    {
-      "date": "7 March 2026",
-      "home": "Hartridge",
-      "away": "Hollybush",
-      "note": null,
-      "hollybushPlaying": true
-    },
     {
       "date": "14 March 2026",
       "home": "Hollybush",
@@ -38,34 +31,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "7 March 2026",
-      "home": "Bettws",
-      "away": "Hafodyrynys",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "7 March 2026",
-      "home": "Forgeside",
-      "away": "Blackwood Stars",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "7 March 2026",
-      "home": "Hartridge",
-      "away": "Hollybush",
-      "note": null,
-      "hollybushPlaying": true
-    },
-    {
-      "date": "7 March 2026",
-      "home": "Trinant",
-      "away": "Bargoed Athletic",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "14 March 2026",
       "home": "Hollybush",
@@ -209,6 +174,14 @@
   ],
   "results": [
     {
+      "date": "7 March 2026",
+      "home": "Hartridge",
+      "homeScore": 34,
+      "awayScore": 26,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
       "date": "28 February 2026",
       "home": "Hollybush",
       "homeScore": 8,
@@ -298,6 +271,38 @@
     }
   ],
   "allResults": [
+    {
+      "date": "7 March 2026",
+      "home": "Bettws",
+      "homeScore": 12,
+      "awayScore": 22,
+      "away": "Hafodyrynys",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Forgeside",
+      "homeScore": 13,
+      "awayScore": 45,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Hartridge",
+      "homeScore": 34,
+      "awayScore": 26,
+      "away": "Hollybush",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "7 March 2026",
+      "home": "Trinant",
+      "homeScore": 17,
+      "awayScore": 87,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": false
+    },
     {
       "date": "28 February 2026",
       "home": "Hafodyrynys",
@@ -654,70 +659,70 @@
   "table": [
     {
       "team": "Blackwood Stars",
-      "played": 9,
-      "won": 8,
+      "played": 10,
+      "won": 9,
       "drawn": 0,
       "lost": 1,
-      "points": 36,
+      "points": 41,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Bargoed Athletic",
-      "played": 7,
-      "won": 7,
+      "played": 8,
+      "won": 8,
       "drawn": 0,
       "lost": 0,
-      "points": 35,
+      "points": 40,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Hafodyrynys",
-      "played": 11,
-      "won": 7,
+      "played": 12,
+      "won": 8,
       "drawn": 0,
       "lost": 4,
-      "points": 33,
+      "points": 37,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Bettws",
-      "played": 8,
+      "played": 9,
       "won": 6,
       "drawn": 0,
-      "lost": 2,
+      "lost": 3,
       "points": 30,
       "deducted": false,
       "isHollybush": false
     },
     {
-      "team": "Hollybush",
-      "played": 11,
+      "team": "Hartridge",
+      "played": 9,
       "won": 5,
       "drawn": 0,
-      "lost": 6,
-      "points": 25,
-      "deducted": false,
-      "isHollybush": true
-    },
-    {
-      "team": "Hartridge",
-      "played": 8,
-      "won": 4,
-      "drawn": 0,
       "lost": 4,
-      "points": 22,
+      "points": 27,
       "deducted": false,
       "isHollybush": false
     },
     {
-      "team": "Trinant",
-      "played": 10,
-      "won": 3,
+      "team": "Hollybush",
+      "played": 12,
+      "won": 5,
       "drawn": 0,
       "lost": 7,
+      "points": 26,
+      "deducted": false,
+      "isHollybush": true
+    },
+    {
+      "team": "Trinant",
+      "played": 11,
+      "won": 3,
+      "drawn": 0,
+      "lost": 8,
       "points": 16,
       "deducted": false,
       "isHollybush": false
@@ -734,10 +739,10 @@
     },
     {
       "team": "Forgeside",
-      "played": 10,
+      "played": 11,
       "won": 1,
       "drawn": 0,
-      "lost": 9,
+      "lost": 10,
       "points": 2,
       "deducted": true,
       "isHollybush": false
