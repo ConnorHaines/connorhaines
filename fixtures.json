@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-08T02:43:20.626Z",
+  "updatedAt": "2026-03-08T13:02:39.865Z",
   "fixtures": [
     {
       "date": "14 March 2026",
@@ -33,24 +33,24 @@
   "allFixtures": [
     {
       "date": "14 March 2026",
-      "home": "Hollybush",
-      "away": "Trinant",
-      "note": "13:00 KO",
-      "hollybushPlaying": true
-    },
-    {
-      "date": "14 March 2026",
       "home": "Abersychan",
       "away": "Bettws",
-      "note": null,
+      "note": "13:00 KO",
       "hollybushPlaying": false
     },
     {
       "date": "14 March 2026",
       "home": "Hafodyrynys",
       "away": "Hartridge",
-      "note": null,
+      "note": "13:00 KO",
       "hollybushPlaying": false
+    },
+    {
+      "date": "14 March 2026",
+      "home": "Hollybush",
+      "away": "Trinant",
+      "note": "13:00 KO",
+      "hollybushPlaying": true
     },
     {
       "date": "21 March 2026",
