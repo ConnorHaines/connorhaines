@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T02:41:16.373Z",
+  "updatedAt": "2026-03-12T13:16:32.880Z",
   "fixtures": [
     {
       "date": "14 March 2026",
@@ -31,13 +31,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "14 March 2026",
-      "home": "Abersychan",
-      "away": "Bettws",
-      "note": "13:00 KO",
-      "hollybushPlaying": false
-    },
     {
       "date": "14 March 2026",
       "home": "Hafodyrynys",
