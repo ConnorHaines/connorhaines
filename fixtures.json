@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-17T02:41:10.461Z",
+  "updatedAt": "2026-03-17T13:26:29.331Z",
   "fixtures": [
     {
       "date": "21 March 2026",
@@ -91,6 +91,13 @@
       "date": "4 April 2026",
       "home": "Bettws",
       "away": "Blackwood Stars",
+      "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "11 April 2026",
+      "home": "Abersychan",
+      "away": "Bettws",
       "note": null,
       "hollybushPlaying": false
     },
