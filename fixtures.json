@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-22T02:49:43.021Z",
+  "updatedAt": "2026-03-22T13:05:50.713Z",
   "fixtures": [
     {
       "date": "28 March 2026",
@@ -17,13 +17,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "28 March 2026",
-      "home": "Bargoed Athletic",
-      "away": "Bettws",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "28 March 2026",
       "home": "Blackwood Stars",
