@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-21T13:03:22.141Z",
+  "updatedAt": "2026-03-22T02:49:43.021Z",
   "fixtures": [
     {
       "date": "28 March 2026",
@@ -17,27 +17,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "21 March 2026",
-      "home": "Bargoed Athletic",
-      "away": "Abersychan",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "21 March 2026",
-      "home": "Hafodyrynys",
-      "away": "Blackwood Stars",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
-      "date": "21 March 2026",
-      "home": "Hartridge",
-      "away": "Bettws",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "28 March 2026",
       "home": "Bargoed Athletic",
@@ -222,6 +201,30 @@
     }
   ],
   "allResults": [
+    {
+      "date": "21 March 2026",
+      "home": "Bargoed Athletic",
+      "homeScore": 63,
+      "awayScore": 10,
+      "away": "Abersychan",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hafodyrynys",
+      "homeScore": 5,
+      "awayScore": 18,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
+    {
+      "date": "21 March 2026",
+      "home": "Hartridge",
+      "homeScore": 14,
+      "awayScore": 39,
+      "away": "Bettws",
+      "hollybushPlaying": false
+    },
     {
       "date": "14 March 2026",
       "home": "Hartridge",
@@ -538,31 +541,41 @@
   "table": [
     {
       "team": "Bargoed Athletic",
-      "played": 8,
-      "won": 8,
+      "played": 9,
+      "won": 9,
       "drawn": 0,
       "lost": 0,
-      "points": 40,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Hafodyrynys",
-      "played": 11,
-      "won": 7,
-      "drawn": 0,
-      "lost": 4,
-      "points": 33,
+      "points": 45,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Blackwood Stars",
-      "played": 8,
-      "won": 7,
+      "played": 9,
+      "won": 8,
       "drawn": 0,
       "lost": 1,
-      "points": 31,
+      "points": 35,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Hafodyrynys",
+      "played": 12,
+      "won": 7,
+      "drawn": 0,
+      "lost": 5,
+      "points": 33,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bettws",
+      "played": 9,
+      "won": 6,
+      "drawn": 0,
+      "lost": 3,
+      "points": 30,
       "deducted": false,
       "isHollybush": false
     },
@@ -577,31 +590,21 @@
       "isHollybush": true
     },
     {
-      "team": "Bettws",
-      "played": 8,
-      "won": 5,
-      "drawn": 0,
-      "lost": 3,
-      "points": 25,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
       "team": "Hartridge",
-      "played": 8,
+      "played": 9,
       "won": 3,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "points": 18,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Abersychan",
-      "played": 12,
+      "played": 13,
       "won": 2,
       "drawn": 0,
-      "lost": 10,
+      "lost": 11,
       "points": 12,
       "deducted": false,
       "isHollybush": false
