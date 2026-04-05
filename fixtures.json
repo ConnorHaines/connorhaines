@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-04T13:10:01.971Z",
+  "updatedAt": "2026-04-05T03:20:43.928Z",
   "fixtures": [
     {
       "date": "18 April 2026",
@@ -10,13 +10,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "4 April 2026",
-      "home": "Bettws",
-      "away": "Blackwood Stars",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "11 April 2026",
       "home": "Abersychan",
@@ -181,6 +174,14 @@
     }
   ],
   "allResults": [
+    {
+      "date": "4 April 2026",
+      "home": "Bettws",
+      "homeScore": 24,
+      "awayScore": 7,
+      "away": "Blackwood Stars",
+      "hollybushPlaying": false
+    },
     {
       "date": "28 March 2026",
       "home": "Blackwood Stars",
@@ -547,11 +548,21 @@
     },
     {
       "team": "Blackwood Stars",
-      "played": 10,
+      "played": 11,
       "won": 8,
       "drawn": 0,
-      "lost": 2,
+      "lost": 3,
       "points": 36,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bettws",
+      "played": 10,
+      "won": 7,
+      "drawn": 0,
+      "lost": 3,
+      "points": 35,
       "deducted": false,
       "isHollybush": false
     },
@@ -574,16 +585,6 @@
       "points": 31,
       "deducted": false,
       "isHollybush": true
-    },
-    {
-      "team": "Bettws",
-      "played": 9,
-      "won": 6,
-      "drawn": 0,
-      "lost": 3,
-      "points": 30,
-      "deducted": false,
-      "isHollybush": false
     },
     {
       "team": "Hartridge",
