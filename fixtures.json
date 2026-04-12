@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-12T03:28:00.132Z",
+  "updatedAt": "2026-04-12T13:15:23.361Z",
   "fixtures": [
     {
       "date": "18 April 2026",
@@ -25,13 +25,6 @@
       "hollybushPlaying": true
     },
     {
-      "date": "22 April 2026",
-      "home": "Blackwood Stars",
-      "away": "Bargoed Athletic",
-      "note": null,
-      "hollybushPlaying": false
-    },
-    {
       "date": "25 April 2026",
       "home": "Bettws",
       "away": "Bargoed Athletic",
@@ -43,6 +36,13 @@
       "home": "Blackwood Stars",
       "away": "Hartridge",
       "note": null,
+      "hollybushPlaying": false
+    },
+    {
+      "date": "29 April 2026",
+      "home": "Blackwood Stars",
+      "away": "Bargoed Athletic",
+      "note": "19:30 KO",
       "hollybushPlaying": false
     },
     {
