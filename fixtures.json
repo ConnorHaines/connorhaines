@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-13T13:56:05.819Z",
+  "updatedAt": "2026-04-14T03:24:26.441Z",
   "fixtures": [
     {
       "date": "18 April 2026",
@@ -10,13 +10,6 @@
     }
   ],
   "allFixtures": [
-    {
-      "date": "14 April 2026",
-      "home": "Bargoed Athletic",
-      "away": "Bettws",
-      "note": "19:00 KO",
-      "hollybushPlaying": false
-    },
     {
       "date": "18 April 2026",
       "home": "Hollybush",
