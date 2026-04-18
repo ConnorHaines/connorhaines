@@ -1,29 +1,7 @@
 {
-  "updatedAt": "2026-04-18T13:15:46.451Z",
-  "fixtures": [
-    {
-      "date": "18 April 2026",
-      "home": "Hollybush",
-      "away": "Hartridge",
-      "note": null,
-      "hollybushPlaying": true
-    }
-  ],
+  "updatedAt": "2026-04-18T16:36:56.716Z",
+  "fixtures": [],
   "allFixtures": [
-    {
-      "date": "18 April 2026",
-      "home": "Hollybush",
-      "away": "Hartridge",
-      "note": null,
-      "hollybushPlaying": true
-    },
-    {
-      "date": "18 April 2026",
-      "home": "Trinant",
-      "away": "Bettws",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "25 April 2026",
       "home": "Bettws",
@@ -54,6 +32,14 @@
     }
   ],
   "results": [
+    {
+      "date": "18 April 2026",
+      "home": "Hollybush",
+      "homeScore": 57,
+      "awayScore": 0,
+      "away": "Hartridge",
+      "hollybushPlaying": true
+    },
     {
       "date": "28 March 2026",
       "home": "Blackwood Stars",
@@ -160,6 +146,22 @@
     }
   ],
   "allResults": [
+    {
+      "date": "18 April 2026",
+      "home": "Hollybush",
+      "homeScore": 57,
+      "awayScore": 0,
+      "away": "Hartridge",
+      "hollybushPlaying": true
+    },
+    {
+      "date": "18 April 2026",
+      "home": "Trinant",
+      "homeScore": 29,
+      "awayScore": 19,
+      "away": "Bettws",
+      "hollybushPlaying": false
+    },
     {
       "date": "11 April 2026",
       "home": "Abersychan",
@@ -568,13 +570,23 @@
     },
     {
       "team": "Bettws",
-      "played": 11,
+      "played": 12,
       "won": 7,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "points": 36,
       "deducted": false,
       "isHollybush": false
+    },
+    {
+      "team": "Hollybush",
+      "played": 14,
+      "won": 7,
+      "drawn": 0,
+      "lost": 7,
+      "points": 36,
+      "deducted": false,
+      "isHollybush": true
     },
     {
       "team": "Hafodyrynys",
@@ -587,22 +599,22 @@
       "isHollybush": false
     },
     {
-      "team": "Hollybush",
-      "played": 13,
-      "won": 6,
-      "drawn": 0,
-      "lost": 7,
-      "points": 31,
-      "deducted": false,
-      "isHollybush": true
-    },
-    {
       "team": "Hartridge",
-      "played": 11,
+      "played": 12,
       "won": 5,
       "drawn": 0,
-      "lost": 6,
+      "lost": 7,
       "points": 27,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Trinant",
+      "played": 13,
+      "won": 3,
+      "drawn": 0,
+      "lost": 10,
+      "points": 17,
       "deducted": false,
       "isHollybush": false
     },
@@ -613,16 +625,6 @@
       "drawn": 0,
       "lost": 11,
       "points": 16,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Trinant",
-      "played": 12,
-      "won": 2,
-      "drawn": 0,
-      "lost": 10,
-      "points": 12,
       "deducted": false,
       "isHollybush": false
     }
