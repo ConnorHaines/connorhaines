@@ -1,7 +1,14 @@
 {
-  "updatedAt": "2026-04-20T03:34:44.423Z",
+  "updatedAt": "2026-04-20T13:58:37.908Z",
   "fixtures": [],
   "allFixtures": [
+    {
+      "date": "22 April 2026",
+      "home": "Bargoed Athletic",
+      "away": "Trinant",
+      "note": "19:00 KO",
+      "hollybushPlaying": false
+    },
     {
       "date": "25 April 2026",
       "home": "Bettws",
