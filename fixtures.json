@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-20T13:58:37.908Z",
+  "updatedAt": "2026-04-21T03:26:42.345Z",
   "fixtures": [],
   "allFixtures": [
     {
@@ -173,7 +173,7 @@
       "date": "11 April 2026",
       "home": "Abersychan",
       "homeScore": 10,
-      "awayScore": 7,
+      "awayScore": 8,
       "away": "Bettws",
       "hollybushPlaying": false
     },
