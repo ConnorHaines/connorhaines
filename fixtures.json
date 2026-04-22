@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-21T13:58:20.703Z",
+  "updatedAt": "2026-04-22T03:25:11.020Z",
   "fixtures": [],
   "allFixtures": [
     {
@@ -616,16 +616,6 @@
       "isHollybush": false
     },
     {
-      "team": "Trinant",
-      "played": 13,
-      "won": 3,
-      "drawn": 0,
-      "lost": 10,
-      "points": 17,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
       "team": "Abersychan",
       "played": 14,
       "won": 3,
@@ -633,6 +623,16 @@
       "lost": 11,
       "points": 16,
       "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Trinant",
+      "played": 13,
+      "won": 3,
+      "drawn": 0,
+      "lost": 10,
+      "points": 13,
+      "deducted": true,
       "isHollybush": false
     }
   ]
