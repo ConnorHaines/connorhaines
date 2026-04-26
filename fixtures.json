@@ -1,14 +1,7 @@
 {
-  "updatedAt": "2026-04-25T13:18:56.094Z",
+  "updatedAt": "2026-04-26T03:37:35.847Z",
   "fixtures": [],
   "allFixtures": [
-    {
-      "date": "25 April 2026",
-      "home": "Bettws",
-      "away": "Bargoed Athletic",
-      "note": null,
-      "hollybushPlaying": false
-    },
     {
       "date": "29 April 2026",
       "home": "Blackwood Stars",
@@ -139,6 +132,14 @@
     }
   ],
   "allResults": [
+    {
+      "date": "25 April 2026",
+      "home": "Bettws",
+      "homeScore": 5,
+      "awayScore": 40,
+      "away": "Bargoed Athletic",
+      "hollybushPlaying": false
+    },
     {
       "date": "22 April 2026",
       "home": "Bargoed Athletic",
@@ -551,11 +552,11 @@
   "table": [
     {
       "team": "Bargoed Athletic",
-      "played": 10,
-      "won": 10,
+      "played": 11,
+      "won": 11,
       "drawn": 0,
       "lost": 0,
-      "points": 50,
+      "points": 55,
       "deducted": false,
       "isHollybush": false
     },
@@ -571,10 +572,10 @@
     },
     {
       "team": "Bettws",
-      "played": 12,
+      "played": 13,
       "won": 7,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "points": 36,
       "deducted": false,
       "isHollybush": false
