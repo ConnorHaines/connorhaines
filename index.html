@@ -405,6 +405,78 @@
     position: relative;
   }
 
+  /* ===== TOUR COUNTDOWN BANNER ===== */
+  #tour-banner {
+    background: var(--gold);
+    color: var(--black);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: 'Barlow Condensed', sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  #tour-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(0,0,0,0.05) 20px,
+      rgba(0,0,0,0.05) 40px
+    );
+  }
+  .tour-banner-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    position: relative;
+  }
+  .tour-banner-destination {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .tour-countdown {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+  }
+  .tour-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 38px;
+  }
+  .tour-unit span:first-child {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .tour-unit-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .tour-sep {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    opacity: 0.5;
+    margin-bottom: 10px;
+  }
+
   /* ===== SECTION BASE ===== */
   section { padding: 100px 0; }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
@@ -942,7 +1014,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: top center;
     display: block;
   }
   .squad-avatar::after {
@@ -1294,7 +1366,6 @@
     .next-match { padding: 16px 20px; }
     .league-table thead th:nth-child(n+4), .league-table td:nth-child(n+4) { display: none; }
     .league-table thead th:nth-child(5), .league-table td:nth-child(5) { display: table-cell; }
-    .league-table thead th:nth-child(6), .league-table td:nth-child(6) { display: table-cell; }
   }
 </style>
 </head>
@@ -1357,17 +1428,71 @@
   <div class="scroll-hint">Scroll</div>
 </section>
 
-<!-- ===== NEXT MATCH BANNER ===== -->
+<!-- ===== NEXT MATCH BANNER (commented out — reinstate next season) =====
 <div id="next-match">
   <div class="next-match-label">Next Match</div>
   <div class="next-match-vs">
     <span class="our-team-name">Hollybush</span>
     <span class="vs">vs</span>
-    <span id="next-opponent">Llanhilleth</span>
+    <span id="next-opponent">Hafodyrynys</span>
   </div>
-  <div class="next-match-meta" id="next-match-meta">📅 22nd Apr 2026 · 18:45KO</div>
-  <div class="next-match-home" id="next-match-venue">🏡 Home</div>
+  <div class="next-match-meta" id="next-match-meta">📅 7 Mar 2026 · 14:30 KO</div>
+  <div class="next-match-home" id="next-match-venue">⚡ Away</div>
 </div>
+===== END NEXT MATCH BANNER ===== -->
+
+<!-- ===== TOUR COUNTDOWN BANNER ===== -->
+<div id="tour-banner">
+  <div class="tour-banner-label" id="tour-label">Dublin Tour 2025</div>
+  <div class="tour-banner-destination" id="tour-destination">✈️ Dublin · Roscrea</div>
+  <div class="tour-countdown" id="tour-countdown">
+    <div class="tour-unit"><span id="tour-days">00</span><span class="tour-unit-label">Days</span></div>
+    <div class="tour-sep">:</div>
+    <div class="tour-unit"><span id="tour-hours">00</span><span class="tour-unit-label">Hrs</span></div>
+    <div class="tour-sep">:</div>
+    <div class="tour-unit"><span id="tour-mins">00</span><span class="tour-unit-label">Min</span></div>
+    <div class="tour-sep">:</div>
+    <div class="tour-unit"><span id="tour-secs">00</span><span class="tour-unit-label">Sec</span></div>
+  </div>
+</div>
+<script>
+(function() {
+  var DEPART = new Date('2026-04-30T22:50:00');
+  var RETURN = new Date('2026-05-03T23:59:00');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function tick() {
+    var now = new Date();
+
+    if (now >= DEPART && now < RETURN) {
+      document.getElementById('tour-label').textContent = '🍺 On Tour';
+      document.getElementById('tour-destination').textContent = '🇮🇪 Dublin · Roscrea — Safe travels, lads!';
+      document.getElementById('tour-countdown').style.display = 'none';
+      return;
+    }
+
+    if (now >= RETURN) {
+      document.getElementById('tour-banner').style.display = 'none';
+      return;
+    }
+
+    var diff = DEPART - now;
+    var days  = Math.floor(diff / 864e5);
+    var hours = Math.floor((diff % 864e5) / 36e5);
+    var mins  = Math.floor((diff % 36e5) / 6e4);
+    var secs  = Math.floor((diff % 6e4) / 1e3);
+
+    document.getElementById('tour-days').textContent  = pad(days);
+    document.getElementById('tour-hours').textContent = pad(hours);
+    document.getElementById('tour-mins').textContent  = pad(mins);
+    document.getElementById('tour-secs').textContent  = pad(secs);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 
 <!-- ===== ABOUT ===== -->
 <section id="about">
