@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-29T03:43:50.241Z",
+  "updatedAt": "2026-04-29T14:15:57.841Z",
   "fixtures": [],
   "allFixtures": [
     {
@@ -8,24 +8,9 @@
       "away": "Bargoed Athletic",
       "note": "19:00 KO",
       "hollybushPlaying": false
-    },
-    {
-      "date": "2 May 2026",
-      "home": "Bargoed Athletic",
-      "away": "Hartridge",
-      "note": null,
-      "hollybushPlaying": false
     }
   ],
   "results": [
-    {
-      "date": "18 April 2026",
-      "home": "Hollybush",
-      "homeScore": 57,
-      "awayScore": 0,
-      "away": "Hartridge",
-      "hollybushPlaying": true
-    },
     {
       "date": "28 March 2026",
       "home": "Blackwood Stars",
@@ -40,14 +25,6 @@
       "homeScore": 34,
       "awayScore": 12,
       "away": "Trinant",
-      "hollybushPlaying": true
-    },
-    {
-      "date": "7 March 2026",
-      "home": "Hartridge",
-      "homeScore": 34,
-      "awayScore": 26,
-      "away": "Hollybush",
       "hollybushPlaying": true
     },
     {
@@ -150,14 +127,6 @@
     },
     {
       "date": "18 April 2026",
-      "home": "Hollybush",
-      "homeScore": 57,
-      "awayScore": 0,
-      "away": "Hartridge",
-      "hollybushPlaying": true
-    },
-    {
-      "date": "18 April 2026",
       "home": "Trinant",
       "homeScore": 29,
       "awayScore": 19,
@@ -181,14 +150,6 @@
       "hollybushPlaying": false
     },
     {
-      "date": "11 April 2026",
-      "home": "Trinant",
-      "homeScore": 23,
-      "awayScore": 44,
-      "away": "Hartridge",
-      "hollybushPlaying": false
-    },
-    {
       "date": "4 April 2026",
       "home": "Bettws",
       "homeScore": 24,
@@ -203,14 +164,6 @@
       "awayScore": 38,
       "away": "Hollybush",
       "hollybushPlaying": true
-    },
-    {
-      "date": "28 March 2026",
-      "home": "Hafodyrynys",
-      "homeScore": 26,
-      "awayScore": 30,
-      "away": "Hartridge",
-      "hollybushPlaying": false
     },
     {
       "date": "21 March 2026",
@@ -229,22 +182,6 @@
       "hollybushPlaying": false
     },
     {
-      "date": "21 March 2026",
-      "home": "Hartridge",
-      "homeScore": 14,
-      "awayScore": 39,
-      "away": "Bettws",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "14 March 2026",
-      "home": "Hartridge",
-      "homeScore": 26,
-      "awayScore": 34,
-      "away": "Hafodyrynys",
-      "hollybushPlaying": false
-    },
-    {
       "date": "14 March 2026",
       "home": "Hollybush",
       "homeScore": 34,
@@ -259,14 +196,6 @@
       "awayScore": 22,
       "away": "Hafodyrynys",
       "hollybushPlaying": false
-    },
-    {
-      "date": "7 March 2026",
-      "home": "Hartridge",
-      "homeScore": 34,
-      "awayScore": 26,
-      "away": "Hollybush",
-      "hollybushPlaying": true
     },
     {
       "date": "7 March 2026",
@@ -342,26 +271,10 @@
     },
     {
       "date": "17 January 2026",
-      "home": "Hartridge",
-      "homeScore": 5,
-      "awayScore": 33,
-      "away": "Abersychan",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "17 January 2026",
       "home": "Trinant",
       "homeScore": 21,
       "awayScore": 52,
       "away": "Blackwood Stars",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "20 December 2025",
-      "home": "Bettws",
-      "homeScore": 19,
-      "awayScore": 15,
-      "away": "Hartridge",
       "hollybushPlaying": false
     },
     {
@@ -378,14 +291,6 @@
       "homeScore": 21,
       "awayScore": 36,
       "away": "Blackwood Stars",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "13 December 2025",
-      "home": "Hartridge",
-      "homeScore": 57,
-      "awayScore": 7,
-      "away": "Trinant",
       "hollybushPlaying": false
     },
     {
@@ -410,14 +315,6 @@
       "homeScore": 56,
       "awayScore": 12,
       "away": "Hafodyrynys",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "8 November 2025",
-      "home": "Hartridge",
-      "homeScore": 22,
-      "awayScore": 32,
-      "away": "Blackwood Stars",
       "hollybushPlaying": false
     },
     {
@@ -462,14 +359,6 @@
     },
     {
       "date": "11 October 2025",
-      "home": "Abersychan",
-      "homeScore": 20,
-      "awayScore": 37,
-      "away": "Hartridge",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "11 October 2025",
       "home": "Blackwood Stars",
       "homeScore": 17,
       "awayScore": 15,
@@ -498,14 +387,6 @@
       "homeScore": 33,
       "awayScore": 30,
       "away": "Abersychan",
-      "hollybushPlaying": false
-    },
-    {
-      "date": "4 October 2025",
-      "home": "Hartridge",
-      "homeScore": 13,
-      "awayScore": 33,
-      "away": "Bargoed Athletic",
       "hollybushPlaying": false
     },
     {
@@ -552,82 +433,72 @@
   "table": [
     {
       "team": "Bargoed Athletic",
-      "played": 11,
-      "won": 11,
+      "played": 10,
+      "won": 10,
       "drawn": 0,
       "lost": 0,
-      "points": 55,
+      "points": 50,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Blackwood Stars",
-      "played": 12,
-      "won": 9,
+      "played": 11,
+      "won": 8,
       "drawn": 0,
       "lost": 3,
-      "points": 40,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Bettws",
-      "played": 13,
-      "won": 7,
-      "drawn": 0,
-      "lost": 6,
-      "points": 36,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Hollybush",
-      "played": 14,
-      "won": 7,
-      "drawn": 0,
-      "lost": 7,
-      "points": 36,
-      "deducted": false,
-      "isHollybush": true
-    },
-    {
-      "team": "Hafodyrynys",
-      "played": 14,
-      "won": 7,
-      "drawn": 0,
-      "lost": 7,
       "points": 35,
       "deducted": false,
       "isHollybush": false
     },
     {
-      "team": "Hartridge",
+      "team": "Hollybush",
       "played": 12,
+      "won": 6,
+      "drawn": 0,
+      "lost": 6,
+      "points": 30,
+      "deducted": false,
+      "isHollybush": true
+    },
+    {
+      "team": "Hafodyrynys",
+      "played": 12,
+      "won": 6,
+      "drawn": 0,
+      "lost": 6,
+      "points": 28,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bettws",
+      "played": 11,
       "won": 5,
       "drawn": 0,
-      "lost": 7,
+      "lost": 6,
       "points": 27,
       "deducted": false,
       "isHollybush": false
     },
     {
-      "team": "Abersychan",
-      "played": 14,
+      "team": "Trinant",
+      "played": 12,
       "won": 3,
       "drawn": 0,
-      "lost": 11,
-      "points": 16,
-      "deducted": false,
+      "lost": 9,
+      "points": 12,
+      "deducted": true,
       "isHollybush": false
     },
     {
-      "team": "Trinant",
-      "played": 14,
-      "won": 3,
+      "team": "Abersychan",
+      "played": 12,
+      "won": 2,
       "drawn": 0,
-      "lost": 11,
-      "points": 13,
-      "deducted": true,
+      "lost": 10,
+      "points": 12,
+      "deducted": false,
       "isHollybush": false
     }
   ]
