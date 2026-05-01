@@ -1,7 +1,15 @@
 {
-  "updatedAt": "2026-04-30T14:12:22.218Z",
+  "updatedAt": "2026-05-01T03:57:37.918Z",
   "fixtures": [],
-  "allFixtures": [],
+  "allFixtures": [
+    {
+      "date": "2 May 2026",
+      "home": "Bargoed Athletic",
+      "away": "Bettws",
+      "note": null,
+      "hollybushPlaying": false
+    }
+  ],
   "results": [
     {
       "date": "28 March 2026",
@@ -433,21 +441,21 @@
   "table": [
     {
       "team": "Bargoed Athletic",
-      "played": 10,
-      "won": 10,
+      "played": 11,
+      "won": 11,
       "drawn": 0,
       "lost": 0,
-      "points": 50,
+      "points": 55,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Blackwood Stars",
       "played": 11,
-      "won": 8,
+      "won": 7,
       "drawn": 0,
-      "lost": 3,
-      "points": 35,
+      "lost": 4,
+      "points": 31,
       "deducted": false,
       "isHollybush": false
     },
@@ -463,21 +471,21 @@
     },
     {
       "team": "Hafodyrynys",
-      "played": 12,
+      "played": 11,
       "won": 6,
       "drawn": 0,
-      "lost": 6,
+      "lost": 5,
       "points": 28,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Bettws",
-      "played": 11,
+      "played": 10,
       "won": 5,
       "drawn": 0,
-      "lost": 6,
-      "points": 27,
+      "lost": 5,
+      "points": 26,
       "deducted": false,
       "isHollybush": false
     },
@@ -493,11 +501,11 @@
     },
     {
       "team": "Abersychan",
-      "played": 12,
-      "won": 2,
+      "played": 11,
+      "won": 1,
       "drawn": 0,
       "lost": 10,
-      "points": 12,
+      "points": 8,
       "deducted": false,
       "isHollybush": false
     }
