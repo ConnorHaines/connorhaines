@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-04T03:50:08.755Z",
+  "updatedAt": "2026-05-04T14:18:14.687Z",
   "fixtures": [],
   "allFixtures": [],
   "results": [
@@ -451,11 +451,11 @@
     },
     {
       "team": "Blackwood Stars",
-      "played": 11,
-      "won": 7,
+      "played": 12,
+      "won": 8,
       "drawn": 0,
       "lost": 4,
-      "points": 31,
+      "points": 35,
       "deducted": false,
       "isHollybush": false
     },
@@ -471,21 +471,21 @@
     },
     {
       "team": "Hafodyrynys",
-      "played": 11,
+      "played": 12,
       "won": 6,
       "drawn": 0,
-      "lost": 5,
+      "lost": 6,
       "points": 28,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Bettws",
-      "played": 11,
+      "played": 12,
       "won": 5,
       "drawn": 0,
-      "lost": 6,
-      "points": 26,
+      "lost": 7,
+      "points": 27,
       "deducted": false,
       "isHollybush": false
     },
@@ -501,11 +501,11 @@
     },
     {
       "team": "Abersychan",
-      "played": 11,
-      "won": 1,
+      "played": 12,
+      "won": 2,
       "drawn": 0,
       "lost": 10,
-      "points": 8,
+      "points": 12,
       "deducted": false,
       "isHollybush": false
     }
