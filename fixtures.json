@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-11T04:05:13.736Z",
+  "updatedAt": "2026-05-11T15:26:17.915Z",
   "fixtures": [],
   "allFixtures": [],
   "results": [
@@ -475,7 +475,7 @@
       "won": 6,
       "drawn": 0,
       "lost": 6,
-      "points": 28,
+      "points": 29,
       "deducted": false,
       "isHollybush": false
     },
