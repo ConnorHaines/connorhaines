@@ -1,0 +1,153 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hollybush RFC//2026-27 Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Hollybush RFC 2026/27
+X-WR-TIMEZONE:Europe/London
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20260905T140000
+DTEND;TZID=Europe/London:20260905T160000
+SUMMARY:Hollybush RFC v Penallta RFC Athletic (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20260919T140000
+DTEND;TZID=Europe/London:20260919T160000
+SUMMARY:Abertysswg Falcons RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Abertysswg
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20260926T140000
+DTEND;TZID=Europe/London:20260926T160000
+SUMMARY:Hollybush RFC v Abersychan Alexanders RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261010T140000
+DTEND;TZID=Europe/London:20261010T160000
+SUMMARY:Bettws RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Bettws
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261017T140000
+DTEND;TZID=Europe/London:20261017T160000
+SUMMARY:Hollybush RFC v St Julians HSOB RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261031T140000
+DTEND;TZID=Europe/London:20261031T160000
+SUMMARY:Hafodyrynys RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Hafodyrynys
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261121T140000
+DTEND;TZID=Europe/London:20261121T160000
+SUMMARY:Hollybush RFC v New Tredegar RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261128T140000
+DTEND;TZID=Europe/London:20261128T160000
+SUMMARY:Brynithel RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Brynithel
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261205T140000
+DTEND;TZID=Europe/London:20261205T160000
+SUMMARY:Trinant RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Trinant
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261212T140000
+DTEND;TZID=Europe/London:20261212T160000
+SUMMARY:Hollybush RFC v Abertysswg Falcons RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20261219T140000
+DTEND;TZID=Europe/London:20261219T160000
+SUMMARY:Penallta RFC Athletic v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Penallta
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270102T140000
+DTEND;TZID=Europe/London:20270102T160000
+SUMMARY:Abersychan Alexanders RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:Abersychan
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270109T140000
+DTEND;TZID=Europe/London:20270109T160000
+SUMMARY:Hollybush RFC v Bettws RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270116T140000
+DTEND;TZID=Europe/London:20270116T160000
+SUMMARY:St Julians HSOB RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:St Julians
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270123T140000
+DTEND;TZID=Europe/London:20270123T160000
+SUMMARY:Hollybush RFC v Hafodyrynys RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270130T140000
+DTEND;TZID=Europe/London:20270130T160000
+SUMMARY:New Tredegar RFC v Hollybush RFC (A)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nAway fixture
+LOCATION:New Tredegar
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270227T140000
+DTEND;TZID=Europe/London:20270227T160000
+SUMMARY:Hollybush RFC v Brynithel RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20270320T140000
+DTEND;TZID=Europe/London:20270320T160000
+SUMMARY:Hollybush RFC v Trinant RFC (H)
+DESCRIPTION:WRU Admiral Men's League - Division 5 East\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+
+END:VCALENDAR
