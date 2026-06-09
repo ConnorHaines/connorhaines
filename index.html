@@ -584,6 +584,42 @@
   /* ===== FIXTURES & RESULTS ===== */
   #fixtures { background: var(--black); }
 
+  .cal-download {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .cal-download-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .cal-download-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 8px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .cal-download-btn:hover { opacity: 0.85; }
+
   .tabs {
     display: flex;
     gap: 0;
@@ -1419,7 +1455,7 @@
   <div class="pitch-lines"></div>
   <div class="hero-content">
     <h1 class="hero-title">Hollybush<br>RFC</h1>
-    <p class="hero-subtitle">WRU Admiral National League · Division 5 East · Est. 1902</p>
+    <p class="hero-subtitle">125th Anniversary Season · Est. 1902 · WRU Division 5 East</p>
     <div class="hero-cta">
       <a href="#fixtures" class="btn-primary">Fixtures & Results</a>
       <a href="#squad" class="btn-secondary">Meet the Squad</a>
@@ -1443,8 +1479,8 @@
 
 <!-- ===== TOUR COUNTDOWN BANNER ===== -->
 <div id="tour-banner">
-  <div class="tour-banner-label" id="tour-label">Dublin Tour 2025</div>
-  <div class="tour-banner-destination" id="tour-destination">✈️ Dublin · Roscrea</div>
+  <div class="tour-banner-label" id="tour-label">2026/27 Season</div>
+  <div class="tour-banner-destination" id="tour-destination">🏉 Preseason starts 2nd July</div>
   <div class="tour-countdown" id="tour-countdown">
     <div class="tour-unit"><span id="tour-days">00</span><span class="tour-unit-label">Days</span></div>
     <div class="tour-sep">:</div>
@@ -1457,8 +1493,8 @@
 </div>
 <script>
 (function() {
-  var DEPART = new Date('2026-04-30T22:50:00');
-  var RETURN = new Date('2026-05-03T23:59:00');
+  var DEPART = new Date('2026-07-02T18:00:00');
+  var RETURN = new Date('2026-07-02T23:59:00');
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -1466,8 +1502,8 @@
     var now = new Date();
 
     if (now >= DEPART && now < RETURN) {
-      document.getElementById('tour-label').textContent = '🍺 On Tour';
-      document.getElementById('tour-destination').textContent = '🇮🇪 Dublin · Roscrea — Safe travels, lads!';
+      document.getElementById('tour-label').textContent = '2026/27 Season';
+      document.getElementById('tour-destination').textContent = '🏉 Preseason is HERE — See you at Hollybush Field!';
       document.getElementById('tour-countdown').style.display = 'none';
       return;
     }
@@ -1511,19 +1547,19 @@
       </div>
       <div class="about-stats reveal" style="transition-delay:0.2s">
         <div class="stat-box">
-          <div class="stat-number" id="stat-position">5th</div>
+          <div class="stat-number" id="stat-position">-</div>
           <div class="stat-label">League Position</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" id="stat-played">11</div>
+          <div class="stat-number" id="stat-played">0</div>
           <div class="stat-label">Games Played</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" id="stat-wins">5</div>
+          <div class="stat-number" id="stat-wins">0</div>
           <div class="stat-label">Wins This Season</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" id="stat-points">25</div>
+          <div class="stat-number" id="stat-points">0</div>
           <div class="stat-label">League Points</div>
         </div>
       </div>
@@ -1535,9 +1571,14 @@
 <section id="fixtures">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-eyebrow">Admiral National League 5 East</span>
+      <span class="section-eyebrow">Admiral National League 5 East · 2026/27</span>
       <h2 class="section-title">Fixtures, <span class="highlight">Results</span></h2>
       <div class="section-line"></div>
+    </div>
+
+    <div class="cal-download reveal">
+      <span class="cal-download-text">📅 Add all fixtures to your calendar</span>
+      <a href="hollybush_rfc_2026_27.ics" download class="cal-download-btn">⬇ Download .ics</a>
     </div>
 
     <div class="tabs">
@@ -2504,7 +2545,44 @@ async function loadFixtures() {
     }
 
   } catch (e) {
-    console.log('fixtures.json not available, using hardcoded data');
+    console.log('fixtures.json not available, using hardcoded 2026/27 data');
+
+    const hardcodedFixtures = [
+      { date: '5 Sep 2026',  home: 'Hollybush RFC',            away: 'Penallta RFC Athletic',      hollybushPlaying: true, note: '14:30 KO' },
+      { date: '19 Sep 2026', home: 'Abertysswg Falcons RFC',   away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '26 Sep 2026', home: 'Hollybush RFC',            away: 'Abersychan Alexanders RFC',  hollybushPlaying: true, note: '14:30 KO' },
+      { date: '10 Oct 2026', home: 'Bettws RFC',               away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '17 Oct 2026', home: 'Hollybush RFC',            away: 'St Julians HSOB RFC',        hollybushPlaying: true, note: '14:30 KO' },
+      { date: '31 Oct 2026', home: 'Hafodyrynys RFC',          away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '21 Nov 2026', home: 'Hollybush RFC',            away: 'New Tredegar RFC',           hollybushPlaying: true, note: '14:30 KO' },
+      { date: '28 Nov 2026', home: 'Brynithel RFC',            away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '5 Dec 2026',  home: 'Trinant RFC',              away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '12 Dec 2026', home: 'Hollybush RFC',            away: 'Abertysswg Falcons RFC',     hollybushPlaying: true, note: '14:30 KO' },
+      { date: '19 Dec 2026', home: 'Penallta RFC Athletic',    away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '2 Jan 2027',  home: 'Abersychan Alexanders RFC',away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '9 Jan 2027',  home: 'Hollybush RFC',            away: 'Bettws RFC',                 hollybushPlaying: true, note: '14:30 KO' },
+      { date: '16 Jan 2027', home: 'St Julians HSOB RFC',      away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '23 Jan 2027', home: 'Hollybush RFC',            away: 'Hafodyrynys RFC',            hollybushPlaying: true, note: '14:30 KO' },
+      { date: '30 Jan 2027', home: 'New Tredegar RFC',         away: 'Hollybush RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '27 Feb 2027', home: 'Hollybush RFC',            away: 'Brynithel RFC',              hollybushPlaying: true, note: '14:30 KO' },
+      { date: '20 Mar 2027', home: 'Hollybush RFC',            away: 'Trinant RFC',                hollybushPlaying: true, note: '14:30 KO' },
+    ];
+
+    const now = new Date();
+    const upcoming = hardcodedFixtures.filter(f => new Date(f.date) >= now);
+    if (upcoming.length) renderFixtures(upcoming);
+
+    const next = upcoming[0];
+    if (next) {
+      const isHome = next.home.includes('Hollybush');
+      const opponent = isHome ? next.away : next.home;
+      const el = document.getElementById('next-opponent');
+      if (el) el.textContent = opponent;
+      const meta = document.getElementById('next-match-meta');
+      if (meta) meta.textContent = '📅 ' + next.date + ' · ' + next.note;
+      const venue = document.getElementById('next-match-venue');
+      if (venue) venue.textContent = isHome ? '🏠 Home' : '⚡ Away';
+    }
   }
 }
 
