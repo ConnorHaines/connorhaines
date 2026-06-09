@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="img/0A51348A-AC9C-42FA-9822-BE69C3E98A6F.png">
-<link rel="apple-touch-icon" href="img/0A51348A-AC9C-42FA-9822-BE69C3E98A6F.png">
+<link rel="icon" type="image/png" href="img/hollybush-logo.PNG">
+<link rel="apple-touch-icon" href="img/hollybush-logo.PNG">
 <title>Hollybush RFC | WRU Division 5 East</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
@@ -1578,7 +1578,7 @@
 
     <div class="cal-download reveal">
       <span class="cal-download-text">📅 Add all fixtures to your calendar</span>
-      <a href="hollybush_rfc_2026_27.ics" download class="cal-download-btn">⬇ Download .ics</a>
+      <button onclick="downloadICS()" class="cal-download-btn">⬇ Download .ics</button>
     </div>
 
     <div class="tabs">
@@ -2410,24 +2410,54 @@ document.getElementById('blog-modal').addEventListener('click', function(e) {
 
 // ===== SQUAD DATA =====
 const squad = [
+  // Loosehead Props
+  { name: "Ashley Smith", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Gareth Fleet", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
   { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/David.png", apps: "–", tries: "–" },
+  // Hookers
   { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", img: "img/zach_kettle.jpg", apps: "–", tries: "–" },
+  { name: "Ben Nash", pos: "Hooker", num: 2, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Tighthead Props
   { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/luke_harper.jpg", apps: "–", tries: "–" },
-  { name: "Geraint Conlon", pos: "Lock", num: 4, type: "forward", img: "img/Geraint.png", apps: "–", tries: "–" },
-  { name: "Tom Rees", pos: "Lock", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: "–", tries: "–" },
+  { name: "Matteo Sidoli", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/Matteo.png", apps: "–", tries: "–" },
+  { name: "Richard Hext", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Second Rows
+  { name: "Lloyd English", pos: "Second Row", num: 4, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Geraint Conlon", pos: "Second Row", num: 4, type: "forward", img: "img/Geraint.png", apps: "–", tries: "–" },
+  { name: "Tom Rees", pos: "Second Row", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: "–", tries: "–" },
+  { name: "Steffan Andrews", pos: "Second Row", num: 5, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Second Row", num: 5, type: "forward", img: "img/Darren.png", apps: "–", tries: "–" },
+  // Flankers
   { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/Connor.png", apps: "–", tries: "–" },
   { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/Lewis.png", apps: "–", tries: "–" },
+  { name: "Jake Laddychuk", pos: "Flanker", num: 6, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Dylan Major", pos: "Flanker", num: 7, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Number 8
   { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/TomH.png", apps: "–", tries: "–" },
+  // Scrum Halves
   { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/BenJ.png", apps: "–", tries: "–" },
+  { name: "Mason Williams", pos: "Scrum Half", num: 9, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Fly Halves
+  { name: "Liam Morgan", pos: "Fly Half", num: 10, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
   { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/Harrison.png", apps: "–", tries: "–" },
-  { name: "Ethan Hackland", pos: "Left Wing", num: 11, type: "back", img: "img/Ethan.png", apps: "–", tries: "–" },
+  // Inside Centres
   { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/Bailey.png", apps: "–", tries: "–" },
-  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/Marcus.png", apps: "–", tries: "–" },,
-  { name: "Cameron Price", pos: "Right Wing", num: 14, type: "back", img: "img/Cameron.png", apps: "–", tries: "–" },
+  { name: "Kieran-Lee Edwards", pos: "Inside Centre", num: 12, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Outside Centres
+  { name: "Tyler Roberts", pos: "Outside Centre", num: 13, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/Marcus.png", apps: "–", tries: "–" },
+  // Wingers
+  { name: "Cameron Price", pos: "Winger", num: 11, type: "back", img: "img/Cameron.png", apps: "–", tries: "–" },
+  { name: "Cailib Williams", pos: "Winger", num: 11, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Regan Greening", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "John Williams", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Alexander Jay", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Matt Tucker", pos: "Winger", num: 11, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  // Full Backs
+  { name: "Ethan Hackland", pos: "Full Back", num: 15, type: "back", img: "img/Ethan.png", apps: "–", tries: "–" },
   { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", img: "img/robert_mays.jpg", apps: "–", tries: "–" },
+  // Management
   { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", img: "img/Steve.png", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Defence Coach", num: "", type: "management", img: "img/Darren.png", apps: "–", tries: "–" },
-  { name: "Matteo Sidoli", pos: "Player Coach", num: "", type: "management", img: "img/Matteo.png", apps: "–", tries: "–" },
   { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", img: "img/Tim.jpg", apps: "–", tries: "–" },
 ];
 
@@ -2694,6 +2724,157 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+</script>
+
+<script>
+function downloadICS() {
+  var ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Hollybush RFC//2026-27 Fixtures//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'X-WR-CALNAME:Hollybush RFC 2026/27',
+    'X-WR-TIMEZONE:Europe/London',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20260905T140000',
+    'DTEND;TZID=Europe/London:20260905T160000',
+    'SUMMARY:Hollybush RFC v Penallta RFC Athletic (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20260919T140000',
+    'DTEND;TZID=Europe/London:20260919T160000',
+    'SUMMARY:Abertysswg Falcons RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Abertysswg',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20260926T140000',
+    'DTEND;TZID=Europe/London:20260926T160000',
+    'SUMMARY:Hollybush RFC v Abersychan Alexanders RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261010T140000',
+    'DTEND;TZID=Europe/London:20261010T160000',
+    'SUMMARY:Bettws RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Bettws',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261017T140000',
+    'DTEND;TZID=Europe/London:20261017T160000',
+    'SUMMARY:Hollybush RFC v St Julians HSOB RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261031T140000',
+    'DTEND;TZID=Europe/London:20261031T160000',
+    'SUMMARY:Hafodyrynys RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Hafodyrynys',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261121T140000',
+    'DTEND;TZID=Europe/London:20261121T160000',
+    'SUMMARY:Hollybush RFC v New Tredegar RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261128T140000',
+    'DTEND;TZID=Europe/London:20261128T160000',
+    'SUMMARY:Brynithel RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Brynithel',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261205T140000',
+    'DTEND;TZID=Europe/London:20261205T160000',
+    'SUMMARY:Trinant RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Trinant',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261212T140000',
+    'DTEND;TZID=Europe/London:20261212T160000',
+    'SUMMARY:Hollybush RFC v Abertysswg Falcons RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20261219T140000',
+    'DTEND;TZID=Europe/London:20261219T160000',
+    'SUMMARY:Penallta RFC Athletic v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Penallta',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270102T140000',
+    'DTEND;TZID=Europe/London:20270102T160000',
+    'SUMMARY:Abersychan Alexanders RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:Abersychan',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270109T140000',
+    'DTEND;TZID=Europe/London:20270109T160000',
+    'SUMMARY:Hollybush RFC v Bettws RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270116T140000',
+    'DTEND;TZID=Europe/London:20270116T160000',
+    'SUMMARY:St Julians HSOB RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:St Julians',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270123T140000',
+    'DTEND;TZID=Europe/London:20270123T160000',
+    'SUMMARY:Hollybush RFC v Hafodyrynys RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270130T140000',
+    'DTEND;TZID=Europe/London:20270130T160000',
+    'SUMMARY:New Tredegar RFC v Hollybush RFC (A)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nAway fixture',
+    'LOCATION:New Tredegar',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270227T140000',
+    'DTEND;TZID=Europe/London:20270227T160000',
+    'SUMMARY:Hollybush RFC v Brynithel RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/London:20270320T140000',
+    'DTEND;TZID=Europe/London:20270320T160000',
+    'SUMMARY:Hollybush RFC v Trinant RFC (H)',
+    'DESCRIPTION:WRU Admiral Men\'s League - Division 5 East\\nHome fixture',
+    'LOCATION:Hollybush Field',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'hollybush_rfc_2026_27.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
