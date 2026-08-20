@@ -1,0 +1,8 @@
+# Hollybush RFC
+# Keep the coaches' playbook out of search results.
+# playbook.html also carries its own <meta name="robots" content="noindex, nofollow">,
+# which is the part that actually does the work - this file just stops well-behaved
+# crawlers requesting it in the first place.
+
+User-agent: *
+Disallow: /playbook.html
