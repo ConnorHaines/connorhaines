@@ -1,0 +1,152 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hollybush RFC//2026-27 Fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Hollybush RFC 2026/27
+X-WR-TIMEZONE:Europe/London
+BEGIN:VEVENT
+UID:2026-09-05-hollybush-penallta-athletic@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20260905T143000
+DTEND;TZID=Europe/London:20260905T163000
+SUMMARY:Hollybush RFC v Penallta RFC Athletic (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-19-abertysswg-falcons-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20260919T143000
+DTEND;TZID=Europe/London:20260919T163000
+SUMMARY:Abertysswg Falcons RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Abertysswg Falcons RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-09-26-hollybush-abersychan-alexanders@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20260926T143000
+DTEND;TZID=Europe/London:20260926T163000
+SUMMARY:Hollybush RFC v Abersychan Alexanders RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-10-bettws-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261010T143000
+DTEND;TZID=Europe/London:20261010T163000
+SUMMARY:Bettws RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Bettws RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-17-hollybush-st-julians-hsob@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261017T143000
+DTEND;TZID=Europe/London:20261017T163000
+SUMMARY:Hollybush RFC v St Julians HSOB RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-10-31-hafodyrynys-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261031T143000
+DTEND;TZID=Europe/London:20261031T163000
+SUMMARY:Hafodyrynys RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Hafodyrynys RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-21-hollybush-new-tredegar@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261121T143000
+DTEND;TZID=Europe/London:20261121T163000
+SUMMARY:Hollybush RFC v New Tredegar RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-28-brynithel-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261128T143000
+DTEND;TZID=Europe/London:20261128T163000
+SUMMARY:Brynithel RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Brynithel RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-12-hollybush-abertysswg-falcons@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261212T143000
+DTEND;TZID=Europe/London:20261212T163000
+SUMMARY:Hollybush RFC v Abertysswg Falcons RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-12-19-penallta-athletic-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20261219T143000
+DTEND;TZID=Europe/London:20261219T163000
+SUMMARY:Penallta RFC Athletic v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Penallta RFC Athletic
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-02-abersychan-alexanders-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270102T143000
+DTEND;TZID=Europe/London:20270102T163000
+SUMMARY:Abersychan Alexanders RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:Abersychan Alexanders RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-09-hollybush-bettws@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270109T143000
+DTEND;TZID=Europe/London:20270109T163000
+SUMMARY:Hollybush RFC v Bettws RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-16-st-julians-hsob-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270116T143000
+DTEND;TZID=Europe/London:20270116T163000
+SUMMARY:St Julians HSOB RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:St Julians HSOB RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-23-hollybush-hafodyrynys@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270123T143000
+DTEND;TZID=Europe/London:20270123T163000
+SUMMARY:Hollybush RFC v Hafodyrynys RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-01-30-new-tredegar-hollybush@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270130T143000
+DTEND;TZID=Europe/London:20270130T163000
+SUMMARY:New Tredegar RFC v Hollybush RFC (A)
+DESCRIPTION:League\nAway fixture
+LOCATION:New Tredegar RFC
+END:VEVENT
+BEGIN:VEVENT
+UID:2027-02-27-hollybush-brynithel@hollybush-rugby.co.uk
+DTSTAMP:20260901T140243Z
+DTSTART;TZID=Europe/London:20270227T143000
+DTEND;TZID=Europe/London:20270227T163000
+SUMMARY:Hollybush RFC v Brynithel RFC (H)
+DESCRIPTION:League\nHome fixture
+LOCATION:Hollybush Field
+END:VEVENT
+END:VCALENDAR
