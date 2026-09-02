@@ -42,12 +42,12 @@ npx wrangler@latest deploy
 Wrangler prints the production address in this format:
 
 ```text
-https://hollybush-programme-admin.<your-subdomain>.workers.dev
+https://admin.<your-subdomain>.workers.dev
 ```
 
 ## 4. Protect the Worker with Cloudflare Access
 
-In **Workers & Pages → hollybush-programme-admin → Settings → Domains & Routes**:
+In **Workers & Pages → admin → Settings → Domains & Routes**:
 
 1. Find the production `workers.dev` route and select **Enable Cloudflare Access**.
 2. Select **Manage Cloudflare Access**.
