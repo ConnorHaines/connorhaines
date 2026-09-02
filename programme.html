@@ -541,6 +541,22 @@
     text-align: center;
   }
 
+  .programme-admin-link {
+    margin-left: 8px;
+    color: #454545;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 160ms;
+  }
+
+  .programme-admin-link:hover,
+  .programme-admin-link:focus-visible {
+    outline: none;
+    color: var(--gold);
+  }
+
   @media (max-width: 760px) {
     .reader-header { min-height: 62px; }
     .brand img { width: 40px; height: 40px; }
@@ -695,6 +711,7 @@
 
 <footer class="reader-footer">
   Hollybush RFC · Hollybush Field, NP12 0SG
+  <a class="programme-admin-link" href="https://admin.hollybush-programme-admin.workers.dev" target="_blank" rel="noopener noreferrer" aria-label="Open programme administration">Admin</a>
 </footer>
 
 <script>
