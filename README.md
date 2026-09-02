@@ -36,6 +36,18 @@ node scraper/scrape.js
 
 Player image paths are set in the `squad` array in `index.html`. Missing images automatically display the generic player silhouette.
 
+## Matchday programme
+
+The public programme reader is available at `/programme.html`. It shows one swipeable page on mobile and a two-page book with physical controls on larger screens.
+
+To publish a new home programme, replace `programmes/current.pdf` and commit it. The **Build Matchday Programme** GitHub Action automatically creates the optimised reader pages and updates `programmes/programme.json`; generated files inside `programmes/pages` should not be edited by hand.
+
+The importer preserves genuine portrait pages, but automatically removes the blank A4 bands when the PDF contains square programme artwork. To test the conversion locally, install Poppler and ImageMagick, then run:
+
+```sh
+node scripts/build-programme.mjs
+```
+
 ## Coaches' Playbook
 
 The Playbook is available directly at `/playbook.html`. Five taps on the navbar crest within three seconds, or visiting `/#coaches`, reveals its navigation link. This is intentionally a hidden entrance rather than authentication; plays remain on the coach's device unless exported.

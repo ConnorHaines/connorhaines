@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<link rel="icon" type="image/png" href="img/hollybush-logo.PNG">
+<link rel="apple-touch-icon" href="img/hollybush-logo.PNG">
+<title>Matchday Programme | Hollybush RFC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #f5c518;
+    --gold-dark: #b99200;
+    --black: #090909;
+    --panel: #151515;
+    --panel-soft: #1d1d1d;
+    --line: rgba(245, 197, 24, 0.24);
+    --text: #f1f1f1;
+    --muted: #9a9a9a;
+    --page-ratio: 1;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body { min-height: 100%; }
+
+  body {
+    margin: 0;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 50% 24%, rgba(245, 197, 24, 0.09), transparent 28rem),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 9px),
+      var(--black);
+    font-family: 'Barlow', Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  button, a, input { font: inherit; }
+
+  button, a { -webkit-tap-highlight-color: transparent; }
+
+  .skip-link {
+    position: fixed;
+    left: 12px;
+    top: -80px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--gold);
+    color: #080808;
+    font-weight: 700;
+  }
+
+  .skip-link:focus { top: 12px; }
+
+  .reader-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 10px clamp(14px, 3vw, 42px);
+    border-bottom: 2px solid var(--gold);
+    background: rgba(7, 7, 7, 0.94);
+    backdrop-filter: blur(14px);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .brand img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    flex: 0 0 auto;
+  }
+
+  .brand-name {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    color: var(--gold);
+    font-size: clamp(21px, 3vw, 27px);
+    line-height: 0.9;
+    letter-spacing: 0.07em;
+  }
+
+  .brand-name small {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font: 600 10px/1 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .action-button {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: var(--text);
+    background: #171717;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: border-color 160ms, color 160ms, background 160ms, transform 160ms;
+  }
+
+  .action-button:hover,
+  .action-button:focus-visible {
+    outline: none;
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .action-button:active { transform: translateY(1px); }
+
+  .action-button.primary {
+    border-color: var(--gold);
+    color: #080808;
+    background: var(--gold);
+  }
+
+  .action-button.primary:hover,
+  .action-button.primary:focus-visible {
+    color: #080808;
+    background: #ffda28;
+  }
+
+  .reader-main {
+    width: min(1500px, 100%);
+    margin: 0 auto;
+    padding: clamp(28px, 5vw, 54px) clamp(12px, 3vw, 42px) 36px;
+  }
+
+  .programme-intro {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .eyebrow {
+    margin: 0 0 7px;
+    color: var(--gold);
+    font: 700 12px/1 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--text);
+    font: 400 clamp(38px, 6vw, 70px)/0.96 'Bebas Neue', Impact, sans-serif;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+  }
+
+  .intro-copy {
+    margin: 10px auto 0;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(14px, 2vw, 17px);
+    letter-spacing: 0.06em;
+  }
+
+  .reader-status {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+  }
+
+  .reader-status[hidden] { display: none; }
+
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #333;
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 700ms linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .reader-stage {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2.5vw, 34px);
+    padding: 12px 0;
+    overflow: hidden;
+  }
+
+  .reader-stage:fullscreen {
+    padding: 24px;
+    background:
+      radial-gradient(circle at center, rgba(245,197,24,0.09), transparent 32rem),
+      #070707;
+  }
+
+  .reader-stage:fullscreen .book-viewport {
+    width: min(88vw, calc((100vh - 80px) * var(--page-ratio) * 2));
+  }
+
+  .desk-turn {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #3a3a3a;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #212121, #111);
+    color: var(--gold);
+    cursor: pointer;
+    font-size: 31px;
+    line-height: 1;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.38);
+    transition: transform 180ms, border-color 180ms, background 180ms;
+  }
+
+  .desk-turn:hover:not(:disabled),
+  .desk-turn:focus-visible:not(:disabled) {
+    outline: none;
+    transform: scale(1.07);
+    border-color: var(--gold);
+    background: #24200d;
+  }
+
+  .desk-turn:disabled {
+    opacity: 0.23;
+    cursor: not-allowed;
+  }
+
+  .book-viewport {
+    position: relative;
+    width: min(82vw, calc((100vh - 280px) * var(--page-ratio) * 2));
+    min-width: 520px;
+    max-width: 1180px;
+    aspect-ratio: calc(var(--page-ratio) * 2) / 1;
+    filter: drop-shadow(0 24px 26px rgba(0,0,0,0.55));
+    touch-action: pan-y pinch-zoom;
+    user-select: none;
+  }
+
+  .book {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    perspective: 2200px;
+  }
+
+  .book::after {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-1px);
+    background: linear-gradient(to right, rgba(0,0,0,0.48), rgba(255,255,255,0.12), rgba(0,0,0,0.45));
+    box-shadow: 0 0 16px rgba(0,0,0,0.65);
+    pointer-events: none;
+  }
+
+  .page {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .page.left {
+    border-radius: 5px 0 0 5px;
+    box-shadow: inset -16px 0 26px -24px rgba(0,0,0,0.8);
+  }
+
+  .page.right {
+    border-radius: 0 5px 5px 0;
+    box-shadow: inset 16px 0 26px -24px rgba(0,0,0,0.8);
+  }
+
+  .page.blank {
+    background: linear-gradient(135deg, #111, #1b1b1b);
+  }
+
+  .page img,
+  .turn-sheet img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #fff;
+    pointer-events: none;
+  }
+
+  .page-number {
+    position: absolute;
+    bottom: 7px;
+    z-index: 3;
+    min-width: 26px;
+    padding: 4px 7px;
+    border-radius: 20px;
+    color: #fff;
+    background: rgba(0,0,0,0.62);
+    font: 600 11px/1 'Barlow Condensed', sans-serif;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 160ms;
+  }
+
+  .page.left .page-number { left: 8px; }
+  .page.right .page-number { right: 8px; }
+  .book-viewport:hover .page-number { opacity: 1; }
+
+  .turn-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    perspective: 2200px;
+    pointer-events: none;
+  }
+
+  .turn-sheet {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    background: #fff;
+    backface-visibility: hidden;
+    transition: transform 520ms cubic-bezier(.55,.06,.21,.98), filter 520ms;
+  }
+
+  .turn-sheet.next {
+    left: 50%;
+    transform-origin: left center;
+    border-radius: 0 5px 5px 0;
+  }
+
+  .turn-sheet.previous {
+    left: 0;
+    transform-origin: right center;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .turn-sheet.next.go {
+    transform: rotateY(-179deg);
+    filter: brightness(0.62);
+  }
+
+  .turn-sheet.previous.go {
+    transform: rotateY(179deg);
+    filter: brightness(0.62);
+  }
+
+  .reader-controls {
+    width: min(850px, 100%);
+    margin: 18px auto 0;
+    padding: 14px clamp(12px, 3vw, 20px);
+    display: grid;
+    grid-template-columns: minmax(110px, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    background: rgba(22,22,22,0.92);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.24);
+  }
+
+  .mobile-turn {
+    width: 42px;
+    height: 42px;
+    display: none;
+    place-items: center;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: var(--gold);
+    background: #111;
+    cursor: pointer;
+    font-size: 23px;
+  }
+
+  .mobile-turn:disabled { opacity: 0.25; }
+
+  .range-wrap {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 13px;
+  }
+
+  #page-range {
+    width: 100%;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+
+  #page-label {
+    min-width: 94px;
+    color: var(--text);
+    font: 600 13px/1 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.06em;
+    text-align: right;
+  }
+
+  .control-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    color: var(--text);
+    background: #101010;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .icon-button:hover,
+  .icon-button:focus-visible {
+    outline: none;
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .reader-tip {
+    margin: 13px 0 0;
+    color: #707070;
+    font: 600 12px/1.4 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .error-card {
+    width: min(560px, 100%);
+    margin: 24px auto;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--panel);
+    text-align: center;
+  }
+
+  .error-card h2 {
+    margin: 0 0 8px;
+    color: var(--gold);
+    font: 400 30px/1 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .error-card p { color: var(--muted); }
+
+  .zoom-dialog {
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(5,5,5,0.97);
+    color: var(--text);
+  }
+
+  .zoom-dialog::backdrop { background: rgba(0,0,0,0.9); }
+
+  .zoom-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 14px;
+    border-bottom: 1px solid #333;
+    background: rgba(8,8,8,0.94);
+  }
+
+  .zoom-scroll {
+    min-height: calc(100dvh - 58px);
+    overflow: auto;
+    display: grid;
+    place-items: start center;
+    padding: 18px;
+  }
+
+  .zoom-scroll img {
+    display: block;
+    width: min(1400px, 170vw);
+    height: auto;
+    max-width: none;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.55);
+  }
+
+  .reader-footer {
+    padding: 22px 16px 34px;
+    color: #666;
+    font: 500 12px/1.5 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    .reader-header { min-height: 62px; }
+    .brand img { width: 40px; height: 40px; }
+    .brand-name small { display: none; }
+    .header-actions .action-button span { display: none; }
+    .header-actions .action-button { width: 40px; padding: 8px; }
+    .header-actions .back-button { display: none; }
+
+    .reader-main { padding-top: 25px; }
+    .programme-intro { margin-bottom: 10px; }
+    .intro-copy .desktop-copy { display: none; }
+
+    .reader-stage { min-height: 280px; padding: 5px 0; }
+    .desk-turn { display: none; }
+
+    .book-viewport {
+      width: min(94vw, calc((100dvh - 260px) * var(--page-ratio)));
+      min-width: 0;
+      max-width: 620px;
+      aspect-ratio: var(--page-ratio) / 1;
+    }
+
+    .reader-stage:fullscreen { padding: 14px; }
+    .reader-stage:fullscreen .book-viewport {
+      width: min(96vw, calc((100dvh - 28px) * var(--page-ratio)));
+    }
+
+    .book { grid-template-columns: 1fr; }
+    .book::after { display: none; }
+    .book .page.left { display: none; }
+    .page.right { border-radius: 5px; }
+    .page-number { opacity: 1; }
+
+    .turn-sheet {
+      left: 0 !important;
+      width: 100%;
+      border-radius: 5px !important;
+    }
+
+    .reader-controls {
+      margin-top: 12px;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .mobile-turn { display: grid; }
+    .range-wrap { grid-template-columns: 1fr; gap: 6px; }
+    #page-label { min-width: 0; text-align: center; }
+    .control-actions {
+      display: flex;
+      grid-column: 1 / -1;
+      justify-content: center;
+    }
+    .reader-tip { color: #888; }
+    .zoom-scroll img { width: 190vw; }
+  }
+
+  @media (max-width: 430px) {
+    .brand-name { font-size: 20px; }
+    h1 { font-size: 39px; }
+    .reader-status { min-height: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#reader">Skip to programme</a>
+
+<header class="reader-header">
+  <a class="brand" href="index.html" aria-label="Back to Hollybush RFC homepage">
+    <img src="img/hollybush-logo.PNG" alt="">
+    <span class="brand-name">Hollybush RFC<small>Matchday Programme</small></span>
+  </a>
+  <div class="header-actions">
+    <a class="action-button back-button" href="index.html">← <span>Club site</span></a>
+    <a class="action-button" id="download-button" href="programmes/current.pdf" download>
+      ↓ <span>Download</span>
+    </a>
+    <button class="action-button" id="share-button" type="button" aria-label="Share programme">
+      ↗ <span>Share</span>
+    </button>
+  </div>
+</header>
+
+<main class="reader-main" id="reader">
+  <div class="programme-intro">
+    <p class="eyebrow" id="edition-label">Current edition</p>
+    <h1 id="programme-title">Matchday Programme</h1>
+    <p class="intro-copy">
+      Swipe to turn the page<span class="desktop-copy"> · use the buttons or arrow keys on desktop</span>
+    </p>
+  </div>
+
+  <div class="reader-status" id="reader-status" role="status" aria-live="polite">
+    <span class="spinner" aria-hidden="true"></span>
+    <span>Opening the programme…</span>
+  </div>
+
+  <div id="reader-content" hidden>
+    <section class="reader-stage" id="reader-stage" aria-label="Interactive matchday programme">
+      <button class="desk-turn" id="previous-button" type="button" aria-label="Previous page">‹</button>
+
+      <div class="book-viewport" id="book-viewport">
+        <div class="book" id="book" aria-live="polite"></div>
+        <div class="turn-layer" id="turn-layer" aria-hidden="true"></div>
+      </div>
+
+      <button class="desk-turn" id="next-button" type="button" aria-label="Next page">›</button>
+    </section>
+
+    <div class="reader-controls">
+      <button class="mobile-turn" id="mobile-previous" type="button" aria-label="Previous page">‹</button>
+      <div class="range-wrap">
+        <input id="page-range" type="range" min="1" max="1" value="1" aria-label="Choose page">
+        <span id="page-label">Page 1 of 1</span>
+      </div>
+      <button class="mobile-turn" id="mobile-next" type="button" aria-label="Next page">›</button>
+      <div class="control-actions">
+        <button class="icon-button" id="zoom-button" type="button" aria-label="Zoom current page" title="Zoom current page">⌕</button>
+        <button class="icon-button" id="fullscreen-button" type="button" aria-label="View fullscreen" title="Fullscreen">⛶</button>
+      </div>
+    </div>
+
+    <p class="reader-tip" id="reader-tip">Swipe or tap the page edges to turn · tap zoom to read small print</p>
+  </div>
+
+  <div class="error-card" id="error-card" hidden>
+    <h2>Programme unavailable</h2>
+    <p>The interactive reader could not load, but the original programme may still be opened below.</p>
+    <a class="action-button primary" href="programmes/current.pdf">Open PDF</a>
+  </div>
+</main>
+
+<dialog class="zoom-dialog" id="zoom-dialog">
+  <div class="zoom-toolbar">
+    <strong id="zoom-label">Page 1</strong>
+    <button class="action-button" id="zoom-close" type="button">Close ×</button>
+  </div>
+  <div class="zoom-scroll">
+    <img id="zoom-image" alt="Zoomed programme page">
+  </div>
+</dialog>
+
+<footer class="reader-footer">
+  Hollybush RFC · Hollybush Field, NP12 0SG
+</footer>
+
+<script>
+(() => {
+  const mobileQuery = window.matchMedia('(max-width: 760px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const elements = {
+    status: document.getElementById('reader-status'),
+    content: document.getElementById('reader-content'),
+    error: document.getElementById('error-card'),
+    stage: document.getElementById('reader-stage'),
+    viewport: document.getElementById('book-viewport'),
+    book: document.getElementById('book'),
+    turnLayer: document.getElementById('turn-layer'),
+    previous: document.getElementById('previous-button'),
+    next: document.getElementById('next-button'),
+    mobilePrevious: document.getElementById('mobile-previous'),
+    mobileNext: document.getElementById('mobile-next'),
+    range: document.getElementById('page-range'),
+    label: document.getElementById('page-label'),
+    title: document.getElementById('programme-title'),
+    edition: document.getElementById('edition-label'),
+    download: document.getElementById('download-button'),
+    share: document.getElementById('share-button'),
+    fullscreen: document.getElementById('fullscreen-button'),
+    zoom: document.getElementById('zoom-button'),
+    zoomDialog: document.getElementById('zoom-dialog'),
+    zoomImage: document.getElementById('zoom-image'),
+    zoomLabel: document.getElementById('zoom-label'),
+    zoomClose: document.getElementById('zoom-close')
+  };
+
+  const state = {
+    manifest: null,
+    current: 0,
+    animating: false,
+    pointerStart: null
+  };
+
+  function isMobile() {
+    return mobileQuery.matches;
+  }
+
+  function page(index) {
+    return index >= 0 && index < state.manifest.pages.length
+      ? state.manifest.pages[index]
+      : null;
+  }
+
+  function normalise(index) {
+    const bounded = Math.max(0, Math.min(index, state.manifest.pageCount - 1));
+    if (isMobile() || bounded === 0) return bounded;
+    return bounded % 2 === 0 ? bounded - 1 : bounded;
+  }
+
+  function spread(index = state.current) {
+    if (isMobile()) return [null, page(index)];
+    if (index === 0) return [null, page(0)];
+    return [page(index), page(index + 1)];
+  }
+
+  function imageMarkup(item, side) {
+    if (!item) return `<div class="page ${side} blank" aria-hidden="true"></div>`;
+    return `
+      <div class="page ${side}" data-page="${item.number}">
+        <img src="${item.src}" alt="Programme page ${item.number}" draggable="false">
+        <span class="page-number" aria-hidden="true">${item.number}</span>
+      </div>`;
+  }
+
+  function labelForCurrent() {
+    if (isMobile() || state.current === 0) {
+      return `Page ${state.current + 1} of ${state.manifest.pageCount}`;
+    }
+    const end = Math.min(state.current + 2, state.manifest.pageCount);
+    return end === state.current + 1
+      ? `Page ${end} of ${state.manifest.pageCount}`
+      : `Pages ${state.current + 1}–${end} of ${state.manifest.pageCount}`;
+  }
+
+  function canGoPrevious() {
+    return state.current > 0;
+  }
+
+  function canGoNext() {
+    if (isMobile()) return state.current < state.manifest.pageCount - 1;
+    return state.current === 0
+      ? state.manifest.pageCount > 1
+      : state.current + 2 < state.manifest.pageCount;
+  }
+
+  function render() {
+    state.current = normalise(state.current);
+    const [left, right] = spread();
+    elements.book.innerHTML = imageMarkup(left, 'left') + imageMarkup(right, 'right');
+
+    const readableLabel = labelForCurrent();
+    elements.book.setAttribute('aria-label', readableLabel);
+    elements.label.textContent = readableLabel;
+    elements.range.value = String(state.current + 1);
+
+    const previousDisabled = !canGoPrevious();
+    const nextDisabled = !canGoNext();
+    elements.previous.disabled = previousDisabled;
+    elements.mobilePrevious.disabled = previousDisabled;
+    elements.next.disabled = nextDisabled;
+    elements.mobileNext.disabled = nextDisabled;
+
+    try {
+      localStorage.setItem(`hollybush-programme-${state.manifest.version}`, String(state.current));
+    } catch (_) {}
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', String(state.current + 1));
+    history.replaceState(null, '', url);
+    preloadNearby();
+  }
+
+  function preloadNearby() {
+    const indexes = new Set([
+      state.current - 2,
+      state.current - 1,
+      state.current,
+      state.current + 1,
+      state.current + 2,
+      state.current + 3
+    ]);
+    indexes.forEach(index => {
+      const item = page(index);
+      if (!item) return;
+      const image = new Image();
+      image.src = item.src;
+    });
+  }
+
+  function nextIndex(direction) {
+    if (direction === 'next') {
+      if (!canGoNext()) return null;
+      return isMobile() ? state.current + 1 : (state.current === 0 ? 1 : state.current + 2);
+    }
+    if (!canGoPrevious()) return null;
+    return isMobile() ? state.current - 1 : (state.current <= 1 ? 0 : state.current - 2);
+  }
+
+  function turn(direction) {
+    if (state.animating) return;
+    const target = nextIndex(direction);
+    if (target === null) return;
+
+    if (reducedMotion.matches) {
+      state.current = target;
+      render();
+      return;
+    }
+
+    state.animating = true;
+    const oldSpread = spread();
+    const turningPage = direction === 'next'
+      ? oldSpread[1]
+      : (isMobile() ? oldSpread[1] : oldSpread[0]);
+
+    const sheet = document.createElement('div');
+    sheet.className = `turn-sheet ${direction}`;
+    if (turningPage) {
+      sheet.innerHTML = `<img src="${turningPage.src}" alt="">`;
+    }
+    elements.turnLayer.replaceChildren(sheet);
+
+    requestAnimationFrame(() => requestAnimationFrame(() => sheet.classList.add('go')));
+
+    window.setTimeout(() => {
+      state.current = target;
+      render();
+    }, 245);
+
+    window.setTimeout(() => {
+      elements.turnLayer.replaceChildren();
+      state.animating = false;
+    }, 540);
+  }
+
+  function jumpTo(index) {
+    if (state.animating) return;
+    state.current = normalise(index);
+    render();
+  }
+
+  function currentZoomPage() {
+    if (isMobile() || state.current === 0) return page(state.current);
+    return page(state.current + 1) || page(state.current);
+  }
+
+  function openZoom() {
+    const item = currentZoomPage();
+    if (!item) return;
+    elements.zoomImage.src = item.src;
+    elements.zoomImage.alt = `Zoomed programme page ${item.number}`;
+    elements.zoomLabel.textContent = `Page ${item.number} of ${state.manifest.pageCount}`;
+    elements.zoomDialog.showModal();
+  }
+
+  async function shareProgramme() {
+    const shareData = {
+      title: 'Hollybush RFC Matchday Programme',
+      text: 'Read the latest Hollybush RFC matchday programme.',
+      url: window.location.href.split('?')[0]
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(shareData.url);
+        const original = elements.share.innerHTML;
+        elements.share.innerHTML = '✓ <span>Copied</span>';
+        window.setTimeout(() => { elements.share.innerHTML = original; }, 1800);
+      }
+    } catch (error) {
+      if (error.name !== 'AbortError') console.warn('Could not share programme', error);
+    }
+  }
+
+  function toggleFullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      elements.stage.requestFullscreen?.();
+    }
+  }
+
+  function pointerDown(event) {
+    if (state.animating || event.button > 0) return;
+    state.pointerStart = { x: event.clientX, y: event.clientY, time: Date.now() };
+  }
+
+  function pointerUp(event) {
+    if (!state.pointerStart || state.animating) return;
+    const dx = event.clientX - state.pointerStart.x;
+    const dy = event.clientY - state.pointerStart.y;
+    const elapsed = Date.now() - state.pointerStart.time;
+    const start = state.pointerStart;
+    state.pointerStart = null;
+
+    if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.2 && elapsed < 900) {
+      turn(dx < 0 ? 'next' : 'previous');
+      return;
+    }
+
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) {
+      const bounds = elements.viewport.getBoundingClientRect();
+      const position = (event.clientX - bounds.left) / bounds.width;
+      if (position < 0.27) turn('previous');
+      if (position > 0.73) turn('next');
+    }
+  }
+
+  function restorePage() {
+    const requested = Number(new URLSearchParams(location.search).get('page')) - 1;
+    if (Number.isInteger(requested) && requested >= 0) return requested;
+    try {
+      const saved = Number(localStorage.getItem(`hollybush-programme-${state.manifest.version}`));
+      if (Number.isInteger(saved) && saved >= 0) return saved;
+    } catch (_) {}
+    return 0;
+  }
+
+  function showError(error) {
+    console.error('Programme reader failed:', error);
+    elements.status.hidden = true;
+    elements.content.hidden = true;
+    elements.error.hidden = false;
+  }
+
+  async function initialise() {
+    try {
+      const response = await fetch(`programmes/programme.json?v=${Date.now()}`);
+      if (!response.ok) throw new Error(`Manifest returned ${response.status}`);
+      state.manifest = await response.json();
+      if (!Array.isArray(state.manifest.pages) || !state.manifest.pages.length) {
+        throw new Error('No programme pages were listed.');
+      }
+
+      const ratio = state.manifest.pageWidth / state.manifest.pageHeight;
+      document.documentElement.style.setProperty('--page-ratio', String(ratio));
+      elements.title.textContent = state.manifest.title || 'Matchday Programme';
+      elements.edition.textContent = state.manifest.edition || 'Current edition';
+      elements.download.href = state.manifest.pdf || 'programmes/current.pdf';
+      elements.range.max = String(state.manifest.pageCount);
+      state.current = restorePage();
+
+      const cover = new Image();
+      cover.src = state.manifest.pages[0].src;
+      if (!cover.complete) {
+        await new Promise((resolve, reject) => {
+          cover.addEventListener('load', resolve, { once: true });
+          cover.addEventListener('error', reject, { once: true });
+        });
+      }
+
+      render();
+      elements.status.hidden = true;
+      elements.content.hidden = false;
+    } catch (error) {
+      showError(error);
+    }
+  }
+
+  elements.previous.addEventListener('click', () => turn('previous'));
+  elements.next.addEventListener('click', () => turn('next'));
+  elements.mobilePrevious.addEventListener('click', () => turn('previous'));
+  elements.mobileNext.addEventListener('click', () => turn('next'));
+  elements.range.addEventListener('input', event => jumpTo(Number(event.target.value) - 1));
+  elements.zoom.addEventListener('click', openZoom);
+  elements.zoomClose.addEventListener('click', () => elements.zoomDialog.close());
+  elements.zoomDialog.addEventListener('click', event => {
+    if (event.target === elements.zoomDialog) elements.zoomDialog.close();
+  });
+  elements.fullscreen.addEventListener('click', toggleFullscreen);
+  elements.share.addEventListener('click', shareProgramme);
+  elements.viewport.addEventListener('pointerdown', pointerDown);
+  elements.viewport.addEventListener('pointerup', pointerUp);
+  elements.viewport.addEventListener('pointercancel', () => { state.pointerStart = null; });
+
+  window.addEventListener('keydown', event => {
+    if (elements.zoomDialog.open) return;
+    if (event.key === 'ArrowRight' || event.key === 'PageDown') turn('next');
+    if (event.key === 'ArrowLeft' || event.key === 'PageUp') turn('previous');
+    if (event.key === 'Home') jumpTo(0);
+    if (event.key === 'End' && state.manifest) jumpTo(state.manifest.pageCount - 1);
+  });
+
+  mobileQuery.addEventListener('change', () => {
+    if (!state.manifest) return;
+    state.current = normalise(state.current);
+    render();
+  });
+
+  initialise();
+})();
+</script>
+</body>
+</html>
