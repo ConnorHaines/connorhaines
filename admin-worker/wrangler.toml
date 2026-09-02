@@ -1,11 +1,7 @@
-name = "hollybush-programme-admin"
+name = "admin"
 main = "src/index.js"
 compatibility_date = "2026-08-01"
-workers_dev = false
-
-routes = [
-  { pattern = "admin.hollybush-rugby.co.uk", custom_domain = true }
-]
+workers_dev = true
 
 [vars]
 GITHUB_OWNER = "ConnorHaines"
