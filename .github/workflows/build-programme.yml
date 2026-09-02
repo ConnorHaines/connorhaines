@@ -6,6 +6,7 @@ on:
       - 'programmes/pending.pdf'
       - 'programmes/current.pdf'
       - 'scripts/build-programme.mjs'
+      - '.github/workflows/build-programme.yml'
   workflow_dispatch:
     inputs:
       source:
