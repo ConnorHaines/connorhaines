@@ -91,7 +91,7 @@ const worker = (await import('../src/index.js')).default;
 
 async function adminRequest(path, options = {}) {
   const token = await accessToken();
-  return new Request(`https://admin.hollybush-rugby.co.uk${path}`, {
+  return new Request(`https://hollybush-programme-admin.example.workers.dev${path}`, {
     ...options,
     headers: {
       'Cf-Access-Jwt-Assertion': token,
@@ -101,7 +101,7 @@ async function adminRequest(path, options = {}) {
 }
 
 test('rejects requests without a Cloudflare Access token', async () => {
-  const response = await worker.fetch(new Request('https://admin.hollybush-rugby.co.uk/'), env);
+  const response = await worker.fetch(new Request('https://hollybush-programme-admin.example.workers.dev/'), env);
   assert.equal(response.status, 401);
 });
 
@@ -129,7 +129,7 @@ test('stages a validated PDF without exposing the uploader email in GitHub', asy
   form.append('programme', new Blob(['%PDF-1.7\n1 0 obj\n'], { type: 'application/pdf' }), 'home-match.pdf');
   const response = await worker.fetch(await adminRequest('/api/programme', {
     method: 'POST',
-    headers: { Origin: 'https://admin.hollybush-rugby.co.uk' },
+    headers: { Origin: 'https://hollybush-programme-admin.example.workers.dev' },
     body: form
   }), env);
 
