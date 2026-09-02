@@ -52,11 +52,8 @@ jobs:
             if [[ "${{ inputs.source }}" == "pending" ]]; then
               source_path="programmes/pending.pdf"
             fi
-          else
-            changed_files="$(jq -r '.commits[]? | (.added[]?, .modified[]?)' "$GITHUB_EVENT_PATH")"
-            if grep -qx 'programmes/pending.pdf' <<< "$changed_files"; then
-              source_path="programmes/pending.pdf"
-            fi
+          elif [[ -f "programmes/pending.pdf" ]]; then
+            source_path="programmes/pending.pdf"
           fi
 
           if [[ ! -f "$source_path" ]]; then
