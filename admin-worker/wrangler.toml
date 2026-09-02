@@ -1,0 +1,16 @@
+name = "hollybush-programme-admin"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+workers_dev = false
+
+routes = [
+  { pattern = "admin.hollybush-rugby.co.uk", custom_domain = true }
+]
+
+[vars]
+GITHUB_OWNER = "ConnorHaines"
+GITHUB_REPO = "connorhaines"
+GITHUB_BRANCH = "main"
+GITHUB_PENDING_PATH = "programmes/pending.pdf"
+PUBLIC_PROGRAMME_URL = "https://hollybush-rugby.co.uk/programme.html"
+MAX_UPLOAD_BYTES = "15728640"
