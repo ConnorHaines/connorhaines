@@ -1,0 +1,81 @@
+name: Build Matchday Programme
+
+on:
+  push:
+    paths:
+      - 'programmes/pending.pdf'
+      - 'programmes/current.pdf'
+      - 'scripts/build-programme.mjs'
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Programme PDF to build
+        required: true
+        default: current
+        type: choice
+        options:
+          - current
+          - pending
+
+permissions:
+  contents: write
+
+concurrency:
+  group: matchday-programme
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install PDF tools
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils imagemagick
+
+      - name: Select programme source
+        id: source
+        shell: bash
+        run: |
+          source_path="programmes/current.pdf"
+
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ "${{ inputs.source }}" == "pending" ]]; then
+              source_path="programmes/pending.pdf"
+            fi
+          else
+            changed_files="$(jq -r '.commits[]? | (.added[]?, .modified[]?)' "$GITHUB_EVENT_PATH")"
+            if grep -qx 'programmes/pending.pdf' <<< "$changed_files"; then
+              source_path="programmes/pending.pdf"
+            fi
+          fi
+
+          if [[ ! -f "$source_path" ]]; then
+            echo "Programme source not found: $source_path" >&2
+            exit 1
+          fi
+
+          echo "path=$source_path" >> "$GITHUB_OUTPUT"
+
+      - name: Build optimised programme pages
+        run: node scripts/build-programme.mjs "${{ steps.source.outputs.path }}"
+
+      - name: Clear staged upload after successful build
+        if: steps.source.outputs.path == 'programmes/pending.pdf'
+        run: rm programmes/pending.pdf
+
+      - name: Commit generated reader files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A programmes/current.pdf programmes/pending.pdf programmes/pages programmes/programme.json
+          git diff --staged --quiet || git commit -m "chore: publish matchday programme"
+          git push

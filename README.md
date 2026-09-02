@@ -40,7 +40,11 @@ Player image paths are set in the `squad` array in `index.html`. Missing images 
 
 The public programme reader is available at `/programme.html`. It shows one swipeable page on mobile and a two-page book with physical controls on larger screens.
 
-To publish a new home programme, replace `programmes/current.pdf` and commit it. The **Build Matchday Programme** GitHub Action automatically creates the optimised reader pages and updates `programmes/programme.json`; generated files inside `programmes/pages` should not be edited by hand.
+The recommended publishing route is the protected admin page at `admin.hollybush-rugby.co.uk`. An approved user selects a PDF and the uploader writes it to `programmes/pending.pdf`. The **Build Matchday Programme** GitHub Action validates and converts that staged file before promoting it to `programmes/current.pdf`; the old programme remains live if the build fails. Approved publishers do not need GitHub accounts.
+
+The Cloudflare Access and Worker setup is documented in [`ADMIN-SETUP.md`](ADMIN-SETUP.md). The GitHub token is stored only as a Cloudflare Worker secret and is restricted to repository contents.
+
+As a manual fallback, replace `programmes/current.pdf` and commit it. The same Action creates the optimised reader pages and updates `programmes/programme.json`; generated files inside `programmes/pages` should not be edited by hand.
 
 The importer preserves genuine portrait pages, but automatically removes the blank A4 bands when the PDF contains square programme artwork. To test the conversion locally, install Poppler and ImageMagick, then run:
 
