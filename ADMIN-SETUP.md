@@ -77,11 +77,11 @@ These values are stored as Worker secrets and are never sent to the browser. For
 
 1. Visit the production `workers.dev` address with an email that is not allowed and confirm access is denied.
 2. Sign in with an approved email and its one-time code.
-3. Select a small PDF and check its preview.
-4. Publish it and wait for the page to report **Programme published**.
+3. Select a small PDF, enter the opposition and match date, and check its preview.
+4. Confirm the automatically selected season, then publish it and wait for the page to report **Programme published**.
 5. Open `https://hollybush-rugby.co.uk/programme.html` on both a phone and desktop.
 
-The upload is first written to `programmes/pending.pdf`. The GitHub Action checks the PDF header, file size, encryption, page count and rendered page count. Only a successful build promotes it to `programmes/current.pdf` and updates the reader pages. The staging file is then removed.
+The upload is written to `programmes/pending.pdf` with its match details in `programmes/pending.json`. The GitHub Action checks the PDF header, file size, encryption, page count and rendered page count. Only a successful build archives the outgoing programme, promotes the staged file to `programmes/current.pdf` and updates the reader pages. Both staging files are then removed.
 
 ## Ongoing administration
 

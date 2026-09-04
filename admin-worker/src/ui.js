@@ -49,10 +49,34 @@ export const ADMIN_HTML = String.raw`<!doctype html>
       </div>
     </section>
 
-    <section class="panel preview-panel" id="preview-panel" hidden aria-labelledby="preview-title">
+    <section class="panel details-panel" aria-labelledby="details-title">
       <div class="panel-heading">
         <div>
           <p class="step">Step 2</p>
+          <h2 id="details-title">Add the match details</h2>
+        </div>
+      </div>
+      <div class="details-grid">
+        <label>
+          <span>Opposition</span>
+          <input id="opponent" name="opponent" type="text" maxlength="80" placeholder="e.g. Hafodyrynys RFC" autocomplete="off" required>
+        </label>
+        <label>
+          <span>Match date</span>
+          <input id="match-date" name="matchDate" type="date" required>
+        </label>
+        <label>
+          <span>Season</span>
+          <select id="season" name="season" required></select>
+        </label>
+      </div>
+      <p class="details-help">These details create the archive card automatically when the programme is replaced.</p>
+    </section>
+
+    <section class="panel preview-panel" id="preview-panel" hidden aria-labelledby="preview-title">
+      <div class="panel-heading">
+        <div>
+          <p class="step">Step 3</p>
           <h2 id="preview-title">Check the preview</h2>
         </div>
       </div>
@@ -61,7 +85,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
 
     <section class="publish-panel">
       <div>
-        <p class="step">Step 3</p>
+        <p class="step">Step 4</p>
         <h2>Publish when ready</h2>
         <p>The conversion normally takes one or two minutes. If it fails, the previous programme remains untouched.</p>
       </div>
@@ -119,7 +143,7 @@ body::before {
   background-image: repeating-linear-gradient(125deg, transparent 0 18px, rgba(255,255,255,.03) 19px 20px);
 }
 
-button, input { font: inherit; }
+button, input, select { font: inherit; }
 
 .site-header {
   display: flex;
@@ -242,6 +266,36 @@ h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); }
 .selection span { margin-top: 4px; color: var(--muted); font-size: .9rem; }
 .text-button { padding: 8px; color: var(--yellow); border: 0; background: transparent; cursor: pointer; }
 
+.details-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.5fr) minmax(170px, 1fr) minmax(150px, .8fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.details-grid label { display: grid; gap: 8px; }
+.details-grid label > span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.details-grid input, .details-grid select {
+  width: 100%;
+  min-height: 50px;
+  padding: 11px 13px;
+  color: var(--text);
+  border: 1px solid #4a4f54;
+  border-radius: 0;
+  background: #0d0f11;
+}
+.details-grid input:focus, .details-grid select:focus {
+  outline: 2px solid var(--yellow);
+  outline-offset: 1px;
+  border-color: var(--yellow);
+}
+.details-help { margin: 15px 0 0; color: var(--muted); font-size: .9rem; }
+
 .preview-panel iframe {
   width: 100%;
   height: min(74vh, 760px);
@@ -290,6 +344,7 @@ footer { padding: 24px; color: #777b7f; text-align: center; font-size: .82rem; }
   .panel-heading { align-items: flex-start; }
   .limit { max-width: 100px; text-align: right; }
   .drop-zone { min-height: 190px; }
+  .details-grid { grid-template-columns: 1fr; }
   .preview-panel iframe { height: 62vh; }
   .publish-panel { align-items: stretch; flex-direction: column; }
   .publish-button { width: 100%; }
@@ -313,10 +368,33 @@ export const ADMIN_JS = String.raw`(() => {
   const statusTitle = document.getElementById('status-title');
   const statusMessage = document.getElementById('status-message');
   const programmeLink = document.getElementById('programme-link');
+  const opponent = document.getElementById('opponent');
+  const matchDate = document.getElementById('match-date');
+  const season = document.getElementById('season');
 
   let selectedFile = null;
   let previewUrl = null;
   let pollTimer = null;
+
+  function seasonForDate(value) {
+    const parts = String(value || '').split('-').map(Number);
+    if (parts.length !== 3 || !parts[0] || !parts[1]) return '';
+    const start = parts[1] >= 7 ? parts[0] : parts[0] - 1;
+    return start + '/' + String(start + 1).slice(-2);
+  }
+
+  function populateSeasons() {
+    const year = new Date().getFullYear();
+    const seasons = [];
+    for (let start = year + 1; start >= year - 3; start -= 1) {
+      seasons.push(start + '/' + String(start + 1).slice(-2));
+    }
+    season.innerHTML = seasons.map(value => '<option value="' + value + '">' + value + '</option>').join('');
+  }
+
+  function updatePublishState() {
+    publishButton.disabled = !(selectedFile && opponent.value.trim() && matchDate.value && season.value);
+  }
 
   function formatBytes(bytes) {
     if (bytes < 1024 * 1024) return Math.ceil(bytes / 1024) + ' KB';
@@ -351,7 +429,7 @@ export const ADMIN_JS = String.raw`(() => {
     preview.src = previewUrl;
     selection.hidden = false;
     previewPanel.hidden = false;
-    publishButton.disabled = false;
+    updatePublishState();
     status.hidden = true;
   }
 
@@ -375,14 +453,14 @@ export const ADMIN_JS = String.raw`(() => {
       if (!response.ok) throw new Error(body.error || 'Could not check publishing status.');
       if (body.ready) {
         showStatus('success', 'Programme published', 'The new ' + body.pageCount + '-page programme is live.', body.publicUrl || publicUrl);
-        publishButton.disabled = false;
+        updatePublishState();
         publishButton.querySelector('span').textContent = 'Publish programme';
         return;
       }
     } catch (error) {
       if (tries > 3) {
         showStatus('error', 'Still processing', 'The upload was accepted, but its status could not be checked. The old programme is still safe.');
-        publishButton.disabled = false;
+        updatePublishState();
         publishButton.querySelector('span').textContent = 'Publish programme';
         return;
       }
@@ -390,7 +468,7 @@ export const ADMIN_JS = String.raw`(() => {
 
     if (tries >= 48) {
       showStatus('error', 'Taking longer than expected', 'The old programme is still live. Ask Connor to check the GitHub build before trying again.');
-      publishButton.disabled = false;
+      updatePublishState();
       publishButton.querySelector('span').textContent = 'Publish programme';
       return;
     }
@@ -410,6 +488,9 @@ export const ADMIN_JS = String.raw`(() => {
 
     const form = new FormData();
     form.append('programme', selectedFile, selectedFile.name);
+    form.append('opponent', opponent.value.trim());
+    form.append('matchDate', matchDate.value);
+    form.append('season', season.value);
 
     try {
       const response = await fetch('/api/programme', { method: 'POST', body: form });
@@ -421,7 +502,7 @@ export const ADMIN_JS = String.raw`(() => {
       pollUntilPublished(body.version, body.publicUrl, 0);
     } catch (error) {
       showStatus('error', 'Could not publish', error.message || 'Try again in a moment.');
-      publishButton.disabled = false;
+      updatePublishState();
       publishButton.querySelector('span').textContent = 'Publish programme';
     }
   }
@@ -429,6 +510,17 @@ export const ADMIN_JS = String.raw`(() => {
   input.addEventListener('change', () => chooseFile(input.files[0]));
   changeButton.addEventListener('click', resetFile);
   publishButton.addEventListener('click', publish);
+  opponent.addEventListener('input', updatePublishState);
+  matchDate.addEventListener('change', () => {
+    const suggested = seasonForDate(matchDate.value);
+    if (suggested && [...season.options].some(option => option.value === suggested)) season.value = suggested;
+    updatePublishState();
+  });
+  season.addEventListener('change', updatePublishState);
+
+  populateSeasons();
+  matchDate.value = new Date().toISOString().slice(0, 10);
+  season.value = seasonForDate(matchDate.value);
 
   ['dragenter', 'dragover'].forEach(eventName => {
     dropZone.addEventListener(eventName, event => {

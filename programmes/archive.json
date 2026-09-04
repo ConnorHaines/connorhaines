@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "editions": [
+    {
+      "version": "08fe5db7b6df",
+      "title": "Hollybush RFC v Bargoed Athletic",
+      "opponent": "Bargoed Athletic",
+      "matchDate": "2025-10-11",
+      "season": "2025/26",
+      "pageCount": 15,
+      "cover": "programmes/archive/2025-26/08fe5db7b6df/pages/page-001.jpg?v=08fe5db7b6df",
+      "manifest": "programmes/archive/2025-26/08fe5db7b6df/manifest.json"
+    },
+    {
+      "version": "c37e6aed8eec",
+      "title": "Hollybush RFC v Hafodyrynys RFC",
+      "opponent": "Hafodyrynys RFC",
+      "matchDate": "2025-01-25",
+      "season": "2024/25",
+      "pageCount": 13,
+      "cover": "programmes/archive/2024-25/c37e6aed8eec/pages/page-001.jpg?v=c37e6aed8eec",
+      "manifest": "programmes/archive/2024-25/c37e6aed8eec/manifest.json"
+    },
+    {
+      "version": "c77b304cfc08",
+      "title": "Hollybush RFC v Deri RFC",
+      "opponent": "Deri RFC",
+      "matchDate": "2024-12-14",
+      "season": "2024/25",
+      "pageCount": 13,
+      "cover": "programmes/archive/2024-25/c77b304cfc08/pages/page-001.jpg?v=c77b304cfc08",
+      "manifest": "programmes/archive/2024-25/c77b304cfc08/manifest.json"
+    },
+    {
+      "version": "3c2143bf135d",
+      "title": "Hollybush RFC v Blackwood Stars RFC",
+      "opponent": "Blackwood Stars RFC",
+      "matchDate": "2024-11-09",
+      "season": "2024/25",
+      "pageCount": 13,
+      "cover": "programmes/archive/2024-25/3c2143bf135d/pages/page-001.jpg?v=3c2143bf135d",
+      "manifest": "programmes/archive/2024-25/3c2143bf135d/manifest.json"
+    },
+    {
+      "version": "f97d474914b3",
+      "title": "Hollybush RFC v Beaufort RFC",
+      "opponent": "Beaufort RFC",
+      "matchDate": "2024-09-21",
+      "season": "2024/25",
+      "pageCount": 10,
+      "cover": "programmes/archive/2024-25/f97d474914b3/pages/page-001.jpg?v=f97d474914b3",
+      "manifest": "programmes/archive/2024-25/f97d474914b3/manifest.json"
+    }
+  ]
+}
