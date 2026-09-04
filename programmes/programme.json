@@ -2,6 +2,9 @@
   "schemaVersion": 1,
   "title": "Hollybush RFC v Abersychan RFC",
   "edition": "18 October 2025 · 2025/26",
+  "opponent": "Abersychan RFC",
+  "matchDate": "2025-10-18",
+  "season": "2025/26",
   "version": "7b5f6223020f",
   "pageCount": 17,
   "pageWidth": 1200,
@@ -112,8 +115,5 @@
       "width": 1200,
       "height": 1200
     }
-  ],
-  "opponent": "Abersychan RFC",
-  "matchDate": "2025-10-18",
-  "season": "2025/26"
+  ]
 }
