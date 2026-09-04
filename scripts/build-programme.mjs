@@ -3,6 +3,7 @@
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
+  cpSync,
   copyFileSync,
   existsSync,
   mkdirSync,
@@ -23,6 +24,9 @@ const programmeDir = resolve(process.argv[3] || join(projectRoot, 'programmes'))
 const canonicalPdf = join(programmeDir, 'current.pdf');
 const pagesDir = join(programmeDir, 'pages');
 const manifestPath = join(programmeDir, 'programme.json');
+const archiveDir = join(programmeDir, 'archive');
+const archiveIndexPath = join(programmeDir, 'archive.json');
+const pendingMetadataPath = join(programmeDir, 'pending.json');
 const maxPdfBytes = Number(process.env.PROGRAMME_MAX_BYTES || 25 * 1024 * 1024);
 const maxPageCount = Number(process.env.PROGRAMME_MAX_PAGES || 64);
 
@@ -57,6 +61,97 @@ function assertProgrammePath(path, label) {
   if (!resolvedPath.startsWith(`${programmeDir}${sep}`)) {
     fail(`Refusing to replace ${label} outside the programme folder.`);
   }
+}
+
+function readJson(path, fallback = null) {
+  if (!existsSync(path)) return fallback;
+  try {
+    return JSON.parse(readFileSync(path, 'utf8'));
+  } catch (error) {
+    fail(`Could not read ${relative(projectRoot, path)}: ${error.message}`);
+  }
+}
+
+function seasonForDate(matchDate) {
+  const match = /^(\d{4})-(\d{2})-\d{2}$/.exec(matchDate || '');
+  if (!match) return '';
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const start = month >= 7 ? year : year - 1;
+  return `${start}/${String(start + 1).slice(-2)}`;
+}
+
+function readableDate(matchDate) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(matchDate || '')) return '';
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'
+  }).format(new Date(`${matchDate}T12:00:00Z`));
+}
+
+function programmeMetadata(input = {}) {
+  const matchDate = /^\d{4}-\d{2}-\d{2}$/.test(input.matchDate || '') ? input.matchDate : '';
+  const season = /^\d{4}\/\d{2}$/.test(input.season || '')
+    ? input.season
+    : seasonForDate(matchDate);
+  const opponent = String(input.opponent || '').trim().slice(0, 80);
+  const title = String(input.title || (opponent ? `Hollybush RFC v ${opponent}` : 'Matchday Programme')).trim().slice(0, 120);
+  const dateLabel = readableDate(matchDate);
+
+  return {
+    title,
+    edition: String(input.edition || [dateLabel, season].filter(Boolean).join(' · ') || 'Current edition').trim().slice(0, 120),
+    opponent,
+    matchDate,
+    season
+  };
+}
+
+function archiveCurrentProgramme() {
+  if (!existsSync(canonicalPdf) || !existsSync(manifestPath) || !existsSync(pagesDir)) return;
+
+  const current = readJson(manifestPath);
+  if (!current?.version || !Array.isArray(current.pages) || !current.pages.length) return;
+
+  const index = readJson(archiveIndexPath, { schemaVersion: 1, editions: [] });
+  if (!Array.isArray(index.editions)) index.editions = [];
+  if (index.editions.some(item => item.version === current.version)) return;
+
+  const metadata = programmeMetadata(current);
+  const seasonSlug = (metadata.season || 'other').replace('/', '-');
+  const relativeDir = `programmes/archive/${seasonSlug}/${current.version}`;
+  const targetDir = join(archiveDir, seasonSlug, current.version);
+  const targetPages = join(targetDir, 'pages');
+  assertProgrammePath(targetDir, 'programme archive');
+
+  mkdirSync(targetDir, { recursive: true });
+  copyFileSync(canonicalPdf, join(targetDir, 'programme.pdf'));
+  cpSync(pagesDir, targetPages, { recursive: true });
+
+  const archivedManifest = {
+    ...current,
+    ...metadata,
+    edition: metadata.edition.replace(/ · Current edition$/, ''),
+    pdf: `${relativeDir}/programme.pdf?v=${current.version}`,
+    pages: current.pages.map((page, index) => ({
+      ...page,
+      src: `${relativeDir}/pages/page-${String(index + 1).padStart(3, '0')}.jpg?v=${current.version}`
+    }))
+  };
+  writeFileSync(join(targetDir, 'manifest.json'), `${JSON.stringify(archivedManifest, null, 2)}\n`);
+
+  index.schemaVersion = 1;
+  index.editions.push({
+    version: current.version,
+    title: metadata.title,
+    opponent: metadata.opponent,
+    matchDate: metadata.matchDate,
+    season: metadata.season || 'Other',
+    pageCount: current.pageCount,
+    cover: `${relativeDir}/pages/page-001.jpg?v=${current.version}`,
+    manifest: `${relativeDir}/manifest.json`
+  });
+  index.editions.sort((a, b) => (b.matchDate || '').localeCompare(a.matchDate || ''));
+  writeFileSync(archiveIndexPath, `${JSON.stringify(index, null, 2)}\n`);
 }
 
 function promote(staged) {
@@ -111,6 +206,12 @@ function build() {
 
   mkdirSync(programmeDir, { recursive: true });
   const pdfBytes = readFileSync(suppliedPdf);
+  const publishingPending = suppliedPdf !== canonicalPdf;
+  const existingManifest = readJson(manifestPath, {});
+  const requestedMetadata = publishingPending
+    ? readJson(pendingMetadataPath, {})
+    : existingManifest;
+  const metadata = programmeMetadata(requestedMetadata);
   const version = createHash('sha256').update(pdfBytes).digest('hex').slice(0, 12);
   const info = run('pdfinfo', [suppliedPdf]);
   const pageCount = Number(info.match(/^Pages:\s+(\d+)$/m)?.[1]);
@@ -194,8 +295,7 @@ function build() {
     const firstPage = pages[0];
     const manifest = {
       schemaVersion: 1,
-      title: 'Matchday Programme',
-      edition: 'Current edition',
+      ...metadata,
       version,
       pageCount,
       pageWidth: firstPage.width,
@@ -215,6 +315,7 @@ function build() {
       return total + statSync(join(stagedPagesDir, filename)).size;
     }, 0);
 
+    if (publishingPending && existingManifest.version !== version) archiveCurrentProgramme();
     promote({ root: stageDir, pages: stagedPagesDir, pdf: stagedPdf, manifest: stagedManifest });
 
     console.log(`Built ${pageCount} programme pages from ${basename(suppliedPdf)}.`);

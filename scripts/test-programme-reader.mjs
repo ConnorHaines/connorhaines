@@ -27,6 +27,10 @@ for (const page of manifest.pages) {
 class MockClassList {
   constructor() { this.values = new Set(); }
   add(value) { this.values.add(value); }
+  toggle(value, force) {
+    if (force) this.values.add(value);
+    else this.values.delete(value);
+  }
 }
 
 class MockElement {
@@ -58,6 +62,7 @@ class MockElement {
 
   setAttribute(name, value) { this[name] = value; }
   replaceChildren(...children) { this.children = children; }
+  querySelectorAll() { return []; }
   getBoundingClientRect() { return { left: 0, width: 1000 }; }
   requestFullscreen() {}
   showModal() { this.open = true; }
@@ -70,7 +75,8 @@ function createHarness() {
     'book', 'turn-layer', 'previous-button', 'next-button', 'mobile-previous',
     'mobile-next', 'page-range', 'page-label', 'programme-title', 'edition-label',
     'download-button', 'share-button', 'fullscreen-button', 'zoom-button',
-    'zoom-dialog', 'zoom-image', 'zoom-label', 'zoom-close'
+    'zoom-dialog', 'zoom-image', 'zoom-label', 'zoom-close', 'latest-button',
+    'archive-section', 'archive-list'
   ];
   const elements = Object.fromEntries(ids.map(id => [id, new MockElement(id)]));
   elements['reader-content'].hidden = true;
@@ -131,7 +137,28 @@ function createHarness() {
     navigator: {
       clipboard: { async writeText() {} }
     },
-    fetch: async () => ({ ok: true, async json() { return manifest; } }),
+    fetch: async url => {
+      if (String(url).includes('archive.json')) {
+        return {
+          ok: true,
+          async json() {
+            return {
+              editions: [{
+                version: 'archive-version',
+                title: 'Hollybush RFC v Archive RFC',
+                opponent: 'Archive RFC',
+                matchDate: '2025-01-01',
+                season: '2024/25',
+                pageCount: 10,
+                cover: 'archive-cover.jpg',
+                manifest: 'archive-manifest.json'
+              }]
+            };
+          }
+        };
+      }
+      return { ok: true, async json() { return manifest; } };
+    },
     Image: MockImage,
     URL,
     URLSearchParams,
@@ -153,6 +180,8 @@ assert.match(el.book.innerHTML, /Programme page 1/);
 assert.equal(el['page-label'].textContent, 'Page 1 of 17');
 assert.equal(el['previous-button'].disabled, true);
 assert.equal(el['next-button'].disabled, false);
+assert.equal(el['archive-section'].hidden, false, 'Archive should display when editions are available.');
+assert.match(el['archive-list'].innerHTML, /Archive RFC/);
 
 el['next-button'].dispatch('click');
 assert.match(el.book.innerHTML, /Programme page 2/);
@@ -176,5 +205,26 @@ assert.match(el.book.innerHTML, /Programme page 5/);
 
 const indexHtml = readFileSync(resolve(root, 'index.html'), 'utf8');
 assert(indexHtml.includes('href="programme.html"'), 'Homepage should link to the programme.');
+assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
 
-console.log('Programme reader tests passed: desktop spreads, mobile paging, generated pages and homepage links.');
+const sponsorFiles = [
+  'lectogic.png', 'jim-davies.png', 'celtic-lining.png', 'idm.png',
+  'specialised-systems.jpg', 'trusted-data-solutions.jpg', 'klo-electrical.png'
+];
+for (const sponsor of sponsorFiles) {
+  assert(existsSync(resolve(root, 'img/sponsors', sponsor)), `Missing sponsor logo ${sponsor}`);
+}
+
+const archive = JSON.parse(readFileSync(resolve(root, 'programmes/archive.json'), 'utf8'));
+assert.equal(archive.editions.length, 5);
+for (const edition of archive.editions) {
+  const archivedManifest = JSON.parse(readFileSync(resolve(root, edition.manifest), 'utf8'));
+  assert.equal(archivedManifest.version, edition.version);
+  assert.equal(archivedManifest.pages.length, archivedManifest.pageCount);
+  assert(existsSync(resolve(root, archivedManifest.pdf.split('?')[0])), `Missing archived PDF ${archivedManifest.pdf}`);
+  for (const archivedPage of archivedManifest.pages) {
+    assert(existsSync(resolve(root, archivedPage.src.split('?')[0])), `Missing archived page ${archivedPage.src}`);
+  }
+}
+
+console.log('Programme reader tests passed: current reader, season archive, sponsor strip and mobile paging.');

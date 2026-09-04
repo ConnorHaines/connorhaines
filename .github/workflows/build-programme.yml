@@ -5,6 +5,7 @@ on:
     paths:
       - 'programmes/pending.pdf'
       - 'programmes/current.pdf'
+      - 'programmes/archive.json'
       - 'scripts/build-programme.mjs'
       - '.github/workflows/build-programme.yml'
   workflow_dispatch:
@@ -68,7 +69,7 @@ jobs:
 
       - name: Clear staged upload after successful build
         if: steps.source.outputs.path == 'programmes/pending.pdf'
-        run: rm programmes/pending.pdf
+        run: rm -f programmes/pending.pdf programmes/pending.json
 
       - name: Commit generated reader files
         run: |

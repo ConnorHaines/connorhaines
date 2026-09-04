@@ -53,6 +53,7 @@ async function accessToken() {
 }
 
 let uploadedBody = null;
+let uploadedMetadataBody = null;
 let publishedVersion = '000000000000';
 const originalFetch = globalThis.fetch;
 
@@ -68,6 +69,19 @@ globalThis.fetch = async (input, options = {}) => {
     if ((options.method || 'GET') === 'PUT') {
       uploadedBody = JSON.parse(options.body);
       return new Response(JSON.stringify({ commit: { sha: 'commit-sha' } }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    return new Response(JSON.stringify({ message: 'Not Found' }), {
+      status: 404,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  if (url.includes('/contents/programmes/pending.json')) {
+    if ((options.method || 'GET') === 'PUT') {
+      uploadedMetadataBody = JSON.parse(options.body);
+      return new Response(JSON.stringify({ commit: { sha: 'metadata-commit-sha' } }), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -115,6 +129,9 @@ test('serves the admin page after validating the Access JWT', async () => {
 test('rejects cross-origin uploads', async () => {
   const form = new FormData();
   form.append('programme', new Blob(['%PDF-1.7\n'], { type: 'application/pdf' }), 'programme.pdf');
+  form.append('opponent', 'Hafodyrynys RFC');
+  form.append('matchDate', '2026-10-31');
+  form.append('season', '2026/27');
   const response = await worker.fetch(await adminRequest('/api/programme', {
     method: 'POST',
     headers: { Origin: 'https://example.com' },
@@ -125,8 +142,12 @@ test('rejects cross-origin uploads', async () => {
 
 test('stages a validated PDF without exposing the uploader email in GitHub', async () => {
   uploadedBody = null;
+  uploadedMetadataBody = null;
   const form = new FormData();
   form.append('programme', new Blob(['%PDF-1.7\n1 0 obj\n'], { type: 'application/pdf' }), 'home-match.pdf');
+  form.append('opponent', 'Hafodyrynys RFC');
+  form.append('matchDate', '2026-10-31');
+  form.append('season', '2026/27');
   const response = await worker.fetch(await adminRequest('/api/programme', {
     method: 'POST',
     headers: { Origin: 'https://admin.example.workers.dev' },
@@ -139,6 +160,10 @@ test('stages a validated PDF without exposing the uploader email in GitHub', asy
   assert.equal(uploadedBody.branch, 'main');
   assert.doesNotMatch(uploadedBody.message, /player@example\.com/);
   assert.match(atob(uploadedBody.content), /^%PDF-1\.7/);
+  const metadata = JSON.parse(atob(uploadedMetadataBody.content));
+  assert.equal(metadata.title, 'Hollybush RFC v Hafodyrynys RFC');
+  assert.equal(metadata.matchDate, '2026-10-31');
+  assert.equal(metadata.season, '2026/27');
   publishedVersion = result.version;
 });
 

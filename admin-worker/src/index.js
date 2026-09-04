@@ -205,6 +205,10 @@ function base64ToUtf8(value) {
   return new TextDecoder().decode(bytes);
 }
 
+function utf8ToBase64(value) {
+  return bytesToBase64(new TextEncoder().encode(value));
+}
+
 async function sha256Version(bytes) {
   const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
   return Array.from(digest, byte => byte.toString(16).padStart(2, '0')).join('').slice(0, 12);
@@ -242,8 +246,42 @@ async function uploadProgramme(request, env, identity) {
   const header = new TextDecoder('latin1').decode(bytes.subarray(0, Math.min(1024, bytes.length)));
   if (!header.includes('%PDF-')) throw new HttpError(400, 'The selected file does not have a valid PDF header.');
 
+  const opponent = String(form.get('opponent') || '').trim();
+  const matchDate = String(form.get('matchDate') || '').trim();
+  const season = String(form.get('season') || '').trim();
+  if (!opponent || opponent.length > 80) throw new HttpError(400, 'Enter the opposition name.');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(matchDate)) throw new HttpError(400, 'Choose the match date.');
+  if (!/^\d{4}\/\d{2}$/.test(season)) throw new HttpError(400, 'Choose a valid season.');
+
   const config = githubConfig(env);
   const version = await sha256Version(bytes);
+  const metadataPath = config.pendingPath.replace(/\.pdf$/i, '.json');
+  const existingMetadata = await getRepositoryFile(config, metadataPath);
+  const metadata = {
+    schemaVersion: 1,
+    version,
+    title: `Hollybush RFC v ${opponent}`,
+    opponent,
+    matchDate,
+    season,
+    uploadedFileName: String(file.name || 'programme.pdf').slice(0, 160)
+  };
+  const metadataBody = {
+    message: `chore: stage programme details (${version})`,
+    content: utf8ToBase64(`${JSON.stringify(metadata, null, 2)}\n`),
+    branch: config.branch
+  };
+  if (existingMetadata?.sha) metadataBody.sha = existingMetadata.sha;
+
+  const metadataResult = await githubRequest(config, `/contents/${encodePath(metadataPath)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(metadataBody)
+  });
+  if (!metadataResult.response.ok) {
+    throw new HttpError(502, `GitHub could not save the match details: ${metadataResult.body?.message || metadataResult.response.status}`);
+  }
+
   const existing = await getRepositoryFile(config, config.pendingPath);
   const body = {
     message: `chore: stage matchday programme (${version})`,
@@ -267,6 +305,9 @@ async function uploadProgramme(request, env, identity) {
     actor: identity.email,
     version,
     bytes: bytes.length,
+    opponent,
+    matchDate,
+    season,
     commit: result.body?.commit?.sha || null
   }));
 
