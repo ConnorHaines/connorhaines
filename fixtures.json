@@ -5,19 +5,9 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-01T14:02:43.550Z",
-  "lastSuccessfulScrape": "2026-09-01T14:02:43.550Z",
+  "updatedAt": "2026-09-04T16:07:21.376Z",
+  "lastSuccessfulScrape": "2026-09-04T16:07:21.376Z",
   "fixtures": [
-    {
-      "id": "2026-09-05-hollybush-penallta-athletic",
-      "date": "2026-09-05",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "Penallta RFC Athletic",
-      "hollybushPlaying": true,
-      "source": "allwalessport"
-    },
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
       "date": "2026-09-19",
@@ -179,16 +169,6 @@
       "home": "Hafodyrynys RFC",
       "away": "Abersychan Alexanders RFC",
       "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-09-05-hollybush-penallta-athletic",
-      "date": "2026-09-05",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "Penallta RFC Athletic",
-      "hollybushPlaying": true,
       "source": "allwalessport"
     },
     {
