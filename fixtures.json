@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-05T19:44:14.132Z",
-  "lastSuccessfulScrape": "2026-09-05T19:44:14.132Z",
+  "updatedAt": "2026-09-05T22:29:53.981Z",
+  "lastSuccessfulScrape": "2026-09-05T22:29:53.981Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -913,7 +913,7 @@
   ],
   "table": [
     {
-      "team": "Bettws RFC",
+      "team": "Abertysswg Falcons RFC",
       "played": 1,
       "won": 1,
       "drawn": 0,
@@ -923,7 +923,7 @@
       "isHollybush": false
     },
     {
-      "team": "Abertysswg Falcons RFC",
+      "team": "Bettws RFC",
       "played": 1,
       "won": 1,
       "drawn": 0,
