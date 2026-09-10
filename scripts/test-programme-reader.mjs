@@ -208,7 +208,7 @@ assert(indexHtml.includes('href="programme.html"'), 'Homepage should link to the
 assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
 assert.match(
   indexHtml,
-  /\.sponsor-card img\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*object-fit:\s*contain;/s,
+  /\.sponsor-card img\s*\{[^}]*width:\s*100%;[^}]*height:\s*88px;[^}]*object-fit:\s*contain;/s,
   'Sponsor logos should fill their image box without changing aspect ratio.'
 );
 
