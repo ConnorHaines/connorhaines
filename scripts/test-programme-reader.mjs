@@ -206,6 +206,11 @@ assert.match(el.book.innerHTML, /Programme page 5/);
 const indexHtml = readFileSync(resolve(root, 'index.html'), 'utf8');
 assert(indexHtml.includes('href="programme.html"'), 'Homepage should link to the programme.');
 assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
+assert.match(
+  indexHtml,
+  /\.sponsor-card img\s*\{[^}]*width:\s*100%;[^}]*height:\s*100%;[^}]*object-fit:\s*contain;/s,
+  'Sponsor logos should fill their image box without changing aspect ratio.'
+);
 
 const sponsorFiles = [
   'lectogic.png', 'jim-davies.png', 'celtic-lining.png', 'idm.png',
