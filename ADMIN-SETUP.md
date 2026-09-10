@@ -1,6 +1,6 @@
-# Matchday programme admin setup
+# Hollybush club admin setup
 
-The admin uploader runs as a small Cloudflare Worker at its own `workers.dev` address. Cloudflare Access handles the login and only approved email addresses receive a one-time sign-in code. The Worker stages a PDF in GitHub; GitHub Actions validates and converts it before replacing the public programme.
+The admin portal runs as a small Cloudflare Worker at its own `workers.dev` address. Cloudflare Access handles the login and only approved email addresses receive a one-time sign-in code. The portal can stage a programme PDF and update the homepage's Facebook and TikTok cards. GitHub remains the content store, so there is no separate database or CMS subscription.
 
 The Hollybush website remains on GitHub Pages and its DNS remains at IONOS. Do not add, transfer or change the domain in Cloudflare.
 
@@ -51,7 +51,7 @@ In **Workers & Pages → admin → Settings → Domains & Routes**:
 
 1. Find the production `workers.dev` route and select **Enable Cloudflare Access**.
 2. Select **Manage Cloudflare Access**.
-3. Add an **Allow** policy that includes only the email addresses permitted to publish programmes.
+3. Add an **Allow** policy that includes only the email addresses permitted to manage website content.
 4. Enable **One-time PIN** as the login method if the players do not share an existing identity provider.
 5. Copy the application's **AUD tag** from its Access settings.
 
@@ -80,12 +80,14 @@ These values are stored as Worker secrets and are never sent to the browser. For
 3. Select a small PDF, enter the opposition and match date, and check its preview.
 4. Confirm the automatically selected season, then publish it and wait for the page to report **Programme published**.
 5. Open `https://hollybush-rugby.co.uk/programme.html` on both a phone and desktop.
+6. Open **Latest From the Bush**, paste a public Facebook post link and TikTok video link, edit the card copy and publish. Confirm both homepage cards open the expected posts.
 
 The upload is written to `programmes/pending.pdf` with its match details in `programmes/pending.json`. The GitHub Action checks the PDF header, file size, encryption, page count and rendered page count. Only a successful build archives the outgoing programme, promotes the staged file to `programmes/current.pdf` and updates the reader pages. Both staging files are then removed.
 
 ## Ongoing administration
 
 - Add or remove publishers in the Cloudflare Access application policy; they never need GitHub accounts.
-- Review sign-ins in Cloudflare Access logs. Successful uploads also write an audit event to the Worker logs.
+- Review sign-ins in Cloudflare Access logs. Successful programme and social-card updates also write audit events to the Worker logs.
+- Facebook and TikTok updates are stored in `content/latest.json`; the current programme card is populated automatically from `programmes/programme.json`.
 - Renew the fine-grained GitHub token before it expires by updating the `GITHUB_TOKEN` Worker secret.
 - Never share the GitHub token or add it to a website file.

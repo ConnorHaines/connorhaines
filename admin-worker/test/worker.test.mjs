@@ -13,6 +13,7 @@ const env = {
   GITHUB_REPO: 'connorhaines',
   GITHUB_BRANCH: 'main',
   GITHUB_PENDING_PATH: 'programmes/pending.pdf',
+  GITHUB_LATEST_PATH: 'content/latest.json',
   GITHUB_TOKEN: 'test-token',
   PUBLIC_PROGRAMME_URL: 'https://hollybush-rugby.co.uk/programme.html',
   MAX_UPLOAD_BYTES: String(15 * 1024 * 1024)
@@ -54,7 +55,14 @@ async function accessToken() {
 
 let uploadedBody = null;
 let uploadedMetadataBody = null;
+let uploadedSocialBody = null;
 let publishedVersion = '000000000000';
+let latestContent = {
+  schemaVersion: 1,
+  updatedAt: '',
+  facebook: { url: 'https://www.facebook.com/HollybushRfc', title: 'Facebook card', summary: 'Facebook summary' },
+  tiktok: { url: 'https://www.tiktok.com/@hollybushrfc/video/123456789', title: 'TikTok card', summary: 'TikTok summary' }
+};
 const originalFetch = globalThis.fetch;
 
 globalThis.fetch = async (input, options = {}) => {
@@ -92,8 +100,29 @@ globalThis.fetch = async (input, options = {}) => {
     });
   }
   if (url.includes('/contents/programmes/programme.json')) {
-    const manifest = JSON.stringify({ version: publishedVersion, pageCount: 17 });
+    const manifest = JSON.stringify({ version: publishedVersion, pageCount: 17, title: 'Hollybush RFC v Test RFC', edition: '10 September 2026 · 2026/27' });
     return new Response(JSON.stringify({ content: btoa(manifest) }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  if (url.includes('/contents/programmes/archive.json')) {
+    const archive = JSON.stringify({ editions: [{ version: 'one' }, { version: 'two' }] });
+    return new Response(JSON.stringify({ content: btoa(archive) }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  if (url.includes('/contents/content/latest.json')) {
+    if ((options.method || 'GET') === 'PUT') {
+      uploadedSocialBody = JSON.parse(options.body);
+      latestContent = JSON.parse(atob(uploadedSocialBody.content));
+      return new Response(JSON.stringify({ commit: { sha: 'social-commit-sha' } }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    return new Response(JSON.stringify({ content: btoa(JSON.stringify(latestContent)), sha: 'latest-sha' }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
@@ -122,7 +151,9 @@ test('rejects requests without a Cloudflare Access token', async () => {
 test('serves the admin page after validating the Access JWT', async () => {
   const response = await worker.fetch(await adminRequest('/'), env);
   assert.equal(response.status, 200);
-  assert.match(await response.text(), /Put the latest programme online/);
+  const html = await response.text();
+  assert.match(html, /Everything that needs keeping fresh/);
+  assert.match(html, /Latest From the Bush/);
   assert.match(response.headers.get('Content-Security-Policy'), /frame-ancestors 'none'/);
 });
 
@@ -173,6 +204,48 @@ test('reports when the generated programme version is live', async () => {
   const result = await response.json();
   assert.equal(result.ready, true);
   assert.equal(result.pageCount, 17);
+});
+
+test('loads the dashboard summary for the signed-in user', async () => {
+  const response = await worker.fetch(await adminRequest('/api/dashboard'), env);
+  assert.equal(response.status, 200);
+  const result = await response.json();
+  assert.equal(result.identity, 'player@example.com');
+  assert.equal(result.programme.pageCount, 17);
+  assert.equal(result.archiveCount, 2);
+  assert.equal(result.latest.facebook.title, 'Facebook card');
+});
+
+test('publishes validated Facebook and TikTok card links', async () => {
+  uploadedSocialBody = null;
+  const response = await worker.fetch(await adminRequest('/api/social', {
+    method: 'POST',
+    headers: { Origin: 'https://admin.example.workers.dev', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      facebook: { url: 'https://www.facebook.com/HollybushRfc/posts/123', title: 'New Facebook post', summary: 'A new result from the weekend.' },
+      tiktok: { url: 'https://www.tiktok.com/@hollybushrfc/video/999', title: 'New TikTok clip', summary: 'A quick look behind the scenes.' }
+    })
+  }), env);
+
+  assert.equal(response.status, 200);
+  assert.equal(uploadedSocialBody.sha, 'latest-sha');
+  assert.doesNotMatch(uploadedSocialBody.message, /player@example\.com/);
+  const written = JSON.parse(atob(uploadedSocialBody.content));
+  assert.equal(written.facebook.title, 'New Facebook post');
+  assert.equal(written.tiktok.url, 'https://www.tiktok.com/@hollybushrfc/video/999');
+  assert.match(written.updatedAt, /^\d{4}-\d{2}-\d{2}T/);
+});
+
+test('rejects social links from the wrong platform', async () => {
+  const response = await worker.fetch(await adminRequest('/api/social', {
+    method: 'POST',
+    headers: { Origin: 'https://admin.example.workers.dev', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      facebook: { url: 'https://example.com/not-facebook', title: 'Nope', summary: 'This should not publish.' },
+      tiktok: { url: 'https://www.tiktok.com/@hollybushrfc/video/999', title: 'TikTok', summary: 'A valid TikTok item.' }
+    })
+  }), env);
+  assert.equal(response.status, 400);
 });
 
 test.after(() => {

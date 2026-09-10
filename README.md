@@ -40,13 +40,15 @@ Player image paths are set in the `squad` array in `index.html`. Missing images 
 
 The public programme reader is available at `/programme.html`. It shows one swipeable page on mobile and a two-page book with physical controls on larger screens.
 
-The recommended publishing route is the admin Worker's Cloudflare Access-protected `workers.dev` page. An approved user selects a PDF and enters the opposition, match date and season. The uploader stages the PDF and its metadata, then the **Build Matchday Programme** GitHub Action validates and converts it before promotion. The outgoing edition is preserved in `programmes/archive`, grouped by season in `programmes/archive.json`; the old programme remains live if the build fails. Approved publishers do not need GitHub accounts, and the main website remains hosted by GitHub Pages with DNS at IONOS.
+The recommended publishing route is the admin Worker's Cloudflare Access-protected `workers.dev` portal. Its dashboard includes programme publishing and the editable Facebook/TikTok cards used by **Latest From the Bush** on the homepage. An approved user selects a PDF and enters the opposition, match date and season. The uploader stages the PDF and its metadata, then the **Build Matchday Programme** GitHub Action validates and converts it before promotion. The outgoing edition is preserved in `programmes/archive`, grouped by season in `programmes/archive.json`; the old programme remains live if the build fails. Approved publishers do not need GitHub accounts, and the main website remains hosted by GitHub Pages with DNS at IONOS.
 
 The Cloudflare Access and Worker setup is documented in [`ADMIN-SETUP.md`](ADMIN-SETUP.md). The GitHub token is stored only as a Cloudflare Worker secret and is restricted to repository contents.
 
 As a manual fallback, replace `programmes/current.pdf` and commit it. The same Action creates the optimised reader pages and updates `programmes/programme.json`; generated files inside `programmes/pages` should not be edited by hand.
 
 The homepage sponsor ticker is immediately above Fixtures. Its images live in `img/sponsors`; the second repeated logo group in `index.html` creates the seamless scrolling loop and is intentionally hidden from assistive technology.
+
+The homepage's three **Latest From the Bush** cards read `content/latest.json` for Facebook and TikTok, plus `programmes/programme.json` for the automatically updated programme card. Use the portal to paste exact public post/video links and edit their short display copy; do not edit generated programme card details by hand.
 
 The importer preserves genuine portrait pages, but automatically removes the blank A4 bands when the PDF contains square programme artwork. To test the conversion locally, install Poppler and ImageMagick, then run:
 
