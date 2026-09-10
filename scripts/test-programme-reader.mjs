@@ -205,6 +205,9 @@ assert.match(el.book.innerHTML, /Programme page 5/);
 
 const indexHtml = readFileSync(resolve(root, 'index.html'), 'utf8');
 assert(indexHtml.includes('href="programme.html"'), 'Homepage should link to the programme.');
+assert(indexHtml.includes('<section id="latest">'), 'Homepage should include Latest From the Bush.');
+assert(indexHtml.includes("fetch('content/latest.json?v='"), 'Homepage should load the editable social cards.');
+assert(!indexHtml.includes('openBlog('), 'Old hard-coded blog modals should be removed.');
 assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
 assert.match(
   indexHtml,
@@ -220,6 +223,13 @@ for (const sponsor of sponsorFiles) {
   assert(existsSync(resolve(root, 'img/sponsors', sponsor)), `Missing sponsor logo ${sponsor}`);
 }
 
+const latest = JSON.parse(readFileSync(resolve(root, 'content/latest.json'), 'utf8'));
+assert.equal(latest.schemaVersion, 1);
+assert.match(latest.facebook.url, /^https:\/\/(?:[^/]+\.)?facebook\.com\//);
+assert.equal(typeof latest.tiktok.url, 'string');
+assert(latest.facebook.title && latest.facebook.summary, 'Facebook card should have fallback copy.');
+assert(latest.tiktok.title && latest.tiktok.summary, 'TikTok card should have fallback copy.');
+
 const archive = JSON.parse(readFileSync(resolve(root, 'programmes/archive.json'), 'utf8'));
 assert.equal(archive.editions.length, 5);
 for (const edition of archive.editions) {
@@ -232,4 +242,4 @@ for (const edition of archive.editions) {
   }
 }
 
-console.log('Programme reader tests passed: current reader, season archive, sponsor strip and mobile paging.');
+console.log('Programme reader tests passed: current reader, season archive, sponsor strip, latest cards and mobile paging.');

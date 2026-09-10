@@ -138,15 +138,16 @@ function githubConfig(env) {
   const branch = String(env.GITHUB_BRANCH || 'main').trim();
   const token = String(env.GITHUB_TOKEN || '').trim();
   const pendingPath = String(env.GITHUB_PENDING_PATH || 'programmes/pending.pdf').trim();
+  const latestPath = String(env.GITHUB_LATEST_PATH || 'content/latest.json').trim();
 
   if (!owner || !repo || !branch || !token) {
     throw new HttpError(503, 'GitHub publishing has not been configured yet.');
   }
-  if (pendingPath.startsWith('/') || pendingPath.split('/').includes('..')) {
-    throw new HttpError(503, 'The configured staging path is invalid.');
+  if ([pendingPath, latestPath].some(path => path.startsWith('/') || path.split('/').includes('..'))) {
+    throw new HttpError(503, 'A configured repository path is invalid.');
   }
 
-  return { owner, repo, branch, token, pendingPath };
+  return { owner, repo, branch, token, pendingPath, latestPath };
 }
 
 function githubHeaders(token) {
@@ -190,6 +191,24 @@ async function getRepositoryFile(config, path) {
   return result.body;
 }
 
+async function readRepositoryJson(config, path, fallback = null) {
+  const file = await getRepositoryFile(config, path);
+  if (!file?.content) return { file, value: fallback };
+
+  try {
+    return { file, value: JSON.parse(base64ToUtf8(file.content)) };
+  } catch {
+    throw new HttpError(502, `GitHub returned invalid JSON for ${path}.`);
+  }
+}
+
+function requireSameOrigin(request, message) {
+  const requestUrl = new URL(request.url);
+  if (request.headers.get('Origin') !== requestUrl.origin) {
+    throw new HttpError(403, message);
+  }
+}
+
 function bytesToBase64(bytes) {
   const chunkSize = 0x8000;
   let binary = '';
@@ -215,10 +234,7 @@ async function sha256Version(bytes) {
 }
 
 async function uploadProgramme(request, env, identity) {
-  const requestUrl = new URL(request.url);
-  if (request.headers.get('Origin') !== requestUrl.origin) {
-    throw new HttpError(403, 'The upload must be started from this admin page.');
-  }
+  requireSameOrigin(request, 'The upload must be started from this admin page.');
 
   const maxBytes = Number(env.MAX_UPLOAD_BYTES || DEFAULT_MAX_UPLOAD_BYTES);
   const contentLength = Number(request.headers.get('Content-Length') || 0);
@@ -346,6 +362,128 @@ async function programmeStatus(request, env) {
   });
 }
 
+const DEFAULT_LATEST = {
+  schemaVersion: 1,
+  updatedAt: '',
+  facebook: {
+    url: 'https://www.facebook.com/HollybushRfc',
+    title: 'Follow Hollybush RFC on Facebook',
+    summary: 'Match reports, team news and everything from the clubhouse.'
+  },
+  tiktok: {
+    url: '',
+    title: 'Latest from Hollybush RFC on TikTok',
+    summary: 'Challenges, clips and matchday moments from the boys.'
+  }
+};
+
+function socialUrl(value, platform) {
+  let url;
+  try {
+    url = new URL(String(value || '').trim());
+  } catch {
+    throw new HttpError(400, `Enter a valid ${platform} link.`);
+  }
+
+  if (url.protocol !== 'https:') throw new HttpError(400, `${platform} links must use HTTPS.`);
+  const host = url.hostname.toLowerCase();
+  const allowed = platform === 'Facebook'
+    ? host === 'facebook.com' || host.endsWith('.facebook.com') || host === 'fb.watch'
+    : host === 'tiktok.com' || host.endsWith('.tiktok.com');
+  if (!allowed) throw new HttpError(400, `That link is not hosted by ${platform}.`);
+  return url.toString();
+}
+
+function socialText(value, label, maxLength) {
+  const text = String(value || '').trim();
+  if (!text) throw new HttpError(400, `Enter the ${label}.`);
+  if (text.length > maxLength) throw new HttpError(400, `The ${label} must be ${maxLength} characters or fewer.`);
+  return text;
+}
+
+function validateLatest(body) {
+  return {
+    schemaVersion: 1,
+    updatedAt: new Date().toISOString(),
+    facebook: {
+      url: socialUrl(body?.facebook?.url, 'Facebook'),
+      title: socialText(body?.facebook?.title, 'Facebook title', 90),
+      summary: socialText(body?.facebook?.summary, 'Facebook summary', 180)
+    },
+    tiktok: {
+      url: socialUrl(body?.tiktok?.url, 'TikTok'),
+      title: socialText(body?.tiktok?.title, 'TikTok title', 90),
+      summary: socialText(body?.tiktok?.summary, 'TikTok summary', 180)
+    }
+  };
+}
+
+async function latestContent(env) {
+  const config = githubConfig(env);
+  const result = await readRepositoryJson(config, config.latestPath, DEFAULT_LATEST);
+  return { config, ...result };
+}
+
+async function dashboard(env, identity) {
+  const config = githubConfig(env);
+  const [programme, archive, latest] = await Promise.all([
+    readRepositoryJson(config, 'programmes/programme.json', {}),
+    readRepositoryJson(config, 'programmes/archive.json', { editions: [] }),
+    readRepositoryJson(config, config.latestPath, DEFAULT_LATEST)
+  ]);
+  const manifest = programme.value || {};
+  const archived = Array.isArray(archive.value) ? archive.value : archive.value?.editions;
+
+  return json({
+    ok: true,
+    identity: identity.email,
+    programme: {
+      title: manifest.title || 'No programme published',
+      edition: manifest.edition || manifest.matchDate || '',
+      pageCount: Number(manifest.pageCount || 0),
+      version: manifest.version || null
+    },
+    archiveCount: Array.isArray(archived) ? archived.length : 0,
+    latest: latest.value || DEFAULT_LATEST
+  });
+}
+
+async function updateLatest(request, env, identity) {
+  requireSameOrigin(request, 'Social updates must be published from this admin page.');
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    throw new HttpError(400, 'The social update could not be read.');
+  }
+
+  const latest = validateLatest(body);
+  const { config, file } = await latestContent(env);
+  const githubBody = {
+    message: 'content: update latest social links',
+    content: utf8ToBase64(`${JSON.stringify(latest, null, 2)}\n`),
+    branch: config.branch
+  };
+  if (file?.sha) githubBody.sha = file.sha;
+
+  const result = await githubRequest(config, `/contents/${encodePath(config.latestPath)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(githubBody)
+  });
+  if (result.response.status === 409) throw new HttpError(409, 'Someone else updated these cards at the same time. Refresh and try again.');
+  if (!result.response.ok) {
+    throw new HttpError(502, `GitHub could not publish the social cards: ${result.body?.message || result.response.status}`);
+  }
+
+  console.log(JSON.stringify({
+    event: 'latest_content_update',
+    actor: identity.email,
+    commit: result.body?.commit?.sha || null
+  }));
+  return json({ ok: true, latest });
+}
+
 async function handle(request, env) {
   const identity = await verifyAccess(request, env);
   const url = new URL(request.url);
@@ -362,8 +500,18 @@ async function handle(request, env) {
   if (request.method === 'GET' && url.pathname === '/api/status') {
     return programmeStatus(request, env);
   }
+  if (request.method === 'GET' && url.pathname === '/api/dashboard') {
+    return dashboard(env, identity);
+  }
+  if (request.method === 'GET' && url.pathname === '/api/social') {
+    const latest = await latestContent(env);
+    return json({ ok: true, latest: latest.value || DEFAULT_LATEST });
+  }
   if (request.method === 'POST' && url.pathname === '/api/programme') {
     return uploadProgramme(request, env, identity);
+  }
+  if (request.method === 'POST' && url.pathname === '/api/social') {
+    return updateLatest(request, env, identity);
   }
 
   return json({ ok: false, error: 'Not found.' }, 404);
@@ -376,7 +524,7 @@ export default {
     } catch (error) {
       if (error instanceof HttpError) return json({ ok: false, error: error.message }, error.status);
       console.error(error);
-      return json({ ok: false, error: 'Something went wrong while publishing the programme.' }, 500);
+      return json({ ok: false, error: 'Something went wrong in the admin portal.' }, 500);
     }
   }
 };
