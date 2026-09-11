@@ -208,6 +208,10 @@ assert(indexHtml.includes('href="programme.html"'), 'Homepage should link to the
 assert(indexHtml.includes('<section id="latest">'), 'Homepage should include Latest From the Bush.');
 assert(indexHtml.includes("fetch('content/latest.json?v='"), 'Homepage should load the editable social cards.');
 assert(!indexHtml.includes('openBlog('), 'Old hard-coded blog modals should be removed.');
+assert(indexHtml.includes('id="fixture-expander"'), 'Fixtures should have a show-more control.');
+assert(indexHtml.includes('const FIXTURE_PREVIEW_LIMIT = 4;'), 'Fixtures should initially show four matches.');
+assert(indexHtml.includes('id="squad-expander"'), 'Squad should have a show-more control.');
+assert(indexHtml.includes('const SQUAD_PREVIEW_LIMIT = 8;'), 'Squad should initially show eight people.');
 assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
 assert.match(
   indexHtml,
@@ -242,4 +246,4 @@ for (const edition of archive.editions) {
   }
 }
 
-console.log('Programme reader tests passed: current reader, season archive, sponsor strip, latest cards and mobile paging.');
+console.log('Programme reader tests passed: current reader, compact fixtures/squad, season archive, sponsors, latest cards and mobile paging.');
