@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-05T22:29:53.981Z",
-  "lastSuccessfulScrape": "2026-09-05T22:29:53.981Z",
+  "updatedAt": "2026-09-12T15:21:46.241Z",
+  "lastSuccessfulScrape": "2026-09-12T15:21:46.241Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -192,22 +192,22 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-09-12-abersychan-alexanders-new-tredegar",
-      "date": "2026-09-12",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abersychan Alexanders RFC",
-      "away": "New Tredegar RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
       "id": "2026-09-12-hafodyrynys-penallta-athletic",
       "date": "2026-09-12",
       "kickoff": "14:30",
       "competition": "League",
       "home": "Hafodyrynys RFC",
       "away": "Penallta RFC Athletic",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-09-12-abersychan-alexanders-new-tredegar",
+      "date": "2026-09-12",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abersychan Alexanders RFC",
+      "away": "New Tredegar RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
@@ -874,6 +874,18 @@
   ],
   "results": [],
   "allResults": [
+    {
+      "id": "2026-09-12-abersychan-alexanders-new-tredegar",
+      "date": "2026-09-12",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abersychan Alexanders RFC",
+      "homeScore": 19,
+      "awayScore": 20,
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
     {
       "id": "2026-09-05-hafodyrynys-abersychan-alexanders",
       "date": "2026-09-05",
