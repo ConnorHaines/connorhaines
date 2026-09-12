@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-12T15:21:46.241Z",
-  "lastSuccessfulScrape": "2026-09-12T15:21:46.241Z",
+  "updatedAt": "2026-09-12T19:53:51.461Z",
+  "lastSuccessfulScrape": "2026-09-12T19:53:51.461Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -192,22 +192,22 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-09-12-hafodyrynys-penallta-athletic",
-      "date": "2026-09-12",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hafodyrynys RFC",
-      "away": "Penallta RFC Athletic",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
       "id": "2026-09-12-abersychan-alexanders-new-tredegar",
       "date": "2026-09-12",
       "kickoff": "14:30",
       "competition": "League",
       "home": "Abersychan Alexanders RFC",
       "away": "New Tredegar RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-09-12-hafodyrynys-penallta-athletic",
+      "date": "2026-09-12",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hafodyrynys RFC",
+      "away": "Penallta RFC Athletic",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
@@ -887,6 +887,18 @@
       "source": "allwalessport"
     },
     {
+      "id": "2026-09-12-hafodyrynys-penallta-athletic",
+      "date": "2026-09-12",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hafodyrynys RFC",
+      "homeScore": 3,
+      "awayScore": 8,
+      "away": "Penallta RFC Athletic",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
       "id": "2026-09-05-hafodyrynys-abersychan-alexanders",
       "date": "2026-09-05",
       "kickoff": "14:30",
@@ -925,6 +937,16 @@
   ],
   "table": [
     {
+      "team": "New Tredegar RFC",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "points": 7,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
       "team": "Abertysswg Falcons RFC",
       "played": 1,
       "won": 1,
@@ -946,6 +968,16 @@
     },
     {
       "team": "Abersychan Alexanders RFC",
+      "played": 2,
+      "won": 1,
+      "drawn": 0,
+      "lost": 1,
+      "points": 5,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Penallta RFC Athletic",
       "played": 1,
       "won": 1,
       "drawn": 0,
@@ -955,27 +987,17 @@
       "isHollybush": false
     },
     {
-      "team": "New Tredegar RFC",
-      "played": 1,
+      "team": "Hafodyrynys RFC",
+      "played": 2,
       "won": 0,
       "drawn": 0,
-      "lost": 1,
+      "lost": 2,
       "points": 2,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "St Julians HSOB RFC",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "points": 1,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Hafodyrynys RFC",
       "played": 1,
       "won": 0,
       "drawn": 0,
