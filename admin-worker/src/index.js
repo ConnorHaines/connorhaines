@@ -484,6 +484,104 @@ async function updateLatest(request, env, identity) {
   return json({ ok: true, latest });
 }
 
+
+const FIXTURES_URL = 'https://hollybush-rugby.co.uk/fixtures.json';
+
+function requireDatabase(env) {
+  if (!env.DB) throw new HttpError(503, 'Availability storage has not been connected yet.');
+  return env.DB;
+}
+
+function londonDate() {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/London', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+  return values.year + '-' + values.month + '-' + values.day;
+}
+
+async function nextHollybushFixture() {
+  const response = await fetch(FIXTURES_URL, {
+    headers: { Accept: 'application/json' },
+    cf: { cacheTtl: 300, cacheEverything: true }
+  });
+  if (!response.ok) throw new HttpError(502, 'The next fixture could not be loaded.');
+  const data = await response.json();
+  const today = londonDate();
+  const fixtures = (Array.isArray(data.fixtures) ? data.fixtures : [])
+    .filter(fixture => fixture.hollybushPlaying && fixture.date >= today)
+    .sort((a, b) => (a.date + (a.kickoff || '')).localeCompare(b.date + (b.kickoff || '')));
+  if (!fixtures[0]) throw new HttpError(404, 'There is no upcoming Hollybush fixture listed yet.');
+  const fixture = fixtures[0];
+  return {
+    id: String(fixture.id),
+    date: String(fixture.date),
+    kickoff: String(fixture.kickoff || '14:30'),
+    competition: String(fixture.competition || 'Fixture'),
+    home: String(fixture.home),
+    away: String(fixture.away),
+    opponent: String(fixture.home).toLowerCase().includes('hollybush') ? String(fixture.away) : String(fixture.home),
+    venue: String(fixture.home).toLowerCase().includes('hollybush') ? 'Home' : 'Away'
+  };
+}
+
+async function storeFixture(db, fixture) {
+  await db.prepare(
+    'INSERT INTO fixtures (id, match_date, kickoff, competition, home_team, away_team, locked) VALUES (?, ?, ?, ?, ?, ?, 0) '
+      + 'ON CONFLICT(id) DO UPDATE SET match_date = excluded.match_date, kickoff = excluded.kickoff, competition = excluded.competition, home_team = excluded.home_team, away_team = excluded.away_team'
+  ).bind(fixture.id, fixture.date, fixture.kickoff, fixture.competition, fixture.home, fixture.away).run();
+}
+
+async function adminAvailability(env) {
+  const db = requireDatabase(env);
+  const fixture = await nextHollybushFixture();
+  await storeFixture(db, fixture);
+  const [fixtureRow, playerRows] = await Promise.all([
+    db.prepare('SELECT locked FROM fixtures WHERE id = ?').bind(fixture.id).first(),
+    db.prepare(
+      'SELECT p.id, p.name, a.status, a.note, a.updated_at AS updatedAt FROM players p '
+        + 'LEFT JOIN availability a ON a.player_id = p.id AND a.fixture_id = ? '
+        + 'WHERE p.active = 1 ORDER BY p.name COLLATE NOCASE'
+    ).bind(fixture.id).all()
+  ]);
+  const players = playerRows.results || [];
+  const counts = { available: 0, maybe: 0, unavailable: 0, pending: 0 };
+  players.forEach(player => {
+    const key = ['available', 'maybe', 'unavailable'].includes(player.status) ? player.status : 'pending';
+    counts[key] += 1;
+  });
+  return json({
+    ok: true,
+    fixture,
+    locked: Boolean(fixtureRow?.locked),
+    players,
+    counts,
+    publicUrl: String(env.PUBLIC_AVAILABILITY_URL || '')
+  });
+}
+
+async function setAvailabilityLock(request, env, identity) {
+  requireSameOrigin(request, 'Availability must be managed from this admin page.');
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    throw new HttpError(400, 'The availability update could not be read.');
+  }
+  if (typeof body?.locked !== 'boolean') throw new HttpError(400, 'Choose whether responses should be open or locked.');
+  const db = requireDatabase(env);
+  const fixture = await nextHollybushFixture();
+  await storeFixture(db, fixture);
+  await db.prepare('UPDATE fixtures SET locked = ? WHERE id = ?').bind(body.locked ? 1 : 0, fixture.id).run();
+  console.log(JSON.stringify({
+    event: 'availability_lock',
+    actor: identity.email,
+    fixture: fixture.id,
+    locked: body.locked
+  }));
+  return json({ ok: true, fixture, locked: body.locked });
+}
+
 async function handle(request, env) {
   const identity = await verifyAccess(request, env);
   const url = new URL(request.url);
@@ -512,6 +610,12 @@ async function handle(request, env) {
   }
   if (request.method === 'POST' && url.pathname === '/api/social') {
     return updateLatest(request, env, identity);
+  }
+  if (request.method === 'GET' && url.pathname === '/api/availability') {
+    return adminAvailability(env);
+  }
+  if (request.method === 'POST' && url.pathname === '/api/availability/lock') {
+    return setAvailabilityLock(request, env, identity);
   }
 
   return json({ ok: false, error: 'Not found.' }, 404);

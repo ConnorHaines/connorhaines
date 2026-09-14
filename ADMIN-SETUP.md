@@ -1,6 +1,6 @@
 # Hollybush club admin setup
 
-The admin portal runs as a small Cloudflare Worker at its own `workers.dev` address. Cloudflare Access handles the login and only approved email addresses receive a one-time sign-in code. The portal can stage a programme PDF and update the homepage's Facebook and TikTok cards. GitHub remains the content store, so there is no separate database or CMS subscription.
+The admin portal runs as a small Cloudflare Worker at its own `workers.dev` address. Cloudflare Access handles the login and only approved email addresses receive a one-time sign-in code. The portal can stage a programme PDF, update the homepage's Facebook and TikTok cards, and show coaches the squad's availability for the next fixture. GitHub remains the content store for website content. Player availability is stored in a small Cloudflare D1 database.
 
 The Hollybush website remains on GitHub Pages and its DNS remains at IONOS. Do not add, transfer or change the domain in Cloudflare.
 
@@ -91,3 +91,75 @@ The upload is written to `programmes/pending.pdf` with its match details in `pro
 - Facebook and TikTok updates are stored in `content/latest.json`; the current programme card is populated automatically from `programmes/programme.json`.
 - Renew the fine-grained GitHub token before it expires by updating the `GITHUB_TOKEN` Worker secret.
 - Never share the GitHub token or add it to a website file.
+
+## Player availability setup
+
+Availability uses two Workers with one shared D1 database:
+
+- `admin` stays behind Cloudflare Access and shows the private coach view.
+- `availability` is public at its own obscure `workers.dev` address and accepts player responses using the shared squad PIN.
+- Both Workers use the same D1 binding named **DB**.
+
+Do not enable Cloudflare Access on the public `availability` Worker.
+
+### 1. Create and initialise D1
+
+In **Cloudflare → Storage & databases → D1 SQL database**:
+
+1. Create a database named `hollybush-club`.
+2. Open its **Console**.
+3. Paste and run `availability-worker/migrations/0001_availability.sql`.
+4. Copy the database ID shown on the database overview. The ID is not a password.
+
+The migration creates the fixture, player and response tables and loads the initial retained squad alphabetically. Tyler T. Roberts is not included. Ben Watkins-Smith and Ivan Hutchinson are included.
+
+### 2. Connect the private admin Worker
+
+Open **Workers & Pages → admin → Bindings → Add binding → D1 database**:
+
+- Variable name: `DB`
+- Database: `hollybush-club`
+
+Also add a plain-text variable:
+
+- Name: `PUBLIC_AVAILABILITY_URL`
+- Value: the production URL from step 3 below
+
+Redeploy the admin Worker after adding the binding and variable. Keep its existing Cloudflare Access policy enabled.
+
+### 3. Create the public availability Worker
+
+Deploy the Worker from the repository:
+
+```sh
+cd availability-worker
+npx wrangler@latest login
+npx wrangler@latest deploy
+```
+
+Alternatively, create a second Cloudflare Worker connected to the same GitHub repository and set its root directory to `availability-worker`.
+
+Then add the same D1 binding to that Worker:
+
+- Variable name: `DB`
+- Database: `hollybush-club`
+
+Store the shared PIN as an encrypted Worker secret named `SQUAD_PIN`. Do not add the PIN to GitHub or a plain-text variable. With Wrangler:
+
+```sh
+cd availability-worker
+npx wrangler@latest secret put SQUAD_PIN
+```
+
+Enter the agreed squad PIN when prompted. Redeploy once the binding and secret are present.
+
+### 4. Test the flow
+
+1. Open the public availability Worker URL in a private browser window.
+2. Confirm the next Hollybush fixture and alphabetic player list appear.
+3. Submit a test response using the squad PIN.
+4. Open the private admin portal and select **Availability**.
+5. Confirm the response appears, copy both WhatsApp lists, then test locking and reopening responses.
+6. Share only the public availability URL with players.
+
+The public form never returns other players' answers. The coach view remains protected by Cloudflare Access. Notes are limited to 200 characters and responses can be changed until a coach locks the fixture.
