@@ -92,7 +92,7 @@ export const PLAYER_JS = String.raw`(() => {
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || 'Could not load availability.');
       fixtureId = body.fixture.id;
-      document.getElementById('fixture-title').textContent = 'Hollybush v ' + body.fixture.opponent;
+      document.getElementById('fixture-title').textContent = body.fixture.home + ' v ' + body.fixture.away;
       document.getElementById('fixture-meta').textContent = fixtureLabel(body.fixture);
       document.getElementById('fixture-venue').textContent = body.fixture.venue;
       body.players.forEach(player => {
