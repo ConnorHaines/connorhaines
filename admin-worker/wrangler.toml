@@ -11,3 +11,6 @@ GITHUB_PENDING_PATH = "programmes/pending.pdf"
 GITHUB_LATEST_PATH = "content/latest.json"
 PUBLIC_PROGRAMME_URL = "https://hollybush-rugby.co.uk/programme.html"
 MAX_UPLOAD_BYTES = "15728640"
+
+# Bind the shared D1 database as DB after it has been created.
+# Set PUBLIC_AVAILABILITY_URL to the public availability Worker address.

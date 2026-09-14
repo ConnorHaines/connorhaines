@@ -32,6 +32,9 @@ export const ADMIN_HTML = String.raw`<!doctype html>
       <a class="nav-item" href="#latest" data-view-link="latest">
         <span class="nav-icon" aria-hidden="true">↗</span><span>Latest From the Bush</span>
       </a>
+      <a class="nav-item" href="#availability" data-view-link="availability">
+        <span class="nav-icon" aria-hidden="true">✓</span><span>Availability</span>
+      </a>
       <div class="sidebar-footer">
         <span class="secure-dot" aria-hidden="true"></span>
         Protected by Cloudflare Access
@@ -74,6 +77,12 @@ export const ADMIN_HTML = String.raw`<!doctype html>
             <p id="dashboard-tiktok-meta">Loading…</p>
             <a href="#latest">Edit card <span>→</span></a>
           </article>
+          <article class="summary-card availability-summary">
+            <p class="card-label">Squad availability</p>
+            <strong class="big-number" id="dashboard-available-count">—</strong>
+            <p id="dashboard-availability-meta">Checking the next fixture.</p>
+            <a href="#availability">Open coach view <span>→</span></a>
+          </article>
         </div>
 
         <section class="quick-actions" aria-labelledby="quick-actions-title">
@@ -84,6 +93,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <div class="action-row">
             <a class="action-button" href="#programme"><span class="action-icon">＋</span><span><strong>New programme</strong><small>Upload the next home edition</small></span></a>
             <a class="action-button" href="#latest"><span class="action-icon">↗</span><span><strong>Social cards</strong><small>Change the Facebook and TikTok links</small></span></a>
+            <a class="action-button" href="#availability"><span class="action-icon">✓</span><span><strong>Player availability</strong><small>See replies and chase the missing names</small></span></a>
           </div>
         </section>
       </section>
@@ -139,6 +149,46 @@ export const ADMIN_HTML = String.raw`<!doctype html>
           <span class="status-dot" aria-hidden="true"></span>
           <div><strong id="status-title"></strong><p id="status-message"></p><a id="programme-link" href="https://hollybush-rugby.co.uk/programme.html" target="_blank" rel="noopener" hidden>Open the live programme</a></div>
         </section>
+      </section>
+
+
+      <section class="portal-view" id="view-availability" data-view="availability" hidden>
+        <div class="page-heading compact-heading">
+          <div>
+            <p class="eyebrow">Coach tools</p>
+            <h1>Player availability</h1>
+            <p id="availability-fixture">Loading the next Hollybush fixture…</p>
+          </div>
+          <a class="site-button secondary-button" id="availability-public-link" href="#" target="_blank" rel="noopener" hidden>Open player form ↗</a>
+        </div>
+
+        <div class="availability-counts" aria-live="polite">
+          <article><span class="count-dot available-dot"></span><strong id="available-count">—</strong><small>Available</small></article>
+          <article><span class="count-dot maybe-dot"></span><strong id="maybe-count">—</strong><small>Maybe</small></article>
+          <article><span class="count-dot unavailable-dot"></span><strong id="unavailable-count">—</strong><small>Unavailable</small></article>
+          <article><span class="count-dot pending-dot"></span><strong id="pending-count">—</strong><small>No reply</small></article>
+        </div>
+
+        <section class="panel availability-toolbar">
+          <div>
+            <p class="step">Responses</p>
+            <h2 id="availability-state">Loading…</h2>
+            <p id="availability-state-help">Checking whether players can still respond.</p>
+          </div>
+          <div class="toolbar-actions">
+            <button class="site-button secondary-button button-reset" id="copy-summary" type="button">Copy full list</button>
+            <button class="site-button secondary-button button-reset" id="copy-chase" type="button">Copy chase list</button>
+            <button class="primary-button compact-button" id="toggle-lock" type="button" disabled>Lock responses</button>
+          </div>
+        </section>
+
+        <div class="availability-groups">
+          <section class="response-group available-group"><div><span class="count-dot available-dot"></span><h2>Available</h2></div><ul id="available-list"></ul></section>
+          <section class="response-group maybe-group"><div><span class="count-dot maybe-dot"></span><h2>Maybe</h2></div><ul id="maybe-list"></ul></section>
+          <section class="response-group unavailable-group"><div><span class="count-dot unavailable-dot"></span><h2>Unavailable</h2></div><ul id="unavailable-list"></ul></section>
+          <section class="response-group pending-group"><div><span class="count-dot pending-dot"></span><h2>No reply</h2></div><ul id="pending-list"></ul></section>
+        </div>
+        <section class="status" id="availability-status" aria-live="polite" hidden><span class="status-dot" aria-hidden="true"></span><div><strong id="availability-status-title"></strong><p id="availability-status-message"></p></div></section>
       </section>
 
       <section class="portal-view" id="view-latest" data-view="latest" hidden>
@@ -322,6 +372,35 @@ h2 { font-size: clamp(1.3rem,2.4vw,1.75rem); }
 .public-card-body strong { color: var(--yellow); font-size: .78rem; }
 footer { padding: 24px; color: #777b7f; border-top: 1px solid var(--line); text-align: center; font-size: .82rem; }
 
+
+.availability-summary { border-top: 3px solid var(--success); }
+.availability-counts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.availability-counts article { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; padding: 20px; border: 1px solid var(--line); background: var(--panel); }
+.availability-counts strong { font-size: 2rem; line-height: 1; }
+.availability-counts small { grid-column: 2; color: var(--muted); }
+.count-dot { display: inline-block; width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; }
+.available-dot { background: var(--success); }
+.maybe-dot { background: var(--yellow); }
+.unavailable-dot { background: var(--danger); }
+.pending-dot { background: #767b80; }
+.availability-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.availability-toolbar p:last-child { margin: 7px 0 0; color: var(--muted); }
+.toolbar-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+.button-reset { background: transparent; cursor: pointer; }
+.compact-button { min-width: 150px; padding: 13px 17px; }
+.availability-groups { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 18px; }
+.response-group { min-height: 220px; padding: 24px; border: 1px solid var(--line); background: linear-gradient(145deg,rgba(27,30,33,.98),rgba(16,18,20,.98)); }
+.response-group > div { display: flex; align-items: center; gap: 10px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.response-group .count-dot { margin: 0; }
+.response-group ul { display: grid; gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+.response-group li { padding: 11px 12px; border-left: 3px solid #555b60; background: #0d0f11; }
+.available-group li { border-left-color: var(--success); }
+.maybe-group li { border-left-color: var(--yellow); }
+.unavailable-group li { border-left-color: var(--danger); }
+.response-group li strong, .response-group li small { display: block; }
+.response-group li small { margin-top: 5px; color: var(--muted); line-height: 1.4; }
+.empty-response { color: var(--muted); font-style: italic; }
+
 @media (max-width: 960px) {
   .portal-shell { grid-template-columns: 1fr; }
   .sidebar { position: sticky; top: 72px; z-index: 8; height: auto; padding: 8px 16px; flex-direction: row; gap: 5px; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); background: rgba(9,10,11,.96); }
@@ -330,6 +409,8 @@ footer { padding: 24px; color: #777b7f; border-top: 1px solid var(--line); text-
   main { width: min(100% - 36px,760px); padding-top: 42px; }
   .page-heading { align-items: flex-start; flex-direction: column; }
   .dashboard-grid, .editor-grid { grid-template-columns: 1fr; }
+  .availability-toolbar { align-items: flex-start; flex-direction: column; }
+  .toolbar-actions { justify-content: flex-start; }
   .social-preview-grid { display: flex; padding-bottom: 8px; overflow-x: auto; scroll-snap-type: x mandatory; }
   .public-card { flex: 0 0 min(82vw,330px); scroll-snap-align: start; }
 }
@@ -341,7 +422,8 @@ footer { padding: 24px; color: #777b7f; border-top: 1px solid var(--line); text-
   .sidebar { top: 66px; }
   main { width: calc(100% - 28px); padding-top: 34px; }
   .page-heading { margin-bottom: 28px; }
-  .details-grid, .action-row { grid-template-columns: 1fr; }
+  .details-grid, .action-row, .availability-groups { grid-template-columns: 1fr; }
+  .availability-counts { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .panel-heading { align-items: flex-start; }
   .limit { max-width: 120px; text-align: right; }
   .drop-zone { min-height: 190px; }
@@ -356,7 +438,7 @@ footer { padding: 24px; color: #777b7f; border-top: 1px solid var(--line); text-
 export const ADMIN_JS = String.raw`(() => {
   const views = Array.from(document.querySelectorAll('[data-view]'));
   const viewLinks = Array.from(document.querySelectorAll('[data-view-link]'));
-  const knownViews = ['dashboard', 'programme', 'latest'];
+  const knownViews = ['dashboard', 'programme', 'latest', 'availability'];
 
   function route() {
     const requested = window.location.hash.slice(1);
@@ -545,6 +627,125 @@ export const ADMIN_JS = String.raw`(() => {
     updateSocialPreview();
   }
 
+
+  let availabilityData = null;
+  const availabilityStatus = document.getElementById('availability-status');
+  const toggleLockButton = document.getElementById('toggle-lock');
+
+  function fixtureLabel(fixture) {
+    if (!fixture) return 'Next fixture';
+    const date = new Date(fixture.date + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    return fixture.venue + ' v ' + fixture.opponent + ' · ' + date + ' · ' + fixture.kickoff;
+  }
+
+  function renderPlayerList(statusName, players) {
+    const list = document.getElementById(statusName + '-list');
+    list.replaceChildren();
+    if (!players.length) {
+      const empty = document.createElement('li');
+      empty.className = 'empty-response';
+      empty.textContent = statusName === 'pending' ? 'Everyone has replied.' : 'Nobody yet.';
+      list.appendChild(empty);
+      return;
+    }
+    players.forEach(player => {
+      const item = document.createElement('li');
+      const name = document.createElement('strong');
+      name.textContent = player.name;
+      item.appendChild(name);
+      if (player.note) {
+        const note = document.createElement('small');
+        note.textContent = player.note;
+        item.appendChild(note);
+      }
+      list.appendChild(item);
+    });
+  }
+
+  function showAvailabilityStatus(kind, title, message) {
+    availabilityStatus.hidden = false;
+    availabilityStatus.className = 'status' + (kind ? ' is-' + kind : '');
+    setText('availability-status-title', title);
+    setText('availability-status-message', message);
+  }
+
+  function renderAvailability(body) {
+    availabilityData = body;
+    setText('availability-fixture', fixtureLabel(body.fixture));
+    ['available', 'maybe', 'unavailable', 'pending'].forEach(statusName => {
+      setText(statusName + '-count', body.counts[statusName]);
+      renderPlayerList(statusName, body.players.filter(player => (player.status || 'pending') === statusName));
+    });
+    setText('dashboard-available-count', body.counts.available);
+    setText('dashboard-availability-meta', body.fixture.opponent + ' · ' + body.counts.pending + ' awaiting reply');
+    setText('availability-state', body.locked ? 'Responses are locked' : 'Responses are open');
+    setText('availability-state-help', body.locked ? 'Players can see the fixture but cannot change their answer.' : 'Players can submit or update their answer.');
+    toggleLockButton.disabled = false;
+    toggleLockButton.textContent = body.locked ? 'Reopen responses' : 'Lock responses';
+    const publicLink = document.getElementById('availability-public-link');
+    publicLink.hidden = !body.publicUrl;
+    if (body.publicUrl) publicLink.href = body.publicUrl;
+  }
+
+  async function loadAvailability() {
+    try {
+      const response = await fetch('/api/availability', { cache: 'no-store' });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not load availability.');
+      renderAvailability(body);
+    } catch (error) {
+      setText('dashboard-available-count', '—');
+      setText('dashboard-availability-meta', 'Setup required');
+      setText('availability-fixture', error.message || 'Could not load the next fixture.');
+      showAvailabilityStatus('error', 'Availability is not connected', error.message || 'Check the D1 database binding.');
+    }
+  }
+
+  async function toggleAvailabilityLock() {
+    if (!availabilityData) return;
+    const locked = !availabilityData.locked;
+    if (!window.confirm((locked ? 'Lock' : 'Reopen') + ' availability for ' + availabilityData.fixture.opponent + '?')) return;
+    toggleLockButton.disabled = true;
+    try {
+      const response = await fetch('/api/availability/lock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ locked })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not update availability.');
+      await loadAvailability();
+      showAvailabilityStatus('success', locked ? 'Responses locked' : 'Responses reopened', locked ? 'The current answers are now frozen.' : 'Players can update their answers again.');
+    } catch (error) {
+      showAvailabilityStatus('error', 'Could not update responses', error.message || 'Try again.');
+      toggleLockButton.disabled = false;
+    }
+  }
+
+  async function copyAvailability(kind) {
+    if (!availabilityData) return;
+    let value;
+    if (kind === 'chase') {
+      const names = availabilityData.players.filter(player => !player.status).map(player => player.name);
+      value = names.length ? 'Still waiting on: ' + names.join(', ') : 'Everyone has replied for ' + availabilityData.fixture.opponent + '.';
+    } else {
+      const namesFor = statusName => availabilityData.players.filter(player => (player.status || 'pending') === statusName).map(player => player.name).join(', ') || 'None';
+      value = [
+        fixtureLabel(availabilityData.fixture),
+        'Available (' + availabilityData.counts.available + '): ' + namesFor('available'),
+        'Maybe (' + availabilityData.counts.maybe + '): ' + namesFor('maybe'),
+        'Unavailable (' + availabilityData.counts.unavailable + '): ' + namesFor('unavailable'),
+        'No reply (' + availabilityData.counts.pending + '): ' + namesFor('pending')
+      ].join('\n');
+    }
+    try {
+      await navigator.clipboard.writeText(value);
+      showAvailabilityStatus('success', 'Copied', kind === 'chase' ? 'The chase list is ready to paste into WhatsApp.' : 'The full availability list is ready to paste.');
+    } catch {
+      showAvailabilityStatus('error', 'Could not copy', 'Your browser blocked clipboard access.');
+    }
+  }
+
   function setText(id, value) { document.getElementById(id).textContent = value; }
   async function loadDashboard() {
     try {
@@ -605,6 +806,9 @@ export const ADMIN_JS = String.raw`(() => {
   season.addEventListener('change', updatePublishState);
   Object.keys(social).forEach(platform => Object.values(social[platform]).filter(element => element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement).forEach(element => element.addEventListener('input', updateSocialPreview)));
   socialPublishButton.addEventListener('click', publishSocial);
+  toggleLockButton.addEventListener('click', toggleAvailabilityLock);
+  document.getElementById('copy-summary').addEventListener('click', () => copyAvailability('summary'));
+  document.getElementById('copy-chase').addEventListener('click', () => copyAvailability('chase'));
   ['dragenter','dragover'].forEach(eventName => dropZone.addEventListener(eventName, event => { event.preventDefault(); dropZone.classList.add('is-dragging'); }));
   ['dragleave','drop'].forEach(eventName => dropZone.addEventListener(eventName, event => { event.preventDefault(); dropZone.classList.remove('is-dragging'); }));
   dropZone.addEventListener('drop', event => chooseFile(event.dataTransfer.files[0]));
@@ -615,4 +819,5 @@ export const ADMIN_JS = String.raw`(() => {
   season.value = seasonForDate(matchDate.value);
   route();
   loadDashboard();
+  loadAvailability();
 })();`;

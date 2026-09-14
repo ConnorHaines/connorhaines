@@ -1,0 +1,7 @@
+name = "availability"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+workers_dev = true
+
+# In Cloudflare, bind the shared D1 database with the variable name DB.
+# Store the squad PIN with: npx wrangler secret put SQUAD_PIN
