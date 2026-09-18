@@ -1,4 +1,5 @@
 import { ADMIN_CSS, ADMIN_HTML, ADMIN_JS } from './ui.js';
+import { validPin, requirePepper, newPinRecord } from '../../shared/player-pins.mjs';
 
 const DEFAULT_MAX_UPLOAD_BYTES = 15 * 1024 * 1024;
 const GITHUB_API_VERSION = '2022-11-28';
@@ -582,9 +583,39 @@ async function setAvailabilityLock(request, env, identity) {
   return json({ ok: true, fixture, locked: body.locked });
 }
 
+async function playerPins(env) {
+  const db = requireDatabase(env);
+  const rows = await db.prepare('SELECT p.id, p.name, CASE WHEN s.player_id IS NULL THEN 0 ELSE 1 END AS pinSet FROM players p LEFT JOIN player_pins s ON s.player_id = p.id WHERE p.active = 1 ORDER BY p.name COLLATE NOCASE').all();
+  return json({ ok: true, players: rows.results || [] });
+}
+
+async function setPlayerPin(request, env, identity) {
+  requireSameOrigin(request, 'PINs must be managed from this admin page.');
+  let body;
+  try { body = await request.json(); }
+  catch { throw new HttpError(400, 'The PIN update could not be read.'); }
+  if (!validPin(body?.pin)) throw new HttpError(400, 'Enter exactly four digits.');
+  let pepper;
+  try { pepper = requirePepper(env); }
+  catch { throw new HttpError(503, 'Player PINs have not been configured yet.'); }
+  const db = requireDatabase(env);
+  const player = await db.prepare('SELECT id, name FROM players WHERE id = ? AND active = 1').bind(String(body?.playerId || '')).first();
+  if (!player) throw new HttpError(404, 'Player not found.');
+  const record = await newPinRecord(player.id, body.pin, pepper);
+  await db.batch([
+    db.prepare('INSERT INTO player_pins (player_id, pin_hash, pin_salt) VALUES (?, ?, ?) ON CONFLICT(player_id) DO UPDATE SET pin_hash = excluded.pin_hash, pin_salt = excluded.pin_salt, updated_at = CURRENT_TIMESTAMP').bind(player.id, record.hash, record.salt),
+    db.prepare('DELETE FROM player_pin_attempts WHERE player_id = ?').bind(player.id)
+  ]);
+  console.log(JSON.stringify({ event: 'player_pin_reset', actor: identity.email, player: player.id }));
+  return json({ ok: true, player: player.name });
+}
+
 async function handle(request, env) {
   const identity = await verifyAccess(request, env);
   const url = new URL(request.url);
+
+  if (request.method === 'GET' && url.pathname === '/api/players/pins') return playerPins(env);
+  if (request.method === 'POST' && url.pathname === '/api/players/pin') return setPlayerPin(request, env, identity);
 
   if (request.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
     return textAsset(ADMIN_HTML, 'text/html; charset=utf-8');

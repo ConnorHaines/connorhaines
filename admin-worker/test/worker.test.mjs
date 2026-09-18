@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 import test from 'node:test';
+import { testDatabase } from '../../shared/test-db.mjs';
+import { pinHash } from '../../shared/player-pins.mjs';
 
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
@@ -246,6 +248,36 @@ test('rejects social links from the wrong platform', async () => {
     })
   }), env);
   assert.equal(response.status, 400);
+});
+
+test('PIN endpoints require Access and same-origin; reset stores hash only and clears limits', async () => {
+  const DB = testDatabase();
+  const settings = { ...env, DB, PIN_PEPPER: 'test-only-pepper-at-least-32-characters' };
+  const options = {
+    method: 'POST', headers: { Origin: 'https://admin.example.workers.dev', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ playerId: 'connor-haines', pin: '0123' })
+  };
+  assert.equal((await worker.fetch(new Request('https://admin.example.workers.dev/api/players/pin', options), settings)).status, 401);
+  assert.equal((await worker.fetch(await adminRequest('/api/players/pin', { ...options, headers: { Origin: 'https://wrong.example' } }), settings)).status, 403);
+  const response = await worker.fetch(await adminRequest('/api/players/pin', options), settings);
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { ok: true, player: 'Connor Haines' });
+  const stored = await DB.prepare('SELECT * FROM player_pins').first();
+  assert.equal(stored.pin_hash, await pinHash('connor-haines', '0123', stored.pin_salt, settings.PIN_PEPPER));
+  await DB.prepare('INSERT INTO player_pin_attempts VALUES (?, 5, 123)').bind('connor-haines').run();
+  const reset = await worker.fetch(await adminRequest('/api/players/pin', { ...options, body: JSON.stringify({ playerId: 'connor-haines', pin: '4567' }) }), settings);
+  assert.equal(reset.status, 200);
+  const updated = await DB.prepare('SELECT * FROM player_pins').first();
+  assert.notEqual(updated.pin_hash, stored.pin_hash);
+  assert.notEqual(updated.pin_salt, stored.pin_salt);
+  assert.equal(await DB.prepare('SELECT * FROM player_pin_attempts').first(), null);
+  const list = await worker.fetch(await adminRequest('/api/players/pins'), settings);
+  const body = await list.json();
+  assert.equal(body.players.find(p => p.id === 'connor-haines').pinSet, 1);
+  assert.deepEqual(Object.keys(body.players[0]).sort(), ['id', 'name', 'pinSet']);
+  for (const pin of ['123', '12345', 'abcd', 1234]) {
+    assert.equal((await worker.fetch(await adminRequest('/api/players/pin', { ...options, body: JSON.stringify({ playerId: 'connor-haines', pin }) }), settings)).status, 400);
+  }
 });
 
 test.after(() => {

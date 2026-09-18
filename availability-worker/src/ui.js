@@ -41,8 +41,9 @@ export const PLAYER_HTML = String.raw`<!doctype html>
         <textarea id="note" maxlength="200" rows="3" placeholder="Injury, work, arriving late…"></textarea>
       </div>
       <div class="field pin-field">
-        <label for="pin">Squad PIN</label>
-        <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" maxlength="16" required placeholder="Enter the shared PIN">
+        <label for="pin">Your personal PIN</label>
+        <input id="pin" type="password" inputmode="numeric" autocomplete="current-password" pattern="[0-9]{4}" minlength="4" maxlength="4" required placeholder="Enter your four-digit PIN">
+        <small>Use the PIN your coach gave you. Forgotten it? Ask a coach to reset it.</small>
       </div>
       <button id="submit-button" type="submit">Save my availability</button>
     </form>

@@ -35,6 +35,7 @@ export const ADMIN_HTML = String.raw`<!doctype html>
       <a class="nav-item" href="#availability" data-view-link="availability">
         <span class="nav-icon" aria-hidden="true">✓</span><span>Availability</span>
       </a>
+      <a class="nav-item" href="#players" data-view-link="players"><span class="nav-icon" aria-hidden="true">#</span><span>Player PINs</span></a>
       <div class="sidebar-footer">
         <span class="secure-dot" aria-hidden="true"></span>
         Protected by Cloudflare Access
@@ -191,6 +192,17 @@ export const ADMIN_HTML = String.raw`<!doctype html>
         <section class="status" id="availability-status" aria-live="polite" hidden><span class="status-dot" aria-hidden="true"></span><div><strong id="availability-status-title"></strong><p id="availability-status-message"></p></div></section>
       </section>
 
+      <section class="portal-view" id="view-players" data-view="players" hidden>
+        <div class="page-heading compact-heading"><div><p class="eyebrow">Squad access</p><h1>Player PINs</h1><p>Set a different four-digit PIN for each player and send it privately. Existing PINs cannot be revealed.</p></div></div>
+        <form class="panel" id="player-pin-form">
+          <div class="field"><label for="pin-player">Player</label><select id="pin-player" required><option value="">Loading players…</option></select></div>
+          <div class="field"><label for="new-player-pin">New four-digit PIN</label><input id="new-player-pin" type="password" inputmode="numeric" autocomplete="new-password" pattern="[0-9]{4}" minlength="4" maxlength="4" required></div>
+          <button class="primary-button" id="save-player-pin" type="submit" disabled>Set / reset PIN</button>
+          <p id="pin-save-message" role="status">Loading players…</p>
+          <p>Keep a note of the PIN before saving so you can send it to the player. Saving replaces their old PIN and clears any attempt lockout.</p>
+        </form>
+      </section>
+
       <section class="portal-view" id="view-latest" data-view="latest" hidden>
         <div class="page-heading compact-heading">
           <div>
@@ -330,7 +342,10 @@ h2 { font-size: clamp(1.3rem,2.4vw,1.75rem); }
 .details-grid { display: grid; grid-template-columns: minmax(220px,1.5fr) minmax(170px,1fr) minmax(150px,.8fr); gap: 16px; margin-top: 24px; }
 .details-grid label, .editor-panel label { display: grid; gap: 8px; }
 .details-grid label > span, .editor-panel label > span { color: var(--muted); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.details-grid input, .details-grid select, .editor-panel input, .editor-panel textarea { width: 100%; min-height: 50px; padding: 11px 13px; color: var(--text); border: 1px solid #4a4f54; border-radius: 0; background: #0d0f11; }
+.details-grid input, .details-grid select, .editor-panel input, .editor-panel textarea, #player-pin-form input, #player-pin-form select { width: 100%; min-height: 50px; padding: 11px 13px; color: var(--text); border: 1px solid #4a4f54; border-radius: 0; background: #0d0f11; }
+#player-pin-form { display: grid; gap: 20px; max-width: 640px; }
+#player-pin-form .field { display: grid; gap: 8px; }
+#player-pin-form p { color: var(--muted); line-height: 1.5; }
 .editor-panel textarea { min-height: 112px; resize: vertical; line-height: 1.45; }
 .details-grid input:focus, .details-grid select:focus, .editor-panel input:focus, .editor-panel textarea:focus { outline: 2px solid var(--yellow); outline-offset: 1px; border-color: var(--yellow); }
 .details-help { margin: 15px 0 0; color: var(--muted); font-size: .9rem; }
@@ -438,7 +453,7 @@ footer { padding: 24px; color: #777b7f; border-top: 1px solid var(--line); text-
 export const ADMIN_JS = String.raw`(() => {
   const views = Array.from(document.querySelectorAll('[data-view]'));
   const viewLinks = Array.from(document.querySelectorAll('[data-view-link]'));
-  const knownViews = ['dashboard', 'programme', 'latest', 'availability'];
+  const knownViews = ['dashboard', 'programme', 'latest', 'availability', 'players'];
 
   function route() {
     const requested = window.location.hash.slice(1);
@@ -813,6 +828,52 @@ export const ADMIN_JS = String.raw`(() => {
   ['dragleave','drop'].forEach(eventName => dropZone.addEventListener(eventName, event => { event.preventDefault(); dropZone.classList.remove('is-dragging'); }));
   dropZone.addEventListener('drop', event => chooseFile(event.dataTransfer.files[0]));
   window.addEventListener('beforeunload', () => { if (previewUrl) URL.revokeObjectURL(previewUrl); if (pollTimer) window.clearTimeout(pollTimer); });
+
+  const pinPlayer = document.getElementById('pin-player');
+  const pinInput = document.getElementById('new-player-pin');
+  const pinButton = document.getElementById('save-player-pin');
+  const pinMessage = document.getElementById('pin-save-message');
+  async function loadPinPlayers() {
+    try {
+      const response = await fetch('/api/players/pins', { cache: 'no-store' });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not load player PIN setup.');
+      const selected = pinPlayer.value;
+      pinPlayer.replaceChildren(new Option('Choose a player', ''));
+      body.players.forEach(player => pinPlayer.add(new Option(player.name + (player.pinSet ? ' — PIN set' : ' — needs PIN'), player.id)));
+      pinPlayer.value = selected;
+      pinButton.disabled = false;
+      return body.players;
+    } catch (error) {
+      pinButton.disabled = true;
+      pinMessage.textContent = error.message;
+      return null;
+    }
+  }
+  document.getElementById('player-pin-form').addEventListener('submit', async event => {
+    event.preventDefault();
+    const name = pinPlayer.selectedOptions[0]?.textContent;
+    if (!window.confirm('Set a new PIN for ' + name + '? Their previous PIN will stop working.')) return;
+    pinButton.disabled = true;
+    try {
+      const response = await fetch('/api/players/pin', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ playerId: pinPlayer.value, pin: pinInput.value })
+      });
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.error || 'Could not save PIN.');
+      pinInput.value = '';
+      pinMessage.textContent = 'PIN saved for ' + body.player + '. Send it to them privately.';
+      await loadPinPlayers();
+    } catch (error) {
+      pinMessage.textContent = error.message;
+    } finally {
+      pinButton.disabled = false;
+    }
+  });
+  loadPinPlayers().then(players => {
+    if (players) pinMessage.textContent = players.filter(player => !player.pinSet).length + ' players still need a PIN.';
+  });
 
   populateSeasons();
   matchDate.value = new Date().toISOString().slice(0,10);

@@ -1,4 +1,5 @@
 import { PLAYER_CSS, PLAYER_HTML, PLAYER_JS } from './ui.js';
+import { validPin, requirePepper, pinHash, equalHash, takePinAttempt } from '../../shared/player-pins.mjs';
 
 const FIXTURES_URL = 'https://hollybush-rugby.co.uk/fixtures.json';
 
@@ -124,26 +125,29 @@ async function respond(request, env) {
     throw new HttpError(400, 'Your response could not be read.');
   }
 
-  const expectedPin = String(env.SQUAD_PIN || '');
-  if (!expectedPin) throw new HttpError(503, 'The squad PIN has not been configured yet.');
-  if (!safeEqual(body?.pin, expectedPin)) throw new HttpError(401, 'That squad PIN is not correct.');
+  const db = database(env);
+  let pepper;
+  try { pepper = requirePepper(env); }
+  catch { throw new HttpError(503, 'Player PINs have not been configured yet.'); }
+  const playerId = String(body?.playerId || '');
+  const player = await db.prepare('SELECT id, name FROM players WHERE id = ? AND active = 1').bind(playerId).first();
+  if (!player) throw new HttpError(401, 'Incorrect PIN.');
+  if (!await takePinAttempt(db, playerId)) throw new HttpError(429, 'Too many attempts. Wait 15 minutes or ask a coach to reset your PIN.');
+  const record = await db.prepare('SELECT pin_hash, pin_salt FROM player_pins WHERE player_id = ?').bind(playerId).first();
+  const hash = await pinHash(playerId, typeof body?.pin === 'string' ? body.pin : '', record?.pin_salt || 'unset', pepper);
+  if (!validPin(body?.pin) || !record || !equalHash(hash, record.pin_hash)) throw new HttpError(401, 'Incorrect PIN.');
 
   const fixture = await nextFixture();
   if (body?.fixtureId !== fixture.id) throw new HttpError(409, 'The next fixture has changed. Refresh and try again.');
 
-  const playerId = String(body?.playerId || '');
   const status = String(body?.status || '');
   const note = String(body?.note || '').trim();
   if (!['available', 'maybe', 'unavailable'].includes(status)) throw new HttpError(400, 'Choose Available, Maybe or Unavailable.');
   if (note.length > 200) throw new HttpError(400, 'Keep the note to 200 characters or fewer.');
 
-  const db = database(env);
   await saveFixture(db, fixture);
   const fixtureRow = await db.prepare('SELECT locked FROM fixtures WHERE id = ?').bind(fixture.id).first();
   if (fixtureRow?.locked) throw new HttpError(423, 'Responses have been locked for this fixture.');
-
-  const player = await db.prepare('SELECT id, name FROM players WHERE id = ? AND active = 1').bind(playerId).first();
-  if (!player) throw new HttpError(400, 'Choose your name from the squad list.');
 
   await db.prepare(
     'INSERT INTO availability (fixture_id, player_id, status, note, updated_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP) '
