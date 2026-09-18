@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-17T16:41:36.808Z",
-  "lastSuccessfulScrape": "2026-09-17T16:41:36.808Z",
+  "updatedAt": "2026-09-18T16:11:51.860Z",
+  "lastSuccessfulScrape": "2026-09-18T16:11:51.860Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -219,16 +219,6 @@
       "home": "Abertysswg Falcons RFC",
       "away": "Hollybush RFC",
       "hollybushPlaying": true,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-09-19-brynithel-st-julians-hsob",
-      "date": "2026-09-19",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Brynithel RFC",
-      "away": "St Julians HSOB RFC",
-      "hollybushPlaying": false,
       "source": "allwalessport"
     },
     {
