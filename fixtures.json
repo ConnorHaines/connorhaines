@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-18T16:11:51.860Z",
-  "lastSuccessfulScrape": "2026-09-18T16:11:51.860Z",
+  "updatedAt": "2026-09-19T15:43:19.807Z",
+  "lastSuccessfulScrape": "2026-09-19T15:43:19.807Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -862,8 +862,33 @@
       "source": "allwalessport"
     }
   ],
-  "results": [],
+  "results": [
+    {
+      "id": "2026-09-19-abertysswg-falcons-hollybush",
+      "date": "2026-09-19",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
+      "homeScore": 38,
+      "awayScore": 20,
+      "away": "Hollybush RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    }
+  ],
   "allResults": [
+    {
+      "id": "2026-09-19-abertysswg-falcons-hollybush",
+      "date": "2026-09-19",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
+      "homeScore": 38,
+      "awayScore": 20,
+      "away": "Hollybush RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
     {
       "id": "2026-09-12-abersychan-alexanders-new-tredegar",
       "date": "2026-09-12",
@@ -927,6 +952,16 @@
   ],
   "table": [
     {
+      "team": "Abertysswg Falcons RFC",
+      "played": 2,
+      "won": 2,
+      "drawn": 0,
+      "lost": 0,
+      "points": 10,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
       "team": "New Tredegar RFC",
       "played": 2,
       "won": 1,
@@ -938,16 +973,6 @@
     },
     {
       "team": "Bettws RFC",
-      "played": 1,
-      "won": 1,
-      "drawn": 0,
-      "lost": 0,
-      "points": 5,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Abertysswg Falcons RFC",
       "played": 1,
       "won": 1,
       "drawn": 0,
@@ -985,6 +1010,16 @@
       "points": 2,
       "deducted": false,
       "isHollybush": false
+    },
+    {
+      "team": "Hollybush RFC",
+      "played": 1,
+      "won": 0,
+      "drawn": 0,
+      "lost": 1,
+      "points": 1,
+      "deducted": false,
+      "isHollybush": true
     },
     {
       "team": "St Julians HSOB RFC",
