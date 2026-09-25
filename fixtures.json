@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-19T22:35:18.771Z",
-  "lastSuccessfulScrape": "2026-09-19T22:35:18.771Z",
+  "updatedAt": "2026-09-25T16:57:56.417Z",
+  "lastSuccessfulScrape": "2026-09-25T16:57:56.417Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -19,12 +19,12 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-09-26-hollybush-abersychan-alexanders",
+      "id": "2026-09-26-abersychan-alexanders-hollybush",
       "date": "2026-09-26",
       "kickoff": "14:30",
       "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "Abersychan Alexanders RFC",
+      "home": "Abersychan Alexanders RFC",
+      "away": "Hollybush RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
     },
@@ -99,12 +99,12 @@
       "source": "allwalessport"
     },
     {
-      "id": "2027-01-02-abersychan-alexanders-hollybush",
+      "id": "2027-01-02-hollybush-abersychan-alexanders",
       "date": "2027-01-02",
       "kickoff": "14:30",
       "competition": "League",
-      "home": "Abersychan Alexanders RFC",
-      "away": "Hollybush RFC",
+      "home": "Hollybush RFC",
+      "away": "Abersychan Alexanders RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
     },
@@ -222,22 +222,12 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-09-26-hafodyrynys-st-julians-hsob",
+      "id": "2026-09-26-abersychan-alexanders-hollybush",
       "date": "2026-09-26",
       "kickoff": "14:30",
       "competition": "League",
-      "home": "Hafodyrynys RFC",
-      "away": "St Julians HSOB RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-09-26-hollybush-abersychan-alexanders",
-      "date": "2026-09-26",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "Abersychan Alexanders RFC",
+      "home": "Abersychan Alexanders RFC",
+      "away": "Hollybush RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
     },
@@ -582,16 +572,6 @@
       "source": "allwalessport"
     },
     {
-      "id": "2027-01-02-abersychan-alexanders-hollybush",
-      "date": "2027-01-02",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abersychan Alexanders RFC",
-      "away": "Hollybush RFC",
-      "hollybushPlaying": true,
-      "source": "allwalessport"
-    },
-    {
       "id": "2027-01-02-bettws-new-tredegar",
       "date": "2027-01-02",
       "kickoff": "14:30",
@@ -609,6 +589,16 @@
       "home": "Brynithel RFC",
       "away": "Penallta RFC Athletic",
       "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-01-02-hollybush-abersychan-alexanders",
+      "date": "2027-01-02",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hollybush RFC",
+      "away": "Abersychan Alexanders RFC",
+      "hollybushPlaying": true,
       "source": "allwalessport"
     },
     {
@@ -858,6 +848,16 @@
       "competition": "League",
       "home": "St Julians HSOB RFC",
       "away": "Abersychan Alexanders RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-03-hafodyrynys-st-julians-hsob",
+      "date": "2027-04-03",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hafodyrynys RFC",
+      "away": "St Julians HSOB RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     }
