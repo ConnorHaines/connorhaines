@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
 export function testDatabase() {
   const sqlite = new DatabaseSync(':memory:');
-  for (const file of ['0001_availability.sql', '0002_player_pins.sql', '0002_player_pins.sql']) {
+  for (const file of ['0001_availability.sql', '0002_player_pins.sql', '0003_roster_update.sql']) {
     sqlite.exec(readFileSync(new URL('../availability-worker/migrations/' + file, import.meta.url), 'utf8'));
   }
   const db = {
