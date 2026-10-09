@@ -2171,53 +2171,59 @@ loadLatestContent();
 // ===== SQUAD DATA =====
 const squad = [
   // Loosehead Props
-  { name: "Ashley Smith", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/Ashley.png", apps: "–", tries: "–" },
-  { name: "Gareth Fleet", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/David.png", apps: "–", tries: "–" },
+  { name: "Ashley Smith", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/Ashley.png", apps: 2, tries: 1 },
+  { name: "Gareth Fleet", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/placeholder.png", apps: 2, tries: 0 },
+  { name: "David Reynolds", pos: "Loosehead Prop", num: 1, type: "forward", img: "img/David.png", apps: 2, tries: 0 },
   // Hookers
-  { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", img: "img/zach_kettle.jpg", apps: "–", tries: "–" },
-  { name: "Ben Nash", pos: "Hooker", num: 2, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Zach Kettle", pos: "Hooker", num: 2, type: "forward", img: "img/zach_kettle.jpg", apps: 2, tries: 0 },
+  { name: "Ben Nash", pos: "Hooker", num: 2, type: "forward", img: "img/placeholder.png", apps: 2, tries: 0 },
   // Tighthead Props
-  { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/luke_harper.jpg", apps: "–", tries: "–" },
-  { name: "Matteo Sidoli", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/Matteo.png", apps: "–", tries: "–" },
-  { name: "Richard Hext", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Luke Harper", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/luke_harper.jpg", apps: 2, tries: 0 },
+  { name: "Matteo Sidoli", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/Matteo.png", apps: 1, tries: 0 },
+  { name: "Richard Hext", pos: "Tighthead Prop", num: 3, type: "forward", img: "img/placeholder.png", apps: 2, tries: 0 },
   // Second Rows
-  { name: "Lloyd English", pos: "Second Row", num: 4, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Lloyd English", pos: "Second Row", num: 4, type: "forward", img: "img/placeholder.png", apps: 1, tries: 0 },
   { name: "Geraint Conlon", pos: "Second Row", num: 4, type: "forward", img: "img/Geraint.png", apps: "–", tries: "–" },
-  { name: "Tom Rees", pos: "Second Row", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: "–", tries: "–" },
-  { name: "Steffan Andrews", pos: "Second Row", num: 5, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Darren Gould", pos: "Second Row", num: 5, type: "forward", img: "img/Darren.png", apps: "–", tries: "–" },
+  { name: "Tom Rees", pos: "Second Row", num: 5, type: "forward", img: "img/tom_rees.jpg", apps: 1, tries: 0 },
+  { name: "Steffan Andrews", pos: "Second Row", num: 5, type: "forward", img: "img/placeholder.png", apps: 1, tries: 0 },
   // Flankers
-  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/Connor.png", apps: "–", tries: "–" },
-  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/Lewis.png", apps: "–", tries: "–" },
-  { name: "Jake Laddychuk", pos: "Flanker", num: 6, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Dylan Major", pos: "Flanker", num: 7, type: "forward", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Connor Haines", pos: "Blindside Flanker", num: 6, type: "forward", img: "img/Connor.png", apps: 3, tries: 0 },
+  { name: "Lewis Davies", pos: "Openside Flanker", num: 7, type: "forward", img: "img/Lewis.png", apps: 2, tries: 0 },
+  { name: "Jake Laddychuk", pos: "Flanker", num: 6, type: "forward", img: "img/placeholder.png", apps: 1, tries: 0 },
+  { name: "Dylan Major", pos: "Flanker", num: 7, type: "forward", img: "img/placeholder.png", apps: 2, tries: 0 },
   // Number 8
-  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/TomH.png", apps: "–", tries: "–" },
+  { name: "Tom Hancock", pos: "Number 8", num: 8, type: "forward", img: "img/TomH.png", apps: 2, tries: 3 },
   // Scrum Halves
-  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/BenJ.png", apps: "–", tries: "–" },
-  { name: "Mason Williams", pos: "Scrum Half", num: 9, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Ben Jones", pos: "Scrum Half", num: 9, type: "back", img: "img/BenJ.png", apps: 3, tries: 1 },
+  { name: "Mason Williams", pos: "Scrum Half", num: 9, type: "back", img: "img/placeholder.png", apps: 3, tries: 0 },
   // Fly Halves
-  { name: "Liam Morgan", pos: "Fly Half", num: 10, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/Harrison.png", apps: "–", tries: "–" },
+  { name: "Liam Morgan", pos: "Fly Half", num: 10, type: "back", img: "img/placeholder.png", apps: 1, tries: 0 },
+  { name: "Harrison Kerby", pos: "Fly Half", num: 10, type: "back", img: "img/Harrison.png", apps: 2, tries: 0 },
+  { name: "Morgan Spence", pos: "Fly Half", num: 10, type: "back", img: "img/placeholder.png", apps: 2, tries: 0 },
   // Inside Centres
-  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/Bailey.png", apps: "–", tries: "–" },
+  { name: "Bailey Quinton", pos: "Inside Centre", num: 12, type: "back", img: "img/Bailey.png", apps: 3, tries: 0 },
   { name: "Kieran-Lee Edwards", pos: "Inside Centre", num: 12, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
   // Outside Centres
-  { name: "Tyler Roberts", pos: "Outside Centre", num: 13, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/Marcus.png", apps: "–", tries: "–" },
+  { name: "Marcus Stevens", pos: "Outside Centre", num: 13, type: "back", img: "img/Marcus.png", apps: 2, tries: 0 },
   // Wingers
   { name: "Cameron Price", pos: "Winger", num: 11, type: "back", img: "img/Cameron.png", apps: "–", tries: "–" },
-  { name: "Cailib Williams", pos: "Winger", num: 11, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Regan Greening", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "John Williams", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Alexander Jay", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: "–", tries: "–" },
-  { name: "Matt Tucker", pos: "Winger", num: 11, type: "back", img: "img/Matt.png", apps: "–", tries: "–" },
+  { name: "Cailib Williams", pos: "Winger", num: 11, type: "back", img: "img/placeholder.png", apps: 2, tries: 0 },
+  { name: "Regan Greening", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: 3, tries: 0 },
+  { name: "John Williams", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: 2, tries: 0 },
+  { name: "Alexander Jay", pos: "Winger", num: 14, type: "back", img: "img/placeholder.png", apps: 0, tries: 0 },
+  { name: "Matt Tucker", pos: "Winger", num: 11, type: "back", img: "img/Matt.png", apps: 3, tries: 0 },
   // Full Backs
-  { name: "Ethan Hackland", pos: "Full Back", num: 15, type: "back", img: "img/Ethan.png", apps: "–", tries: "–" },
-  { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", img: "img/robert_mays.jpg", apps: "–", tries: "–" },
+  { name: "Ethan Hackland", pos: "Full Back", num: 15, type: "back", img: "img/Ethan.png", apps: 1, tries: 0 },
+  { name: "Robert Mays", pos: "Full Back", num: 15, type: "back", img: "img/robert_mays.jpg", apps: 1, tries: 0 },
+  // Positions to be confirmed
+  { name: "Ben Watkins-Smith", pos: "Squad Player", num: "", type: "player", img: "img/placeholder.png", apps: 2, tries: 0 },
+  { name: "Ivan Hutchinson", pos: "Squad Player", num: "", type: "player", img: "img/placeholder.png", apps: 1, tries: 0 },
+  { name: "Ben Norman-Jones", pos: "Squad Player", num: "", type: "player", img: "img/placeholder.png", apps: 0, tries: 0 },
   // Management
   { name: "Stephen Quinton", pos: "Head Coach", num: "", type: "management", img: "img/Steve.png", apps: "–", tries: "–" },
+  { name: "Darren Gould", pos: "Coach", num: "", type: "management", img: "img/Darren.png", apps: "–", tries: "–" },
+  { name: "Jordan Smith", pos: "Coach", num: "", type: "management", img: "img/placeholder.png", apps: "–", tries: "–" },
+  { name: "Grant Watkins", pos: "Coach", num: "", type: "management", img: "img/placeholder.png", apps: "–", tries: "–" },
   { name: "Tim Morris", pos: "Team Chairman", num: "", type: "management", img: "img/Tim.jpg", apps: "–", tries: "–" },
 ];
 
