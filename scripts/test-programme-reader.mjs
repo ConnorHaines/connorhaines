@@ -211,6 +211,16 @@ assert(!indexHtml.includes('openBlog('), 'Old hard-coded blog modals should be r
 assert(indexHtml.includes('id="fixture-expander"'), 'Fixtures should have a show-more control.');
 assert(indexHtml.includes('const FIXTURE_PREVIEW_LIMIT = 4;'), 'Fixtures should initially show four matches.');
 assert(indexHtml.includes('id="squad-expander"'), 'Squad should have a show-more control.');
+assert(indexHtml.includes('name: "Ashley Smith"') && indexHtml.includes('apps: 2, tries: 1'), 'Ashley Smith stats should be current.');
+assert(indexHtml.includes('name: "Tom Hancock"') && indexHtml.includes('apps: 2, tries: 3'), 'Tom Hancock stats should be current.');
+assert(indexHtml.includes('name: "Ben Jones"') && indexHtml.includes('apps: 3, tries: 1'), 'Ben Jones stats should be current.');
+assert(indexHtml.includes('name: "Ben Watkins-Smith"'), 'Ben Watkins-Smith should be listed in the squad.');
+assert(indexHtml.includes('name: "Ivan Hutchinson"'), 'Ivan Hutchinson should be listed in the squad.');
+assert(indexHtml.includes('name: "Ben Norman-Jones"'), 'Ben Norman-Jones should be listed in the squad.');
+assert(indexHtml.includes('name: "Morgan Spence"') && indexHtml.includes('apps: 2, tries: 0'), 'Morgan Spence stats should be current.');
+assert(indexHtml.includes('name: "Darren Gould", pos: "Coach"'), 'Darren Gould should be listed as a coach.');
+assert(indexHtml.includes('name: "Jordan Smith", pos: "Coach"'), 'Jordan Smith should be listed as a coach.');
+assert(indexHtml.includes('name: "Grant Watkins", pos: "Coach"'), 'Grant Watkins should be listed as a coach.');
 assert(indexHtml.includes('const SQUAD_PREVIEW_LIMIT = 8;'), 'Squad should initially show eight people.');
 assert(indexHtml.indexOf('class="sponsor-strip"') < indexHtml.indexOf('<section id="fixtures">'), 'Sponsor strip should sit above Fixtures.');
 assert.match(
