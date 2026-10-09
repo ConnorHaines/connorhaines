@@ -53,6 +53,13 @@ test('correct personal PIN saves; wrong pepper fails; public API never returns h
     const form = await worker.fetch(new Request('https://players.example/api/form'), env);
     const body = await form.json();
     assert.deepEqual(Object.keys(body.players[0]).sort(), ['id', 'name']);
+    const playerNames = body.players.map(player => player.name);
+    assert(playerNames.includes('Ben Norman-Jones'));
+    assert(playerNames.includes('Ben Watkins-Smith'));
+    assert(playerNames.includes('Ivan Hutchinson'));
+    assert(playerNames.includes('Morgan Spence'));
+    assert(playerNames.includes('Steffan Andrews'));
+    assert(!playerNames.includes('Darren Gould'));
     await env.DB.prepare('UPDATE fixtures SET locked = 1').run();
     assert.equal((await worker.fetch(request('0123'), env)).status, 423);
   } finally { globalThis.fetch = original; }
