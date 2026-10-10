@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-09-26T16:10:13.601Z",
-  "lastSuccessfulScrape": "2026-09-26T16:10:13.601Z",
+  "updatedAt": "2026-10-10T17:12:41.620Z",
+  "lastSuccessfulScrape": "2026-10-10T17:12:41.620Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -298,16 +298,6 @@
       "competition": "League",
       "home": "Abertysswg Falcons RFC",
       "away": "Brynithel RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-10-17-hafodyrynys-new-tredegar",
-      "date": "2026-10-17",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hafodyrynys RFC",
-      "away": "New Tredegar RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
@@ -864,6 +854,18 @@
   ],
   "results": [
     {
+      "id": "2026-10-10-bettws-hollybush",
+      "date": "2026-10-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Bettws RFC",
+      "homeScore": 13,
+      "awayScore": 20,
+      "away": "Hollybush RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
       "id": "2026-09-26-abersychan-alexanders-hollybush",
       "date": "2026-09-26",
       "kickoff": "14:30",
@@ -889,6 +891,54 @@
     }
   ],
   "allResults": [
+    {
+      "id": "2026-10-10-abertysswg-falcons-penallta-athletic",
+      "date": "2026-10-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
+      "homeScore": 33,
+      "awayScore": 29,
+      "away": "Penallta RFC Athletic",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-10-10-bettws-hollybush",
+      "date": "2026-10-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Bettws RFC",
+      "homeScore": 13,
+      "awayScore": 20,
+      "away": "Hollybush RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-10-10-brynithel-hafodyrynys",
+      "date": "2026-10-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Brynithel RFC",
+      "homeScore": 20,
+      "awayScore": 17,
+      "away": "Hafodyrynys RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-10-10-st-julians-hsob-new-tredegar",
+      "date": "2026-10-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "St Julians HSOB RFC",
+      "homeScore": 0,
+      "awayScore": 75,
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
     {
       "id": "2026-09-26-abersychan-alexanders-hollybush",
       "date": "2026-09-26",
@@ -1001,31 +1051,31 @@
   "table": [
     {
       "team": "New Tredegar RFC",
-      "played": 3,
-      "won": 2,
+      "played": 4,
+      "won": 3,
       "drawn": 0,
       "lost": 1,
-      "points": 12,
+      "points": 17,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Abertysswg Falcons RFC",
-      "played": 2,
-      "won": 2,
+      "played": 3,
+      "won": 3,
       "drawn": 0,
       "lost": 0,
-      "points": 10,
+      "points": 15,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Penallta RFC Athletic",
-      "played": 2,
+      "played": 3,
       "won": 2,
       "drawn": 0,
-      "lost": 0,
-      "points": 9,
+      "lost": 1,
+      "points": 11,
       "deducted": false,
       "isHollybush": false
     },
@@ -1040,52 +1090,52 @@
       "isHollybush": false
     },
     {
-      "team": "Bettws RFC",
-      "played": 2,
+      "team": "Hollybush RFC",
+      "played": 3,
       "won": 1,
       "drawn": 0,
-      "lost": 1,
-      "points": 5,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Hollybush RFC",
-      "played": 2,
-      "won": 0,
-      "drawn": 0,
       "lost": 2,
-      "points": 2,
+      "points": 6,
       "deducted": false,
       "isHollybush": true
     },
     {
-      "team": "Hafodyrynys RFC",
-      "played": 2,
-      "won": 0,
+      "team": "Bettws RFC",
+      "played": 3,
+      "won": 1,
       "drawn": 0,
       "lost": 2,
-      "points": 2,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "St Julians HSOB RFC",
-      "played": 1,
-      "won": 0,
-      "drawn": 0,
-      "lost": 1,
-      "points": 1,
+      "points": 6,
       "deducted": false,
       "isHollybush": false
     },
     {
       "team": "Brynithel RFC",
-      "played": 1,
-      "won": 0,
+      "played": 2,
+      "won": 1,
       "drawn": 0,
       "lost": 1,
-      "points": 0,
+      "points": 4,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Hafodyrynys RFC",
+      "played": 3,
+      "won": 0,
+      "drawn": 0,
+      "lost": 3,
+      "points": 3,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "St Julians HSOB RFC",
+      "played": 2,
+      "won": 0,
+      "drawn": 0,
+      "lost": 2,
+      "points": 1,
       "deducted": false,
       "isHollybush": false
     }
