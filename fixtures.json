@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-10-17T15:20:17.506Z",
-  "lastSuccessfulScrape": "2026-10-17T15:20:17.506Z",
+  "updatedAt": "2026-10-17T19:52:31.358Z",
+  "lastSuccessfulScrape": "2026-10-17T19:52:31.358Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -872,6 +872,30 @@
   ],
   "allResults": [
     {
+      "id": "2026-10-17-abertysswg-falcons-brynithel",
+      "date": "2026-10-17",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
+      "homeScore": 35,
+      "awayScore": 13,
+      "away": "Brynithel RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2026-10-17-penallta-athletic-abersychan-alexanders",
+      "date": "2026-10-17",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Penallta RFC Athletic",
+      "homeScore": 19,
+      "awayScore": 10,
+      "away": "Abersychan Alexanders RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
       "id": "2026-10-10-abertysswg-falcons-penallta-athletic",
       "date": "2026-10-10",
       "kickoff": "14:30",
@@ -1030,6 +1054,16 @@
   ],
   "table": [
     {
+      "team": "Abertysswg Falcons RFC",
+      "played": 4,
+      "won": 4,
+      "drawn": 0,
+      "lost": 0,
+      "points": 20,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
       "team": "New Tredegar RFC",
       "played": 4,
       "won": 3,
@@ -1040,31 +1074,21 @@
       "isHollybush": false
     },
     {
-      "team": "Abertysswg Falcons RFC",
-      "played": 3,
+      "team": "Penallta RFC Athletic",
+      "played": 4,
       "won": 3,
       "drawn": 0,
-      "lost": 0,
+      "lost": 1,
       "points": 15,
       "deducted": false,
       "isHollybush": false
     },
     {
-      "team": "Penallta RFC Athletic",
-      "played": 3,
-      "won": 2,
-      "drawn": 0,
-      "lost": 1,
-      "points": 11,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
       "team": "Abersychan Alexanders RFC",
-      "played": 3,
+      "played": 4,
       "won": 2,
       "drawn": 0,
-      "lost": 1,
+      "lost": 2,
       "points": 9,
       "deducted": false,
       "isHollybush": false
@@ -1091,10 +1115,10 @@
     },
     {
       "team": "Brynithel RFC",
-      "played": 2,
+      "played": 3,
       "won": 1,
       "drawn": 0,
-      "lost": 1,
+      "lost": 2,
       "points": 4,
       "deducted": false,
       "isHollybush": false
