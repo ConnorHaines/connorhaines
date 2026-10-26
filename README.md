@@ -34,7 +34,9 @@ node scraper/scrape.js
 
 ## Squad photos
 
-Player image paths are set in the `squad` array in `index.html`. Missing images automatically display the generic player silhouette.
+Player image paths are set in the `squad` array in `index.html`. Leave `img` as `""` for players without a photo and the generic player silhouette is shown; a path that fails to load falls back to it too.
+
+Add new photos as roughly 600px WebP files (about 50KB) rather than full-size PNGs, which run to several MB each and slow the page on mobile data.
 
 ## Matchday programme
 
