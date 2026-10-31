@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-10-25T04:10:06.487Z",
-  "lastSuccessfulScrape": "2026-10-25T04:10:06.487Z",
+  "updatedAt": "2026-10-31T17:06:07.657Z",
+  "lastSuccessfulScrape": "2026-10-31T17:06:07.657Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -832,6 +832,18 @@
   ],
   "allResults": [
     {
+      "id": "2026-10-31-abersychan-alexanders-abertysswg-falcons",
+      "date": "2026-10-31",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abersychan Alexanders RFC",
+      "homeScore": 15,
+      "awayScore": 38,
+      "away": "Abertysswg Falcons RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
       "id": "2026-10-17-abertysswg-falcons-brynithel",
       "date": "2026-10-17",
       "kickoff": "14:30",
@@ -1015,11 +1027,11 @@
   "table": [
     {
       "team": "Abertysswg Falcons RFC",
-      "played": 4,
-      "won": 4,
+      "played": 5,
+      "won": 5,
       "drawn": 0,
       "lost": 0,
-      "points": 20,
+      "points": 25,
       "deducted": false,
       "isHollybush": false
     },
@@ -1045,10 +1057,10 @@
     },
     {
       "team": "Abersychan Alexanders RFC",
-      "played": 4,
+      "played": 5,
       "won": 2,
       "drawn": 0,
-      "lost": 2,
+      "lost": 3,
       "points": 9,
       "deducted": false,
       "isHollybush": false
