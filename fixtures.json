@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-10-31T17:06:07.657Z",
-  "lastSuccessfulScrape": "2026-10-31T17:06:07.657Z",
+  "updatedAt": "2026-11-01T17:49:18.198Z",
+  "lastSuccessfulScrape": "2026-11-01T17:49:18.198Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -392,32 +392,12 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-12-05-abertysswg-falcons-hafodyrynys",
-      "date": "2026-12-05",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abertysswg Falcons RFC",
-      "away": "Hafodyrynys RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
       "id": "2026-12-05-bettws-brynithel",
       "date": "2026-12-05",
       "kickoff": "14:30",
       "competition": "League",
       "home": "Bettws RFC",
       "away": "Brynithel RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-12-05-penallta-athletic-new-tredegar",
-      "date": "2026-12-05",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Penallta RFC Athletic",
-      "away": "New Tredegar RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
