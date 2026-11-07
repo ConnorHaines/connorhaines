@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-03T06:08:06.130Z",
-  "lastSuccessfulScrape": "2026-11-03T06:08:06.130Z",
+  "updatedAt": "2026-11-07T17:39:47.937Z",
+  "lastSuccessfulScrape": "2026-11-07T17:39:47.937Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -304,7 +304,7 @@
     {
       "id": "2026-11-07-bettws-hafodyrynys",
       "date": "2026-11-07",
-      "kickoff": "13:00",
+      "kickoff": "14:30",
       "competition": "League",
       "home": "Bettws RFC",
       "away": "Hafodyrynys RFC",
@@ -822,6 +822,18 @@
   ],
   "allResults": [
     {
+      "id": "2026-11-07-bettws-hafodyrynys",
+      "date": "2026-11-07",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Bettws RFC",
+      "homeScore": 20,
+      "awayScore": 26,
+      "away": "Hafodyrynys RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
       "id": "2026-10-31-abersychan-alexanders-abertysswg-falcons",
       "date": "2026-10-31",
       "kickoff": "14:30",
@@ -1056,6 +1068,26 @@
       "isHollybush": false
     },
     {
+      "team": "Hafodyrynys RFC",
+      "played": 4,
+      "won": 1,
+      "drawn": 0,
+      "lost": 3,
+      "points": 8,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
+      "team": "Bettws RFC",
+      "played": 4,
+      "won": 1,
+      "drawn": 0,
+      "lost": 3,
+      "points": 7,
+      "deducted": false,
+      "isHollybush": false
+    },
+    {
       "team": "Hollybush RFC",
       "played": 3,
       "won": 1,
@@ -1066,32 +1098,12 @@
       "isHollybush": true
     },
     {
-      "team": "Bettws RFC",
-      "played": 3,
-      "won": 1,
-      "drawn": 0,
-      "lost": 2,
-      "points": 6,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
       "team": "Brynithel RFC",
       "played": 3,
       "won": 1,
       "drawn": 0,
       "lost": 2,
       "points": 4,
-      "deducted": false,
-      "isHollybush": false
-    },
-    {
-      "team": "Hafodyrynys RFC",
-      "played": 3,
-      "won": 0,
-      "drawn": 0,
-      "lost": 3,
-      "points": 3,
       "deducted": false,
       "isHollybush": false
     },
