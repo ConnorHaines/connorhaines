@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-07T17:39:47.937Z",
-  "lastSuccessfulScrape": "2026-11-07T17:39:47.937Z",
+  "updatedAt": "2026-11-17T20:42:00.195Z",
+  "lastSuccessfulScrape": "2026-11-17T20:42:00.195Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -452,16 +452,6 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-12-19-abertysswg-falcons-new-tredegar",
-      "date": "2026-12-19",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abertysswg Falcons RFC",
-      "away": "New Tredegar RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
       "id": "2026-12-19-bettws-st-julians-hsob",
       "date": "2026-12-19",
       "kickoff": "14:30",
@@ -777,6 +767,16 @@
       "kickoff": "14:30",
       "competition": "League",
       "home": "Hafodyrynys RFC",
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-17-abertysswg-falcons-new-tredegar",
+      "date": "2027-04-17",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
       "away": "New Tredegar RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
