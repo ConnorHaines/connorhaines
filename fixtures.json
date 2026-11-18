@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-17T20:42:00.195Z",
-  "lastSuccessfulScrape": "2026-11-17T20:42:00.195Z",
+  "updatedAt": "2026-11-18T20:15:59.708Z",
+  "lastSuccessfulScrape": "2026-11-18T20:15:59.708Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -35,16 +35,6 @@
       "competition": "League",
       "home": "Bettws RFC",
       "away": "Hollybush RFC",
-      "hollybushPlaying": true,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-21-hollybush-new-tredegar",
-      "date": "2026-11-21",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "New Tredegar RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
     },
@@ -312,16 +302,6 @@
       "source": "allwalessport"
     },
     {
-      "id": "2026-11-21-abersychan-alexanders-brynithel",
-      "date": "2026-11-21",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abersychan Alexanders RFC",
-      "away": "Brynithel RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
       "id": "2026-11-21-abertysswg-falcons-bettws",
       "date": "2026-11-21",
       "kickoff": "14:30",
@@ -329,16 +309,6 @@
       "home": "Abertysswg Falcons RFC",
       "away": "Bettws RFC",
       "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-21-hollybush-new-tredegar",
-      "date": "2026-11-21",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Hollybush RFC",
-      "away": "New Tredegar RFC",
-      "hollybushPlaying": true,
       "source": "allwalessport"
     },
     {
@@ -748,6 +718,16 @@
       "competition": "League",
       "home": "St Julians HSOB RFC",
       "away": "Abersychan Alexanders RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-03-abersychan-alexanders-brynithel",
+      "date": "2027-04-03",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Abersychan Alexanders RFC",
+      "away": "Brynithel RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
