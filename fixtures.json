@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-18T20:15:59.708Z",
-  "lastSuccessfulScrape": "2026-11-18T20:15:59.708Z",
+  "updatedAt": "2026-11-20T19:51:52.774Z",
+  "lastSuccessfulScrape": "2026-11-20T19:51:52.774Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -298,26 +298,6 @@
       "competition": "League",
       "home": "Bettws RFC",
       "away": "Hafodyrynys RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-21-abertysswg-falcons-bettws",
-      "date": "2026-11-21",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Abertysswg Falcons RFC",
-      "away": "Bettws RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-21-penallta-athletic-st-julians-hsob",
-      "date": "2026-11-21",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Penallta RFC Athletic",
-      "away": "St Julians HSOB RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
@@ -638,6 +618,16 @@
       "competition": "League",
       "home": "St Julians HSOB RFC",
       "away": "Penallta RFC Athletic",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-02-06-abertysswg-falcons-hafodyrynys",
+      "date": "2027-02-06",
+      "kickoff": "13:30",
+      "competition": "League",
+      "home": "Abertysswg Falcons RFC",
+      "away": "Hafodyrynys RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
