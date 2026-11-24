@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-20T19:51:52.774Z",
-  "lastSuccessfulScrape": "2026-11-20T19:51:52.774Z",
+  "updatedAt": "2026-11-24T22:11:45.225Z",
+  "lastSuccessfulScrape": "2026-11-24T22:11:45.225Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -34,16 +34,6 @@
       "kickoff": "14:30",
       "competition": "League",
       "home": "Bettws RFC",
-      "away": "Hollybush RFC",
-      "hollybushPlaying": true,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-28-brynithel-hollybush",
-      "date": "2026-11-28",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Brynithel RFC",
       "away": "Hollybush RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
@@ -125,6 +115,26 @@
       "competition": "League",
       "home": "Hollybush RFC",
       "away": "Brynithel RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-03-hollybush-new-tredegar",
+      "date": "2027-04-03",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hollybush RFC",
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-10-brynithel-hollybush",
+      "date": "2027-04-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Brynithel RFC",
+      "away": "Hollybush RFC",
       "hollybushPlaying": true,
       "source": "allwalessport"
     }
@@ -299,26 +309,6 @@
       "home": "Bettws RFC",
       "away": "Hafodyrynys RFC",
       "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-28-bettws-abersychan-alexanders",
-      "date": "2026-11-28",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Bettws RFC",
-      "away": "Abersychan Alexanders RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-28-brynithel-hollybush",
-      "date": "2026-11-28",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "Brynithel RFC",
-      "away": "Hollybush RFC",
-      "hollybushPlaying": true,
       "source": "allwalessport"
     },
     {
@@ -732,6 +722,26 @@
       "source": "allwalessport"
     },
     {
+      "id": "2027-04-03-hollybush-new-tredegar",
+      "date": "2027-04-03",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Hollybush RFC",
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-04-10-brynithel-hollybush",
+      "date": "2027-04-10",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Brynithel RFC",
+      "away": "Hollybush RFC",
+      "hollybushPlaying": true,
+      "source": "allwalessport"
+    },
+    {
       "id": "2027-04-10-hafodyrynys-new-tredegar",
       "date": "2027-04-10",
       "kickoff": "14:30",
@@ -747,6 +757,16 @@
       "kickoff": "14:30",
       "competition": "League",
       "home": "Abertysswg Falcons RFC",
+      "away": "New Tredegar RFC",
+      "hollybushPlaying": false,
+      "source": "allwalessport"
+    },
+    {
+      "id": "2027-05-01-brynithel-new-tredegar",
+      "date": "2027-05-01",
+      "kickoff": "14:30",
+      "competition": "League",
+      "home": "Brynithel RFC",
       "away": "New Tredegar RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
