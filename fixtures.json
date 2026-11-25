@@ -5,8 +5,8 @@
   "defaultKickoff": "14:30",
   "sourceUrl": "https://www.allwalessport.co.uk/rugby-union.aspx?cid=19787",
   "sourceStatus": "live",
-  "updatedAt": "2026-11-24T22:11:45.225Z",
-  "lastSuccessfulScrape": "2026-11-24T22:11:45.225Z",
+  "updatedAt": "2026-11-25T21:28:10.598Z",
+  "lastSuccessfulScrape": "2026-11-25T21:28:10.598Z",
   "fixtures": [
     {
       "id": "2026-09-19-abertysswg-falcons-hollybush",
@@ -308,16 +308,6 @@
       "competition": "League",
       "home": "Bettws RFC",
       "away": "Hafodyrynys RFC",
-      "hollybushPlaying": false,
-      "source": "allwalessport"
-    },
-    {
-      "id": "2026-11-28-st-julians-hsob-abertysswg-falcons",
-      "date": "2026-11-28",
-      "kickoff": "14:30",
-      "competition": "League",
-      "home": "St Julians HSOB RFC",
-      "away": "Abertysswg Falcons RFC",
       "hollybushPlaying": false,
       "source": "allwalessport"
     },
